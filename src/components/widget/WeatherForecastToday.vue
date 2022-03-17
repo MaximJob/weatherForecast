@@ -60,8 +60,6 @@ export default {
 
 <style lang="scss" scoped>
 .day {
-  padding: 20px 10px;
-
   .temperatureWrap {
     display: grid;
     grid-template: auto / 1fr 1fr;
@@ -92,7 +90,7 @@ export default {
   }
 
   .conditionsWrap {
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
 
     .description {

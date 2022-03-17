@@ -149,7 +149,7 @@ export default {
 .widget {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px 20px 20px 20px;
   background-color: #ffffff;
   color: #333;
   border-radius: 25px;
@@ -189,7 +189,7 @@ export default {
       grid-area: form;
     }
   }
-  
+
   .cityError {
     display: grid;
     grid-template: auto / 1fr;

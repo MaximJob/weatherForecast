@@ -72,6 +72,9 @@ form {
   }
 
   .inputCity {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     height: 38px;
     padding: 10px;
     border-radius: 10px;
@@ -92,6 +95,9 @@ form {
   }
 
   .search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 38px;
     padding: 10px;
     border-radius: 10px;

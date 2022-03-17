@@ -21,6 +21,8 @@ export default {
   min-height: 100vh;
   background-color: #f3f3f3;
   padding: 30px;
+  isolation: isolate;
+  position: relative;
 
   @media (max-width: 768px) {
     padding: 10px;
