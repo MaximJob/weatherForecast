@@ -3,23 +3,23 @@
     <weather-forecast-loading v-if="loading" />
 
     <div v-show="!loading" class="info">
-      <weather-forecast-today v-if="!cityError" :weather="current" />
-
-      <weather-forecast-week v-if="!cityError" :weather="week" />
-
-      <input
-        ref="inputCity"
-        v-model.trim="city"
-        :placeholder="cityPlaceholder"
-        class="inputCity"
-        name="inputCity"
-        type="text"
-        @keydown.enter.prevent.self="loadByCityName"
+      <weather-forecast-today
+        v-if="!cityError"
+        :weather="current"
+        class="today"
       />
 
-      <button class="search" type="submit" @click.prevent.self="loadByCityName">
-        Поиск
-      </button>
+      <weather-forecast-week
+        v-if="!cityError"
+        :weather="week"
+        class="week"
+      />
+
+      <weather-forecast-load-form
+        :error="error"
+        :load-by-city-name="loadByCityName"
+        class="form"
+      />
     </div>
   </div>
 </template>
@@ -28,11 +28,13 @@
 import WeatherForecastToday from "@/components/widget/WeatherForecastToday.vue";
 import WeatherForecastWeek from "@/components/widget/WeatherForecastWeek.vue";
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
+import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
 
 export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastLoadForm,
     WeatherForecastLoading,
     WeatherForecastWeek,
     WeatherForecastToday
@@ -43,20 +45,13 @@ export default {
       loading: true,
       current: {},
       week: [],
-      city: "",
       cityError: false,
-      cityPlaceholder: "Введите город"
+      error: false
     };
   },
 
   created() {
     this.loadByCoords();
-  },
-
-  watch: {
-    city() {
-      this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
-    }
   },
 
   methods: {
@@ -83,11 +78,11 @@ export default {
       }
     },
 
-    loadByCityName() {
-      if (this.city) {
+    loadByCityName(city) {
+      if (city) {
         this.loading = true;
         this.$http
-          .get(`geo/1.0/direct?q=${this.city}`)
+          .get(`geo/1.0/direct?q=${city}`)
           .then((response) => {
             this.loadWeatherForecast(
               response.data[0].lat,
@@ -99,7 +94,7 @@ export default {
             this.loading = false;
           });
       } else {
-        this.$refs.inputCity.classList.add("error");
+        this.error = true;
       }
     },
 
@@ -107,12 +102,12 @@ export default {
       this.city = "";
       this.cityPlaceholder = "Введите существующий город";
       this.cityError = true;
-      this.$refs.inputCity.classList.add("error");
+      this.error = true;
     },
 
     clearCityError() {
       this.city = "";
-      this.$refs.inputCity.classList.remove("error");
+      this.error = false;
       if (this.cityError) {
         this.cityPlaceholder = "Введите город";
         this.cityError = false;
@@ -139,9 +134,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$focus: #fbc826;
-$error: #ff0000;
-
 .widget {
   max-width: 1200px;
   margin: 0 auto;
@@ -151,65 +143,34 @@ $error: #ff0000;
   border-radius: 25px;
   position: relative;
 
-  @media (min-width: 2000px) {
-    transform: scale(1.4);
-  }
-
   .info {
     height: 100%;
     display: grid;
     grid-template: repeat(2, auto) / 2fr 3fr;
+    grid-template-areas:
+      'today week'
+      'form form';
     grid-gap: 0 10px;
 
     @media (max-width: 1000px) {
-      grid-template: repeat(4, auto) / 1fr;
+      grid-template: repeat(3, auto) / 1fr;
+      grid-template-areas:
+      'today'
+      'week'
+      'form';
       grid-gap: 0;
     }
 
-    .inputCity {
-      height: 38px;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #333333;
-      transition: all 0.3s;
-      font-size: 14px;
-      font-weight: 400;
-      background: transparent;
-
-      &:focus {
-        border: 1px solid $focus;
-      }
+    .today {
+      grid-area: today;
     }
 
-    .error {
-      color: $error;
-      border: 1px solid $error;
+    .week {
+      grid-area: week;
     }
 
-    .search {
-      height: 38px;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #333333;
-      transition: all 0.3s;
-      font-size: 14px;
-      font-weight: 400;
-      background: transparent;
-
-      @media (max-width: 1000px) {
-        margin-top: 10px;
-      }
-
-      &:focus {
-        border: 1px solid $focus;
-      }
-
-      &:hover {
-        background-color: #333333;
-        border: 1px solid #333333;
-        color: #ffffff;
-        transition: all 0.1s;
-      }
+    .form {
+      grid-area: form;
     }
   }
 }
