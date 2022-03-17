@@ -101,10 +101,6 @@ form {
     font-weight: 400;
     background: transparent;
 
-    @media (max-width: 1000px) {
-      margin-top: 10px;
-    }
-
     &:focus {
       border: 1px solid $focus;
     }

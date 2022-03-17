@@ -25,8 +25,8 @@ export default {
   props: {
     weather: {
       type: Object,
-      required: true,
-    },
+      required: true
+    }
   },
 
   computed: {
@@ -53,8 +53,8 @@ export default {
         return description;
       }
       return "";
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -2,7 +2,18 @@
   <div class="widget">
     <weather-forecast-loading v-if="loading" />
 
-    <div v-show="!loading" class="info">
+    <div
+      v-show="!loading"
+      :class="{
+        'cityError': cityError,
+      }"
+      class="info"
+    >
+      <weather-forecast-error
+        v-if="cityError"
+        class="error"
+      />
+
       <weather-forecast-today
         v-if="!cityError"
         :weather="current"
@@ -16,7 +27,7 @@
       />
 
       <weather-forecast-load-form
-        :error="error"
+        :error="nameError"
         :load-by-city-name="loadByCityName"
         class="form"
       />
@@ -29,11 +40,13 @@ import WeatherForecastToday from "@/components/widget/WeatherForecastToday.vue";
 import WeatherForecastWeek from "@/components/widget/WeatherForecastWeek.vue";
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
 import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
+import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 
 export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastError,
     WeatherForecastLoadForm,
     WeatherForecastLoading,
     WeatherForecastWeek,
@@ -46,7 +59,7 @@ export default {
       current: {},
       week: [],
       cityError: false,
-      error: false
+      nameError: false
     };
   },
 
@@ -80,6 +93,7 @@ export default {
 
     loadByCityName(city) {
       if (city) {
+        this.nameError = false;
         this.loading = true;
         this.$http
           .get(`geo/1.0/direct?q=${city}`)
@@ -94,22 +108,20 @@ export default {
             this.loading = false;
           });
       } else {
-        this.error = true;
+        this.nameError = true;
       }
     },
 
     createCityError() {
-      this.city = "";
       this.cityPlaceholder = "Введите существующий город";
+      this.nameError = true;
       this.cityError = true;
-      this.error = true;
     },
 
     clearCityError() {
-      this.city = "";
-      this.error = false;
       if (this.cityError) {
         this.cityPlaceholder = "Введите город";
+        this.nameError = false;
         this.cityError = false;
       }
     },
@@ -161,6 +173,10 @@ export default {
       grid-gap: 0;
     }
 
+    .error {
+      grid-area: error;
+    }
+
     .today {
       grid-area: today;
     }
@@ -172,6 +188,14 @@ export default {
     .form {
       grid-area: form;
     }
+  }
+  
+  .cityError {
+    display: grid;
+    grid-template: auto / 1fr;
+    grid-template-areas:
+      'error'
+      'form';
   }
 }
 </style>
