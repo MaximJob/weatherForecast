@@ -140,7 +140,7 @@ export default {
 <style lang="scss" scoped>
 .widget {
   box-sizing: border-box;
-  max-width: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
   padding: 30px 20px 20px 20px;
   background-color: #ffffff;

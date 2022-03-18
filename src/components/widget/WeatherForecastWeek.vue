@@ -167,6 +167,8 @@ export default {
 
     .graphMin div,
     .graphMax div {
+      width: 30px;
+      text-align: center;
       font-size: 16px;
     }
   }
