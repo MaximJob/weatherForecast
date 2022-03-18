@@ -11,7 +11,11 @@ import WeatherForecast from "@/components/widget/WeatherForecast.vue";
 export default {
   name: "App",
 
-  components: { WeatherForecast }
+  components: { WeatherForecast },
+
+  beforeCreate() {
+    document.oncontextmenu = () => false;
+  }
 };
 </script>
 

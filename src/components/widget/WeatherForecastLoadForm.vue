@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="">
+    <form autocomplete="off" @submit.prevent="load">
       <input
         v-model.trim="city"
         :class="{
@@ -10,10 +10,9 @@
         class="inputCity"
         name="inputCity"
         type="text"
-        @keydown.enter.prevent.self="load"
       />
 
-      <button class="search" type="submit" @click.prevent.self="load">
+      <button class="search" type="submit">
         Поиск
       </button>
     </form>
