@@ -4,11 +4,11 @@
       <input
         v-model.trim="city"
         :class="{
-          'error': error
+          'error': cityExistError || emptyNameError
         }"
+        :placeholder="placeholder"
         class="inputCity"
         name="inputCity"
-        placeholder="Введите город"
         type="text"
         @keydown.enter.prevent.self="load"
       />
@@ -29,7 +29,7 @@ export default {
       type: Function,
       required: true
     },
-    error: {
+    cityExistError: {
       type: Boolean,
       required: true
     }
@@ -37,8 +37,17 @@ export default {
 
   data() {
     return {
-      city: ""
+      city: "",
+      emptyNameError: false
     };
+  },
+
+  computed: {
+    placeholder() {
+      return (this.cityExistError || this.emptyNameError)
+        ? "Введите существующий город"
+        : "Введите город";
+    }
   },
 
   watch: {
@@ -49,8 +58,13 @@ export default {
 
   methods: {
     load() {
-      this.loadByCityName(this.city);
-      this.city = "";
+      if (this.city !== "") {
+        this.emptyNameError = false;
+        this.loadByCityName(this.city);
+        this.city = "";
+      } else {
+        this.emptyNameError = true;
+      }
     }
   }
 };

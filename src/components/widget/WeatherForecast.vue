@@ -5,29 +5,29 @@
     <div
       v-show="!loading"
       :class="{
-        'cityError': cityError,
+        'cityError': cityExistError,
       }"
       class="info"
     >
       <weather-forecast-error
-        v-if="cityError"
+        v-if="cityExistError"
         class="error"
       />
 
       <weather-forecast-today
-        v-if="!cityError"
+        v-if="!cityExistError"
         :weather="current"
         class="today"
       />
 
       <weather-forecast-week
-        v-if="!cityError"
+        v-if="!cityExistError"
         :weather="week"
         class="week"
       />
 
       <weather-forecast-load-form
-        :error="nameError"
+        :city-exist-error="cityExistError"
         :load-by-city-name="loadByCityName"
         class="form"
       />
@@ -58,8 +58,7 @@ export default {
       loading: true,
       current: {},
       week: [],
-      cityError: false,
-      nameError: false
+      cityExistError: false
     };
   },
 
@@ -68,6 +67,14 @@ export default {
   },
 
   methods: {
+    createCityError() {
+      this.cityExistError = true;
+    },
+
+    clearCityError() {
+      this.cityExistError = false;
+    },
+
     loadByCoords() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -93,7 +100,6 @@ export default {
 
     loadByCityName(city) {
       if (city) {
-        this.nameError = false;
         this.loading = true;
         this.$http
           .get(`geo/1.0/direct?q=${city}`)
@@ -107,22 +113,6 @@ export default {
             this.createCityError();
             this.loading = false;
           });
-      } else {
-        this.nameError = true;
-      }
-    },
-
-    createCityError() {
-      this.cityPlaceholder = "Введите существующий город";
-      this.nameError = true;
-      this.cityError = true;
-    },
-
-    clearCityError() {
-      if (this.cityError) {
-        this.cityPlaceholder = "Введите город";
-        this.nameError = false;
-        this.cityError = false;
       }
     },
 
