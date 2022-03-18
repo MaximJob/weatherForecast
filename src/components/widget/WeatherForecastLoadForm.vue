@@ -143,6 +143,9 @@ form {
     font-size: 14px;
     font-weight: 400;
     background: transparent;
+    user-select: none;
+    cursor: pointer;
+    -webkit-appearance: button;
 
     &:focus {
       border: 1px solid $focus;

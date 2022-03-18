@@ -1,20 +1,2 @@
 @use "reset.scss";
 @use "font.scss";
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #333333 #f3f3f3;
-}
-
-*::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #f3f3f3;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #333333;
-}

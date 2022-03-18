@@ -72,6 +72,10 @@ export default {
 
     .icon {
       grid-area: icon;
+      display: block;
+      max-width: 100%;
+      pointer-events: none;
+      user-select: none;
     }
 
     .temperature {
