@@ -1,10 +1,42 @@
 <template>
-  <div>Такой город не существует</div>
+  <div>{{ errorText }}</div>
 </template>
 
 <script>
 export default {
-  name: "WeatherForecastError"
+  name: "WeatherForecastError",
+
+  props: {
+    geoExistError: {
+      type: Boolean,
+      required: true
+    },
+    geoAccessError: {
+      type: Boolean,
+      required: true
+    },
+    cityExistError: {
+      type: Boolean,
+      required: true
+    },
+    searchesAmount: {
+      type: Number,
+      required: true
+    }
+  },
+
+  computed: {
+    errorText() {
+      if (this.cityExistError && this.searchesAmount > 0) {
+        return "Такой город не существует";
+      } else if (this.geoExistError) {
+        return "Устройство не поддерживает геолокацию";
+      } else if (this.geoAccessError) {
+        return "Доступ к геолокации запрещен";
+      }
+      return "";
+    }
+  }
 };
 </script>
 

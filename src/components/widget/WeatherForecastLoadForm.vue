@@ -4,7 +4,7 @@
       <input
         v-model.trim="city"
         :class="{
-          'error': cityExistError || emptyNameError
+          'error': isErrorClass
         }"
         :placeholder="placeholder"
         class="inputCity"
@@ -29,8 +29,16 @@ export default {
       type: Function,
       required: true
     },
+    geoAccessError: {
+      type: Boolean,
+      required: true
+    },
     cityExistError: {
       type: Boolean,
+      required: true
+    },
+    searchesAmount: {
+      type: Number,
       required: true
     }
   },
@@ -44,15 +52,30 @@ export default {
 
   computed: {
     placeholder() {
+      if (
+        (this.cityExistError || this.emptyNameError)
+        && this.searchesAmount > 0
+      ) {
+        return "Введите существующий город";
+      }
+      return "Введите город";
+    },
+
+    isErrorClass() {
       return (this.cityExistError || this.emptyNameError)
-        ? "Введите существующий город"
-        : "Введите город";
+        && this.searchesAmount > 0;
     }
   },
 
   watch: {
     city() {
       this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
+    },
+
+    geoAccessError() {
+      if (this.geoAccessError) {
+
+      }
     }
   },
 

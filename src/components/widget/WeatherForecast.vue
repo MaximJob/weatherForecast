@@ -11,6 +11,10 @@
     >
       <weather-forecast-error
         v-if="cityExistError"
+        :city-exist-error="cityExistError"
+        :geo-access-error="geoAccessError"
+        :geo-exist-error="geoExistError"
+        :searches-amount="searchesAmount"
         class="error"
       />
 
@@ -28,7 +32,9 @@
 
       <weather-forecast-load-form
         :city-exist-error="cityExistError"
+        :geo-access-error="geoAccessError"
         :load-by-city-name="loadByCityName"
+        :searches-amount="searchesAmount"
         class="form"
       />
     </div>
@@ -58,7 +64,10 @@ export default {
       loading: true,
       current: {},
       week: [],
-      cityExistError: false
+      cityExistError: false,
+      geoAccessError: false,
+      geoExistError: false,
+      searchesAmount: 0
     };
   },
 
@@ -67,14 +76,6 @@ export default {
   },
 
   methods: {
-    createCityError() {
-      this.cityExistError = true;
-    },
-
-    clearCityError() {
-      this.cityExistError = false;
-    },
-
     loadByCoords() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -85,16 +86,16 @@ export default {
             );
           },
           () => {
-            this.createCityError();
+            this.cityExistError = true;
+            this.geoAccessError = true;
             this.loading = false;
-            console.error("Доступ к геолокации запрещен");
           },
           {
             enableHighAccuracy: true
           }
         );
       } else {
-        console.error("Геолокация не доступна");
+        this.geoExistError = true;
       }
     },
 
@@ -110,7 +111,7 @@ export default {
             );
           })
           .catch(() => {
-            this.createCityError();
+            this.cityExistError = true;
             this.loading = false;
           });
       }
@@ -122,9 +123,10 @@ export default {
           `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=ru`
         )
         .then((response) => {
+          this.searchesAmount++;
           this.current = response.data.current;
           this.week = response.data.daily;
-          this.clearCityError();
+          this.cityExistError = false;
           this.loading = false;
         })
         .catch((e) => {
