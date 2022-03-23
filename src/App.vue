@@ -28,6 +28,7 @@ export default {
   padding: 30px;
   isolation: isolate;
   position: relative;
+  box-sizing: border-box;
 
   @media (max-width: 768px) {
     padding: 10px;

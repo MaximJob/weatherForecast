@@ -108,6 +108,7 @@ form {
   }
 
   .inputCity {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -121,6 +122,10 @@ form {
     font-weight: 400;
     background: transparent;
 
+    &::placeholder {
+      color: unset;
+    }
+
     &:focus {
       border: 1px solid $focus;
     }
@@ -132,6 +137,7 @@ form {
   }
 
   .search {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;

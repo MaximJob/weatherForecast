@@ -6,8 +6,6 @@
 *, ::before, ::after {
   margin: 0;
   padding: 0;
-  border: none;
-  outline: none;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,8 +22,4 @@ html, body {
 body {
   width: 100%;
   min-height: 100vh;
-}
-
-::placeholder {
-  color: unset;
 }
