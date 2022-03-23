@@ -118,20 +118,22 @@ export default {
     },
 
     loadWeatherForecast(lat, lon) {
-      this.$http
-        .get(
-          `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=ru`
-        )
-        .then((response) => {
-          this.searchesAmount++;
-          this.current = response.data.current;
-          this.week = response.data.daily;
-          this.cityExistError = false;
-          this.loading = false;
-        })
-        .catch((e) => {
-          console.error(e);
-        });
+      if (lat && lon) {
+        this.$http
+          .get(
+            `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=ru`
+          )
+          .then((response) => {
+            this.searchesAmount++;
+            this.current = response.data.current;
+            this.week = response.data.daily;
+            this.cityExistError = false;
+            this.loading = false;
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      }
     }
   }
 };
