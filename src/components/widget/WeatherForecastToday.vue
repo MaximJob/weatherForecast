@@ -60,6 +60,12 @@ export default {
 
 <style lang="scss" scoped>
 .day {
+  padding: 20px 0 0 0;
+
+  @media (max-width: 1000px) {
+    padding: 0;
+  }
+
   .temperatureWrap {
     display: grid;
     grid-template: auto / 1fr 1fr;
@@ -68,11 +74,20 @@ export default {
       "icon down";
     align-items: center;
     justify-items: center;
-    padding: 10px 0;
+
+    @media (max-width: 240px) {
+      display: grid;
+      grid-template: auto / 50px 1fr;
+      grid-template-areas:
+      "icon up"
+      "icon down";
+    }
 
     .icon {
       grid-area: icon;
       display: block;
+      min-width: 50px;
+      min-height: 50px;
       max-width: 100%;
       pointer-events: none;
       user-select: none;

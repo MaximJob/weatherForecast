@@ -140,7 +140,6 @@ export default {
 <style lang="scss" scoped>
 .widget {
   box-sizing: border-box;
-  min-width: 300px;
   max-width: 1150px;
   margin: 0 auto;
   padding: 30px 20px 20px 20px;
@@ -166,6 +165,27 @@ export default {
       'week'
       'form';
       grid-gap: 0;
+    }
+
+    @media (max-width: 300px) {
+      grid-template: repeat(2, auto) / 1fr;
+      grid-template-areas:
+      'today'
+      'form';
+
+      .week {
+        display: none;
+      }
+    }
+
+    @media (max-width: 240px) {
+      grid-template: repeat(1, auto) / 1fr;
+      grid-template-areas:
+      'today';
+
+      .form {
+        display: none;
+      }
     }
 
     .error {
