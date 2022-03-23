@@ -93,9 +93,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$focus: #fbc826;
-$error: #ff0000;
-
 form {
   width: 100%;
   height: 100%;
@@ -127,14 +124,14 @@ form {
     }
 
     &:focus {
-      border: 1px solid $focus;
+      border: 1px solid #fbbf00;
       transition: all 0.1s;
     }
   }
 
   .error {
-    color: $error;
-    border: 1px solid $error;
+    color: #ff0000;
+    border: 1px solid #ff0000;
   }
 
   .search {
@@ -156,7 +153,7 @@ form {
     -webkit-appearance: button;
 
     &:focus {
-      border: 1px solid $focus;
+      border: 1px solid #fbbf00;
     }
 
     &:hover {
