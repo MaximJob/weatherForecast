@@ -148,6 +148,12 @@ export default {
   border-radius: 25px;
   position: relative;
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 100%;
+  vertical-align: baseline;
+  scroll-behavior: smooth;
 
   ::selection {
     background-color: #333333;
