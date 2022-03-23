@@ -14,7 +14,7 @@ export default {
   components: { WeatherForecast },
 
   beforeCreate() {
-    document.oncontextmenu = () => false;
+    document.oncontextmenu = (e) => e.target.id === "app";
   }
 };
 </script>
