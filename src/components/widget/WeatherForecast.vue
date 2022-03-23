@@ -3,7 +3,7 @@
     <weather-forecast-loading v-if="loading" />
 
     <div
-      v-show="!loading"
+      v-if="!loading"
       :class="{
         'cityError': cityExistError,
       }"

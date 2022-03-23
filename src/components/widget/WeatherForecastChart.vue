@@ -23,6 +23,10 @@ export default {
     temps: {
       type: Array,
       required: true
+    },
+    temperatureColor: {
+      type: String,
+      required: true
     }
   },
 
@@ -52,7 +56,7 @@ export default {
           enabled: false
         },
 
-        colors: ["#fbbf00"],
+        colors: [this.temperatureColor],
 
         dataLabels: {
           enabled: false

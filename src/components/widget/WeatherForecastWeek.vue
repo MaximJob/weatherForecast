@@ -4,7 +4,7 @@
       <div v-for="day in 8" :key="day" class="daysItem">
         {{ getWeekDayNaming(day) }}
         <br />
-        {{ normalizeDayIndex(day) + " " + getMonthNaming }}
+        {{ normalizeDayIndex(day) + " " + monthNaming }}
         <img :src="getIcon(day)" alt="Иконка погоды" />
       </div>
     </div>
@@ -16,7 +16,10 @@
         </div>
       </div>
 
-      <weather-forecast-chart :temps="maxMinTemps" />
+      <weather-forecast-chart
+        :temperature-color="temperatureColor"
+        :temps="maxMinTemps"
+      />
 
       <div class="graphMin">
         <div v-for="(temp, i) in maxMinTemps" :key="temp.min + '' + i">
@@ -78,8 +81,20 @@ export default {
       return temps;
     },
 
-    getMonthNaming() {
+    monthNaming() {
       return monthNamings[new Date().getMonth()];
+    },
+
+    averageTemperature() {
+      let temperature = 0;
+      this.maxMinTemps.forEach(t => temperature = temperature + t.min + t.max);
+      return temperature;
+    },
+
+    temperatureColor() {
+      const hot = "#fbbf00";
+      const cold = "#0058fb";
+      return this.averageTemperature > 0 ? hot : cold;
     }
   },
 
