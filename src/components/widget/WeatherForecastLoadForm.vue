@@ -116,6 +116,7 @@ form {
     border-radius: 10px;
     border: 1px solid #333333;
     transition: all 0.3s;
+    font: inherit;
     font-size: 14px;
     font-weight: 400;
     background: transparent;
@@ -139,6 +140,7 @@ form {
     border-radius: 10px;
     border: 1px solid #333333;
     transition: all 0.3s;
+    font: inherit;
     font-size: 14px;
     font-weight: 400;
     background: transparent;

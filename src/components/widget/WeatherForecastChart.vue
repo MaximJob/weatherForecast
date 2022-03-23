@@ -64,12 +64,19 @@ export default {
           colors: ["transparent"]
         },
 
+        grid: {
+          show: false
+        },
+
         legend: {
           show: false
         },
 
-        grid: {
-          show: false
+        markers: {
+          size: 0,
+          hover: {
+            size: 0
+          }
         },
 
         plotOptions: {
@@ -80,12 +87,6 @@ export default {
 
         fill: {
           type: "solid"
-        },
-
-        markers: {
-          hover: {
-            size: 0
-          }
         },
 
         xaxis: {

@@ -83,6 +83,7 @@ export default {
 
       font-size: 66px;
       font-weight: 700;
+      overflow-wrap: break-word;
     }
 
     .feelsLike {
@@ -90,6 +91,7 @@ export default {
 
       font-size: 16px;
       font-weight: 400;
+      overflow-wrap: break-word;
     }
   }
 
@@ -100,11 +102,13 @@ export default {
     .description {
       font-size: 22px;
       font-weight: 700;
+      overflow-wrap: break-word;
     }
 
     .conditions {
       font-size: 16px;
       font-weight: 400;
+      overflow-wrap: break-word;
     }
   }
 }

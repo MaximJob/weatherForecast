@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import App from './App.vue';
+import Vue from "vue";
+import App from "./App.vue";
 
 import axios from "axios";
 import "./assets/scss/main.scss";
@@ -11,12 +11,13 @@ Vue.use({
     v.prototype.$http = axios;
   },
 });
-axios.defaults.baseURL = "https://api.openweathermap.org/";
-const key = "40d29b94156ded9cf61cbd2c85b44f5c";
+const API_URL = "https://api.openweathermap.org/";
+axios.defaults.baseURL = API_URL;
+const key = "&appid=40d29b94156ded9cf61cbd2c85b44f5c";
 
 axios.interceptors.request.use(
   function (config) {
-    config.url += "&appid=" + key;
+    config.url += key;
     return config;
   },
   function (error) {
@@ -26,4 +27,4 @@ axios.interceptors.request.use(
 
 new Vue({
   render: (h) => h(App),
-}).$mount('#app');
+}).$mount("#app");
