@@ -158,7 +158,7 @@ export default {
   scroll-behavior: smooth;
 
   ::selection {
-    background-color: #333333;
+    background-color: rgba(51, 51, 51, 0.2);
     border-radius: 5px;
   }
 
