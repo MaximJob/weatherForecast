@@ -149,6 +149,11 @@ export default {
   position: relative;
   line-height: 1.5;
 
+  ::selection {
+    background-color: #333333;
+    border-radius: 5px;
+  }
+
   .info {
     height: 100%;
     display: grid;
