@@ -128,6 +128,7 @@ form {
 
     &:focus {
       border: 1px solid $focus;
+      transition: all 0.1s;
     }
   }
 

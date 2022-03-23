@@ -151,14 +151,13 @@ export default {
     display: grid;
     grid-template: repeat(3, auto) / 1fr;
     font-weight: 700;
-    padding: 50px 0;
+    padding: 50px 20px;
 
-    .graphMax {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    @media (max-width: 768px) {
+      padding: 50px 0;
     }
 
+    .graphMax,
     .graphMin {
       display: flex;
       align-items: center;
