@@ -74,13 +74,15 @@ export default {
       const settingsMenu = this.showing && className === "settings" || className === "settings__button";
       const chart = e.target.className.baseVal === "apexcharts-svg";
       const weatherForecastElement =
-        className
+        !!className
         && typeof className === "string"
-        && document.querySelector(".weatherForecast")
-          .querySelector("." + className)
-        || className === "weatherForecast";
+        && !!(document.querySelector(".weatherForecast")
+            .querySelector("." + className)
+          || className === "weatherForecast");
 
-      if (mobileDevice || !weatherForecastElement || settingsMenu) {
+      if (!weatherForecastElement) {
+        return true;
+      } else if (mobileDevice || !weatherForecastElement || settingsMenu) {
         return false;
       } else if (form || chart) {
         this.showing = false;
