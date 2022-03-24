@@ -80,7 +80,7 @@ export default {
             .querySelector("." + className)
           || className === "weatherForecast");
 
-      if (!weatherForecastElement) {
+      if (!weatherForecastElement && !chart) {
         return true;
       } else if (mobileDevice || !weatherForecastElement || settingsMenu) {
         return false;
