@@ -41,19 +41,19 @@ export default {
         {
           text: "Сохранить",
           action: () => {
-            const savedInfo = "Saved!";
+            const newInfo = "Saved!";
+            const saved = JSON.parse(localStorage.getItem("saved"));
 
-            if (JSON.parse(localStorage.getItem("saved"))) {
-              if (typeof JSON.parse(localStorage.getItem("saved")) === "object") {
-                const saved = JSON.parse(localStorage.getItem("saved"));
-                saved.push(savedInfo);
+            if (saved) {
+              if (typeof saved === "object") {
+                saved.push(newInfo);
                 localStorage.saved = JSON.stringify(saved);
               } else {
                 localStorage.removeItem("saved");
-                localStorage.saved = JSON.stringify([savedInfo]);
+                localStorage.saved = JSON.stringify([newInfo]);
               }
             } else {
-              localStorage.saved = JSON.stringify([savedInfo]);
+              localStorage.saved = JSON.stringify([newInfo]);
             }
           }
         }
