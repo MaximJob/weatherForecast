@@ -72,7 +72,7 @@ export default {
       const mobileDevice = window.innerWidth < 768;
       const form = className === "inputCity" || className === "search";
       const settingsMenu = this.showing && className === "settings" || className === "settings__button";
-      const chart = e.target.className.baseVal === "apexcharts-svg";
+      const chart = e.target.className.baseVal === "apexcharts-svg" || e.target.parentNode.className === "chart";
       const weatherForecastElement =
         !!className
         && typeof className === "string"
