@@ -33,7 +33,7 @@ export default {
       showing: false,
       settings: [
         {
-          text: "Скопировать в буфер",
+          text: "Скопировать прогноз",
           action: () => {
             navigator.clipboard.writeText(this.savedText);
           }
