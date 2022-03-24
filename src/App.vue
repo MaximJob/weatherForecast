@@ -24,6 +24,8 @@ export default {
   isolation: isolate;
   position: relative;
   box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
 
   @media (max-width: 768px) {
     padding: 10px;

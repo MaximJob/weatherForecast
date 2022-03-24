@@ -67,21 +67,25 @@ export default {
     };
 
     document.oncontextmenu = (e) => {
-      if (e.target.id === "app") {
-        return true;
-      } else if (
-        e.target.className === "inputCity"
-        || e.target.className === "search"
-        || e.target.className.baseVal === "apexcharts-svg"
-      ) {
+      const className = e.target.classList[0];
+
+      const mobileDevice = window.innerWidth < 768;
+      const form = className === "inputCity" || className === "search";
+      const settingsMenu = this.showing && className === "settings" || className === "settings__button";
+      const chart = e.target.className.baseVal === "apexcharts-svg";
+      const weatherForecastElement =
+        className
+        && typeof className === "string"
+        && document.querySelector(".weatherForecast")
+          .querySelector("." + className)
+        || className === "weatherForecast";
+
+      if (mobileDevice || !weatherForecastElement || settingsMenu) {
+        return false;
+      } else if (form || chart) {
         this.showing = false;
         return false;
       }
-      if (
-        this.showing
-        && e.target.className === "settings"
-        || e.target.className === "settings__button"
-      ) return false;
 
       this.x = e.layerX - 5;
       this.y = e.y - 35;

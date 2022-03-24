@@ -1,5 +1,5 @@
 <template>
-  <div class="widget">
+  <div class="weatherForecast">
     <weather-forecast-loading v-if="loading" />
 
     <div
@@ -154,7 +154,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.widget {
+.weatherForecast {
   box-sizing: border-box;
   max-width: 1150px;
   margin: 0 auto;
