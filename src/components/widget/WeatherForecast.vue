@@ -18,7 +18,9 @@
         class="error"
       />
 
-      <weather-forecast-settings />
+      <weather-forecast-settings
+        :saved-text="savedText"
+      />
 
       <weather-forecast-today
         v-if="!cityExistError"
@@ -73,6 +75,14 @@ export default {
       geoExistError: false,
       searchesAmount: 0
     };
+  },
+
+  computed: {
+    savedText() {
+      let text = "";
+      text += "Текущая температура равна " + Math.round(this.current.temp) + "°С";
+      return text;
+    }
   },
 
   created() {
@@ -160,6 +170,7 @@ export default {
   font-size: 100%;
   vertical-align: baseline;
   scroll-behavior: smooth;
+  user-select: none;
 
   ::selection {
     background-color: rgba(51, 51, 51, 0.2);

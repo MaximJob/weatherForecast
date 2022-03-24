@@ -19,6 +19,13 @@
 export default {
   name: "WeatherForecastSettings",
 
+  props: {
+    savedText: {
+      type: String,
+      required: true
+    }
+  },
+
   data() {
     return {
       x: 0,
@@ -28,13 +35,26 @@ export default {
         {
           text: "Скопировать в буфер",
           action: () => {
-            navigator.clipboard.writeText("Saved!");
+            navigator.clipboard.writeText(this.savedText);
           }
         },
         {
           text: "Сохранить",
           action: () => {
-            localStorage.saved = "Saved!";
+            const savedInfo = "Saved!";
+
+            if (JSON.parse(localStorage.getItem("saved"))) {
+              if (typeof JSON.parse(localStorage.getItem("saved")) === "object") {
+                const saved = JSON.parse(localStorage.getItem("saved"));
+                saved.push(savedInfo);
+                localStorage.saved = JSON.stringify(saved);
+              } else {
+                localStorage.removeItem("saved");
+                localStorage.saved = JSON.stringify([savedInfo]);
+              }
+            } else {
+              localStorage.saved = JSON.stringify([savedInfo]);
+            }
           }
         }
       ]
@@ -57,7 +77,7 @@ export default {
         this.showing = false;
         return false;
       }
-      
+
       this.x = e.layerX - 5;
       this.y = e.y - 35;
       this.showing = true;
