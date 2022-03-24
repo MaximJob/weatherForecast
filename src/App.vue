@@ -7,15 +7,10 @@
 <script>
 import WeatherForecast from "@/components/widget/WeatherForecast.vue";
 
-
 export default {
   name: "App",
 
-  components: { WeatherForecast },
-
-  beforeCreate() {
-    document.oncontextmenu = (e) => e.target.id === "app";
-  }
+  components: { WeatherForecast }
 };
 </script>
 

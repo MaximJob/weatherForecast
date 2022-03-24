@@ -18,6 +18,8 @@
         class="error"
       />
 
+      <weather-forecast-settings />
+
       <weather-forecast-today
         v-if="!cityExistError"
         :weather="current"
@@ -47,11 +49,13 @@ import WeatherForecastWeek from "@/components/widget/WeatherForecastWeek.vue";
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
 import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
 import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
+import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
 
 export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastSettings,
     WeatherForecastError,
     WeatherForecastLoadForm,
     WeatherForecastLoading,
