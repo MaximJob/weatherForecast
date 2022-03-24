@@ -8,7 +8,7 @@
     }"
       class="settings"
     >
-      <button v-for="setting in settings" @click="setting.action">
+      <button v-for="setting in settings" class="settings__button" @click="setting.action">
         {{ setting.text }}
       </button>
     </div>
@@ -77,6 +77,11 @@ export default {
         this.showing = false;
         return false;
       }
+      if (
+        this.showing
+        && e.target.className === "settings"
+        || e.target.className === "settings__button"
+      ) return false;
 
       this.x = e.layerX - 5;
       this.y = e.y - 35;
@@ -101,7 +106,7 @@ export default {
   background-color: #ffffff;
   user-select: none;
 
-  button {
+  .settings__button {
     white-space: nowrap;
     text-align: center;
     width: 100%;
