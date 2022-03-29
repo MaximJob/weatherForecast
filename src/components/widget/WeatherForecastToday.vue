@@ -31,16 +31,16 @@ export default {
 
   computed: {
     icon() {
-      if (this.weather.weather[0].icon) {
-        const icon = this.weather.weather[0].icon;
+      const icon = this.weather.weather[0].icon;
+      if (icon) {
         return `https://openweathermap.org/img/wn/${icon}.png`;
       }
       return "";
     },
 
     description() {
-      if (this.weather.weather[0].description) {
-        let description = this.weather.weather[0].description;
+      let description = this.weather.weather[0].description;
+      if (description) {
         description = description[0].toUpperCase() + description.slice(1);
         return description;
       }
