@@ -11,8 +11,7 @@ Vue.use({
     v.prototype.$http = axios;
   },
 });
-const API_URL = "https://api.openweathermap.org/";
-axios.defaults.baseURL = API_URL;
+axios.defaults.baseURL = "https://api.openweathermap.org/";
 const key = "&appid=40d29b94156ded9cf61cbd2c85b44f5c";
 
 axios.interceptors.request.use(
