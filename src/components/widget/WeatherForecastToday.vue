@@ -2,18 +2,13 @@
   <div class="day">
     <div class="temperatureWrap">
       <img :src="icon" alt="Погода" class="icon" />
-      <h2 class="temperature">{{ Math.round(weather.temp) }}°С</h2>
-      <h5 class="feelsLike">
-        ощущается как {{ Math.round(weather.feels_like) }}°С
-      </h5>
+      <h2 class="temperature">{{ temperature }}</h2>
+      <h5 class="feelsLike">{{ feelsLike }}</h5>
     </div>
 
     <div class="conditionsWrap">
       <h4 class="description">{{ description }}</h4>
-      <h5 class="conditions">
-        Ветер: {{ Math.round(weather.wind_speed) }} м/с Давление
-        {{ Math.round(weather.pressure) }} мм рт. ст
-      </h5>
+      <h5 class="conditions">{{ conditions }}</h5>
     </div>
   </div>
 </template>
@@ -32,19 +27,27 @@ export default {
   computed: {
     icon() {
       const icon = this.weather.weather[0].icon;
-      if (icon) {
-        return `https://openweathermap.org/img/wn/${icon}.png`;
-      }
-      return "";
+      return `https://openweathermap.org/img/wn/${icon}.png`;
+    },
+
+    temperature() {
+      return `${Math.round(this.weather.temp)}°С`;
+    },
+
+    feelsLike() {
+      return `ощущается как ${Math.round(this.weather.feels_like)}°С`;
     },
 
     description() {
       let description = this.weather.weather[0].description;
-      if (description) {
-        description = description[0].toUpperCase() + description.slice(1);
-        return description;
-      }
-      return "";
+      return description[0].toUpperCase() + description.slice(1);
+    },
+
+    conditions() {
+      return `
+        Ветер: ${Math.round(this.weather.wind_speed)} м/с Давление
+        ${Math.round(this.weather.pressure)} мм рт. ст
+      `;
     }
   }
 };

@@ -78,14 +78,13 @@ export default {
 
     maxMinTemps() {
       const temps = [];
-      if (this.weather && this.weather[0] && this.weather[0].temp) {
-        this.weather.forEach((el) => {
-          temps.push({
-            max: Math.round(el.temp.max),
-            min: Math.round(el.temp.min)
-          });
+      const weather = this.weather;
+      weather.forEach((el) => {
+        temps.push({
+          max: Math.round(el.temp.max),
+          min: Math.round(el.temp.min)
         });
-      }
+      });
       return temps;
     },
 
@@ -106,10 +105,7 @@ export default {
     getIcon(index) {
       index--;
       const icon = this.weather[index].weather[0].icon;
-      if (icon) {
-        return `https://openweathermap.org/img/wn/${icon}.png`;
-      }
-      return "";
+      return `https://openweathermap.org/img/wn/${icon}.png`;
     },
 
     getMonthNaming(index) {
