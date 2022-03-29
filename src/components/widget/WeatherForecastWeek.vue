@@ -4,7 +4,7 @@
       <div v-for="day in 8" :key="day" class="daysItem">
         {{ getWeekDayNaming(day) }}
         <br />
-        {{ normalizeDayIndex(day) + " " + monthNaming }}
+        {{ getDate(day) }}
         <img :src="getIcon(day)" alt="Иконка погоды" />
       </div>
     </div>
@@ -89,10 +89,6 @@ export default {
       return temps;
     },
 
-    monthNaming() {
-      return monthNamings[new Date().getMonth()];
-    },
-
     averageTemperature() {
       let temperature = 0;
       this.maxMinTemps.forEach(t => temperature = temperature + t.min + t.max);
@@ -121,6 +117,10 @@ export default {
       return "";
     },
 
+    getMonthNaming(index) {
+      return monthNamings[index];
+    },
+
     getWeekDayNaming(day) {
       if (day === 1) {
         return "Сегодня";
@@ -129,12 +129,12 @@ export default {
       return dayNamings[index];
     },
 
-    normalizeDayIndex(day) {
+    getDate(day) {
       day = day + new Date().getDate() - 1;
       if (day <= this.daysInMonth) {
-        return day;
+        return day + " " + this.getMonthNaming(new Date().getMonth());
       }
-      return day % this.daysInMonth;
+      return day % this.daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
     }
   }
 };

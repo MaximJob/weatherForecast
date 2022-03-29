@@ -27,7 +27,7 @@ export default {
   overflow-x: hidden;
   overflow-y: auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: 768px), (max-height: 800px) {
     padding: 10px;
   }
 
