@@ -31,11 +31,13 @@ export default {
     },
 
     temperature() {
-      return `${Math.round(this.weather.temp)}°С`;
+      const temperature = Math.round(this.weather.temp);
+      return `${temperature}°С`;
     },
 
     feelsLike() {
-      return `ощущается как ${Math.round(this.weather.feels_like)}°С`;
+      const feelsLike = Math.round(this.weather.feels_like);
+      return `ощущается как ${feelsLike}°С`;
     },
 
     description() {
@@ -45,8 +47,8 @@ export default {
 
     conditions() {
       return `
-        Ветер: ${Math.round(this.weather.wind_speed)} м/с Давление
-        ${Math.round(this.weather.pressure)} мм рт. ст
+        Ветер: ${Math.round(this.weather.wind_speed)} м/с,
+        Давление: ${Math.round(this.weather.pressure)} мм рт. ст
       `;
     }
   }
