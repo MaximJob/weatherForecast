@@ -31,11 +31,7 @@ export default {
 
   computed: {
     icon() {
-      if (
-        this.weather &&
-        this.weather.weather &&
-        this.weather.weather[0].icon
-      ) {
+      if (this.weather.weather[0].icon) {
         const icon = this.weather.weather[0].icon;
         return `https://openweathermap.org/img/wn/${icon}.png`;
       }
@@ -43,11 +39,7 @@ export default {
     },
 
     description() {
-      if (
-        this.weather &&
-        this.weather.weather &&
-        this.weather.weather[0].description
-      ) {
+      if (this.weather.weather[0].description) {
         let description = this.weather.weather[0].description;
         description = description[0].toUpperCase() + description.slice(1);
         return description;

@@ -105,12 +105,7 @@ export default {
   methods: {
     getIcon(index) {
       index--;
-      if (
-        this.weather &&
-        this.weather[index] &&
-        this.weather[index].weather &&
-        this.weather[index].weather[0].icon
-      ) {
+      if (this.weather[index].weather[0].icon) {
         const icon = this.weather[index].weather[0].icon;
         return `https://openweathermap.org/img/wn/${icon}.png`;
       }
