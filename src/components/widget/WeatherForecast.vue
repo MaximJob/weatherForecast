@@ -147,10 +147,8 @@ export default {
     setDailyWeather(daily) {
       daily = daily.map(day => {
         return {
-          temp: {
-            max: day.temp.max,
-            min: day.temp.min
-          },
+          max: Math.round(day.temp.max),
+          min: Math.round(day.temp.min),
           icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
         };
       });

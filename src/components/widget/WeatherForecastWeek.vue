@@ -12,7 +12,7 @@
     <div class="graph">
       <div class="graphMax">
         <div
-          v-for="(temp, i) in maxMinTemps"
+          v-for="(temp, i) in weather"
           :key="temp.max + '' + i"
           class="graphMax__item"
         >
@@ -22,12 +22,12 @@
 
       <weather-forecast-chart
         :temperature-color="temperatureColor"
-        :temps="maxMinTemps"
+        :temps="weather"
       />
 
       <div class="graphMin">
         <div
-          v-for="(temp, i) in maxMinTemps"
+          v-for="(temp, i) in weather"
           :key="temp.min + '' + i"
           class="graphMin__item"
         >
@@ -76,21 +76,9 @@ export default {
       return Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
     },
 
-    maxMinTemps() {
-      const temps = [];
-      const weather = this.weather;
-      weather.forEach((el) => {
-        temps.push({
-          max: Math.round(el.temp.max),
-          min: Math.round(el.temp.min)
-        });
-      });
-      return temps;
-    },
-
     averageTemperature() {
       let temperature = 0;
-      this.maxMinTemps.forEach(t => temperature = temperature + t.min + t.max);
+      this.weather.forEach(t => temperature = temperature + t.min + t.max);
       return temperature;
     },
 
