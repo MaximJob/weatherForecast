@@ -22,6 +22,12 @@
         :saved-text="savedText"
       />
 
+      <button class="settings_open" @click="openSettings">
+        <img alt="Настройки" src="@/assets/img/settings.svg">
+      </button>
+
+      <weather-forecast-settings v-if="settingsShowing" :close-settings="closeSettings" />
+
       <weather-forecast-today
         v-if="!cityExistError"
         :city-name="cityName"
@@ -53,6 +59,7 @@ import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.v
 import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
 import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 import WeatherForecastContext from "@/components/widget/WeatherForecastContext.vue";
+import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 const monthNamings = [
@@ -74,6 +81,7 @@ export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastSettings,
     WeatherForecastContext,
     WeatherForecastError,
     WeatherForecastLoadForm,
@@ -91,6 +99,7 @@ export default {
       cityExistError: false,
       geoAccessError: false,
       geoExistError: false,
+      settingsShowing: false,
       searchesAmount: 0,
       daysInMonth: 0
     };
@@ -238,6 +247,14 @@ export default {
       daily.averageTemperature = temperature;
 
       this.week = daily;
+    },
+
+    openSettings() {
+      this.settingsShowing = true;
+    },
+
+    closeSettings() {
+      this.settingsShowing = false;
     }
   }
 };
@@ -261,6 +278,7 @@ export default {
   vertical-align: baseline;
   scroll-behavior: smooth;
   user-select: none;
+  overflow: hidden;
 
   ::selection {
     background-color: rgba(51, 51, 51, 0.2);
@@ -304,6 +322,25 @@ export default {
       .form {
         display: none;
       }
+    }
+
+    .settings_open {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      user-select: none;
+      cursor: pointer;
+      -webkit-appearance: button;
+    }
+
+    .settings_open img {
+      width: 32px;
+      height: 32px;
     }
 
     .error {

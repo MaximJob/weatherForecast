@@ -6,9 +6,9 @@
       left: x + 'px',
       top: y + 'px',
     }"
-      class="settings"
+      class="context"
     >
-      <button v-for="setting in settings" class="settings__button" @click="setting.action">
+      <button v-for="setting in settings" class="context__button" @click="setting.action">
         {{ setting.text }}
       </button>
     </div>
@@ -71,7 +71,7 @@ export default {
 
       const mobileDevice = window.innerWidth < 768;
       const form = className === "inputCity" || className === "search";
-      const settingsMenu = this.showing && className === "settings" || className === "settings__button";
+      const settingsMenu = this.showing && className === "context" || className === "context__button";
       const chart = e.target.className.baseVal === "apexcharts-svg" || e.target.parentNode.className === "chart";
       const weatherForecastElement =
         !!className
@@ -99,20 +99,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.settings {
+.context {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  z-index: 2;
+  z-index: 10;
   padding: 5px;
   border-radius: 10px;
   border: 1px solid #333333;
   background-color: #ffffff;
   user-select: none;
 
-  .settings__button {
+  .context__button {
     white-space: nowrap;
     text-align: center;
     width: 100%;
