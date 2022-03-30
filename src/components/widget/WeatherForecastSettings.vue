@@ -3,7 +3,6 @@
     <button class="settings__close" @click="closeSettings">
       <img alt="Настройки" class="settings__close__img" src="@/assets/img/close.svg">
     </button>
-    <h5 class="settings__developer">Разработал Максим Алейников</h5>
     <div class="settings__social">
       <a class="settings__social__link" href="https://vk.com/yokuu" target="_blank">
         <img alt="Вконтакте" class="settings__social__link__img" src="@/assets/img/vk.svg">
@@ -12,6 +11,7 @@
         <img alt="Телеграм" class="settings__social__link__img" src="@/assets/img/telegram.svg">
       </a>
     </div>
+    <h5 class="settings__developer">Разработал Максим Алейников</h5>
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
   }
 
   .settings__developer {
-    margin: 10px 0;
+    margin: 10px 0 0 0;
   }
 
   .settings__social {
