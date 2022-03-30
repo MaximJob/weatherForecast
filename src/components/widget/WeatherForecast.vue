@@ -18,7 +18,7 @@
         class="error"
       />
 
-      <weather-forecast-settings
+      <weather-forecast-context
         :saved-text="savedText"
       />
 
@@ -52,7 +52,7 @@ import WeatherForecastWeek from "@/components/widget/WeatherForecastWeek.vue";
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
 import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
 import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
-import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
+import WeatherForecastContext from "@/components/widget/WeatherForecastContext.vue";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 const monthNamings = [
@@ -74,7 +74,7 @@ export default {
   name: "WeatherForecast",
 
   components: {
-    WeatherForecastSettings,
+    WeatherForecastContext,
     WeatherForecastError,
     WeatherForecastLoadForm,
     WeatherForecastLoading,
