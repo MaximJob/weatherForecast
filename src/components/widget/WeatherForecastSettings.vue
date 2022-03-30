@@ -4,18 +4,27 @@
       <img alt="Настройки" class="settings__close__img" src="@/assets/img/close.svg">
     </button>
     <div class="settings__social">
-      <a class="settings__social__link" href="https://vk.com/yokuu" target="_blank">
-        <img alt="Вконтакте" class="settings__social__link__img" src="@/assets/img/vk.svg">
-      </a>
-      <a class="settings__social__link" href="https://t.me/yungyoku" target="_blank">
-        <img alt="Телеграм" class="settings__social__link__img" src="@/assets/img/telegram.svg">
-      </a>
+      <button
+        v-for="link in links"
+        :key="link.href"
+        class="settings__social__link"
+        @click="link.action"
+      >
+        <img
+          :alt="link.alt"
+          :src="link.image"
+          class="settings__social__link__img"
+        >
+      </button>
     </div>
     <h5 class="settings__developer">Разработал Максим Алейников</h5>
   </div>
 </template>
 
 <script>
+import vk from "@/assets/img/vk.svg";
+import telegram from "@/assets/img/telegram.svg";
+
 export default {
   name: "WeatherForecastSettings",
 
@@ -24,6 +33,23 @@ export default {
       type: Function,
       required: true
     }
+  },
+
+  data() {
+    return {
+      links: [
+        {
+          image: vk,
+          alt: "Вконтакте",
+          action: () => window.open("https://vk.com/yokuu", "_blank")
+        },
+        {
+          image: telegram,
+          alt: "Телеграм",
+          action: () => window.open("https://vk.com/yokuu", "_blank")
+        }
+      ]
+    };
   }
 };
 </script>
@@ -88,6 +114,7 @@ export default {
       cursor: pointer;
       background-color: transparent;
       text-decoration: none;
+      user-select: none;
 
       .settings__social__link__img {
         display: block;
