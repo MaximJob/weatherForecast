@@ -93,6 +93,7 @@ export default {
   data() {
     return {
       loading: true,
+      lang: window.navigator.language.substr(0, 2),
       current: {},
       week: [],
       cityName: "",
@@ -122,7 +123,7 @@ export default {
       if (lat && lon) {
         this.$http
           .get(
-            `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=ru`
+            `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=${this.lang}`
           )
           .then((response) => {
             this.searchesAmount++;
@@ -220,7 +221,6 @@ export default {
 
     setCurrentWeather(current) {
       let description = current.weather[0].description;
-
       this.current.icon = `https://openweathermap.org/img/wn/${current.weather[0].icon}.png`;
       this.current.temperature = `${Math.round(current.temp)}°С`;
       this.current.feelsLike = `ощущается как ${Math.round(current.feels_like)}°С`;
