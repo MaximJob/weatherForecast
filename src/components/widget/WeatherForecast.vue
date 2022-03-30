@@ -339,11 +339,14 @@ export default {
       user-select: none;
       cursor: pointer;
       -webkit-appearance: button;
-    }
 
-    .settings__open__img {
-      width: 32px;
-      height: 32px;
+      .settings__open__img {
+        display: block;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        user-select: none;
+      }
     }
 
     .error {

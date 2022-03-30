@@ -63,8 +63,11 @@ export default {
     -webkit-appearance: button;
 
     .settings__close__img {
+      display: block;
       width: 32px;
       height: 32px;
+      pointer-events: none;
+      user-select: none;
     }
   }
 
@@ -81,9 +84,12 @@ export default {
       cursor: pointer;
 
       .settings__social__link__img {
+        display: block;
         width: 32px;
         height: 32px;
         margin: 0 5px;
+        pointer-events: none;
+        user-select: none;
       }
     }
   }
