@@ -1,5 +1,5 @@
 <template>
-  <transition>
+  <transition name="context">
     <div
       v-if="showing"
       :style="{
@@ -68,20 +68,15 @@ export default {
 
     document.oncontextmenu = (e) => {
       const className = e.target.classList[0];
+      const nodeName = e.target.nodeName.toLowerCase();
 
       const mobileDevice = window.innerWidth < 768;
-      const form = className === "inputCity" || className === "search";
+      const form = nodeName === "input" || nodeName === "button" || nodeName === "img";
       const loading = className === "loading" || className === "circle";
       const settingsMenu =
         className === "settings"
         || className === "settings__developer"
-        || className === "settings__social"
-        || className === "settings__social__link"
-        || className === "settings__social__link__img"
-        || className === "settings_open"
-        || className === "settings__open__img"
-        || className === "settings__close"
-        || className === "settings__close__img";
+        || className === "settings__social";
       const contextMenu = this.showing && className === "context" || className === "context__button";
       const chart = e.target.className.baseVal === "apexcharts-svg" || e.target.parentNode.className === "chart";
       const weatherForecastElement =
@@ -99,11 +94,18 @@ export default {
         this.showing = false;
         return false;
       }
-      this.x = e.layerX - 5;
-      this.y = e.y - 35;
+
+      this.setMenuCoords(e);
       this.showing = true;
       return false;
     };
+  },
+
+  methods: {
+    setMenuCoords(e) {
+      this.x = e.layerX - 5;
+      this.y = e.y - 35;
+    },
   }
 };
 </script>
@@ -136,13 +138,13 @@ export default {
   }
 }
 
-.v-enter-active,
-.v-leave-active {
+.context-enter-active,
+.context-leave-active {
   transition: opacity 0.2s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.context-enter-from,
+.context-leave-to {
   opacity: 0;
 }
 </style>

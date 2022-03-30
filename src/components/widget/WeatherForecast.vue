@@ -246,9 +246,9 @@ export default {
         };
       });
 
-      let temperature = 0;
-      daily.forEach(t => temperature = temperature + t.min + t.max);
-      daily.averageTemperature = temperature;
+      let averageTemp = 0;
+      daily.forEach(t => averageTemp = averageTemp + t.min + t.max);
+      daily.averageTemperature = averageTemp;
 
       this.week = daily;
     },

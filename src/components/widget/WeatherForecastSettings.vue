@@ -17,7 +17,7 @@
         >
       </button>
     </div>
-    <h5 class="settings__developer">Разработал Максим Алейников</h5>
+    <h5 class="settings__developer">Разработчик: Максим Алейников</h5>
   </div>
 </template>
 

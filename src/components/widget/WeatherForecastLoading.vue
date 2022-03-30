@@ -24,7 +24,7 @@ export default {
     width: 50px;
     min-height: 50px;
     height: 50px;
-    border: 3px solid #333333;
+    border: 2px solid #333333;
     border-radius: 50%;
     position: relative;
     animation: circle 1s linear infinite;
