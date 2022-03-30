@@ -75,6 +75,9 @@ export default {
       const settingsMenu =
         className === "settings"
         || className === "settings__developer"
+        || className === "settings__social"
+        || className === "settings__social__link"
+        || className === "settings__social__link__img"
         || className === "settings_open"
         || className === "settings__open__img"
         || className === "settings__close"

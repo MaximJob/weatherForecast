@@ -5,11 +5,11 @@
     </button>
     <h5 class="settings__developer">Разработал Максим Алейников</h5>
     <div class="settings__social">
-      <a href="https://vk.com/yokuu" target="_blank">
-        <img alt="Вконтакте" src="@/assets/img/vk.svg">
+      <a class="settings__social__link" href="https://vk.com/yokuu" target="_blank">
+        <img alt="Вконтакте" class="settings__social__link__img" src="@/assets/img/vk.svg">
       </a>
-      <a href="https://t.me/yungyoku" target="_blank">
-        <img alt="Телеграм" src="@/assets/img/telegram.svg">
+      <a class="settings__social__link" href="https://t.me/yungyoku" target="_blank">
+        <img alt="Телеграм" class="settings__social__link__img" src="@/assets/img/telegram.svg">
       </a>
     </div>
   </div>
@@ -77,10 +77,10 @@ export default {
     align-items: center;
     justify-content: center;
 
-    a {
+    .settings__social__link {
       cursor: pointer;
 
-      img {
+      .settings__social__link__img {
         width: 32px;
         height: 32px;
         margin: 0 5px;
