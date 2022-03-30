@@ -176,6 +176,9 @@ export default {
 
     loadByCityName(city) {
       const alreadyLoadedCity = city.toLowerCase() === this.cityName.toLowerCase();
+      if (alreadyLoadedCity) {
+        document.activeElement.blur();
+      }
       if (city && !alreadyLoadedCity) {
         this.loading = true;
         this.$http

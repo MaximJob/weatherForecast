@@ -73,7 +73,9 @@ export default {
       const form = className === "inputCity" || className === "search";
       const loading = className === "loading" || className === "circle";
       const settingsMenu =
-        className === "settings_open"
+        className === "settings"
+        || className === "settings__developer"
+        || className === "settings_open"
         || className === "settings__open__img"
         || className === "settings__close"
         || className === "settings__close__img";
@@ -85,7 +87,7 @@ export default {
         && !!(document.querySelector(".weatherForecast")
             .querySelector("." + className)
           || className === "weatherForecast");
-      
+
       if (!weatherForecastElement && !chart) {
         return true;
       } else if (mobileDevice || !weatherForecastElement || contextMenu || loading) {

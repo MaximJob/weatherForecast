@@ -3,7 +3,7 @@
     <button class="settings__close" @click="closeSettings">
       <img alt="Настройки" class="settings__close__img" src="@/assets/img/close.svg">
     </button>
-    <h5>Разработал Максим Алейников</h5>
+    <h5 class="settings__developer">Разработал Максим Алейников</h5>
   </div>
 </template>
 

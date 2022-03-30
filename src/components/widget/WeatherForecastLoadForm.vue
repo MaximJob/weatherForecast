@@ -14,6 +14,7 @@
 
       <button class="search" type="submit">
         Поиск
+        <img alt="" src="@/assets/img/search.svg">
       </button>
     </form>
   </div>
@@ -161,6 +162,12 @@ form {
       border: 1px solid #333333;
       color: #ffffff;
       transition: all 0.1s;
+    }
+
+    img {
+      margin-left: 5px;
+      width: 16px;
+      height: 16px;
     }
   }
 }
