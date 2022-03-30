@@ -70,22 +70,10 @@ export default {
   },
 
   computed: {
-    daysInMonth() {
-      const thisMonth = new Date(2022, new Date().getMonth(), 1);
-      const nextMonth = new Date(2022, new Date().getMonth() + 1, 1);
-      return Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
-    },
-
-    averageTemperature() {
-      let temperature = 0;
-      this.weather.forEach(t => temperature = temperature + t.min + t.max);
-      return temperature;
-    },
-
     temperatureColor() {
       const hot = "#fbbf00";
       const cold = "#0058fb";
-      return this.averageTemperature > 0 ? hot : cold;
+      return this.weather.averageTemperature > 0 ? hot : cold;
     }
   },
 
@@ -104,10 +92,10 @@ export default {
 
     getDate(day) {
       day = day + new Date().getDate();
-      if (day <= this.daysInMonth) {
+      if (day <= this.weather.daysInMonth) {
         return day + " " + this.getMonthNaming(new Date().getMonth());
       }
-      return day % this.daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
+      return day % this.weather.daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
     }
   }
 };

@@ -152,6 +152,17 @@ export default {
           icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
         };
       });
+
+      let temperature = 0;
+      daily.forEach(t => temperature = temperature + t.min + t.max);
+      daily.averageTemperature = temperature;
+
+      let daysInMonth = 0;
+      const thisMonth = new Date(2022, new Date().getMonth(), 1);
+      const nextMonth = new Date(2022, new Date().getMonth() + 1, 1);
+      daysInMonth = Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
+      daily.daysInMonth = daysInMonth;
+
       this.week = daily;
     },
 
