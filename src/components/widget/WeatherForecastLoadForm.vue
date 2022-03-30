@@ -125,7 +125,7 @@ form {
     }
 
     &:focus {
-      border: 1px solid #fbbf00;
+      border: 1px solid #fb8e00;
       transition: all 0.1s;
     }
   }
@@ -153,17 +153,6 @@ form {
     cursor: pointer;
     -webkit-appearance: button;
 
-    &:focus {
-      border: 1px solid #fbbf00;
-    }
-
-    &:hover {
-      background-color: #333333;
-      border: 1px solid #333333;
-      color: #ffffff;
-      transition: all 0.1s;
-    }
-
     .search__img {
       display: block;
       margin-left: 5px;
@@ -171,6 +160,23 @@ form {
       height: 16px;
       pointer-events: none;
       user-select: none;
+      transition: all 0.3s;
+    }
+
+    &:focus {
+      border: 1px solid #fb8e00;
+    }
+
+    &:hover {
+      background-color: #333333;
+      border: 1px solid #333333;
+      color: #ffffff;
+      transition: all 0.1s;
+
+      .search__img {
+        transition: all 0.1s;
+        filter: invert(100%);
+      }
     }
   }
 }

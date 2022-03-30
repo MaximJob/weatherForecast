@@ -20,8 +20,8 @@ export default {
   name: "WeatherForecastSettings",
 
   props: {
-    savedText: {
-      type: String,
+    copyWeatherForecast: {
+      type: Function,
       required: true
     }
   },
@@ -35,7 +35,7 @@ export default {
         {
           text: "Скопировать прогноз",
           action: () => {
-            navigator.clipboard.writeText(this.savedText);
+            navigator.clipboard.writeText(this.copyWeatherForecast());
           }
         },
         {
@@ -105,7 +105,7 @@ export default {
     setMenuCoords(e) {
       this.x = e.layerX - 5;
       this.y = e.y - 35;
-    },
+    }
   }
 };
 </script>

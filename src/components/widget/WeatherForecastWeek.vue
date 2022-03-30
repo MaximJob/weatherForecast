@@ -55,8 +55,8 @@ export default {
 
   computed: {
     temperatureColor() {
-      const hot = "#fbbf00";
-      const cold = "#0058fb";
+      const hot = "#fb8e00";
+      const cold = "#00cdfb";
       return this.weather.averageTemperature > 0 ? hot : cold;
     }
   }

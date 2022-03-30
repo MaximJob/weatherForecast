@@ -46,7 +46,7 @@ export default {
         {
           image: telegram,
           alt: "Телеграм",
-          action: () => window.open("https://vk.com/yokuu", "_blank")
+          action: () => window.open("https://t.me/yungyoku", "_blank")
         }
       ]
     };

@@ -19,7 +19,7 @@
       />
 
       <weather-forecast-context
-        :saved-text="savedText"
+        :copy-weather-forecast="copyWeatherForecast"
       />
 
       <button class="settings__open" @click="openSettings">
@@ -104,14 +104,6 @@ export default {
       searchesAmount: 0,
       daysInMonth: 0
     };
-  },
-
-  computed: {
-    savedText() {
-      let text = "";
-      text += "Текущая температура равна " + this.current.temperature;
-      return text;
-    }
   },
 
   created() {
@@ -259,6 +251,12 @@ export default {
 
     closeSettings() {
       this.settingsShowing = false;
+    },
+
+    copyWeatherForecast() {
+      let text = "";
+      text += "Текущая температура равна " + this.current.temperature;
+      return text;
     }
   }
 };
