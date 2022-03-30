@@ -104,8 +104,7 @@ export default {
   methods: {
     getIcon(index) {
       index--;
-      const icon = this.weather[index].weather[0].icon;
-      return `https://openweathermap.org/img/wn/${icon}.png`;
+      return this.weather[index].icon;
     },
 
     getMonthNaming(index) {
