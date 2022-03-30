@@ -135,7 +135,7 @@ export default {
         this.$http
           .get(`geo/1.0/reverse?lat=${lat}&lon=${lon}`)
           .then((response) => {
-            this.cityName = response.data[0].local_names.ru;
+            this.cityName = response.data[0].local_names[this.lang];
           })
           .catch((e) => {
             console.error(e);
