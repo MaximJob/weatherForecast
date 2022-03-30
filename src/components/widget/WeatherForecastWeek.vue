@@ -1,11 +1,11 @@
 <template>
   <div class="week">
     <div class="days">
-      <div v-for="day in 8" :key="day" class="daysItem">
-        {{ getWeekDayNaming(day) }}
+      <div v-for="(day, i) in weather" :key="i" class="daysItem">
+        {{ getWeekDayNaming(i + 1) }}
         <br />
-        {{ getDate(day) }}
-        <img :src="getIcon(day)" alt="Иконка погоды" />
+        {{ getDate(i) }}
+        <img :src="day.icon" alt="Иконка погоды" />
       </div>
     </div>
 
@@ -90,11 +90,6 @@ export default {
   },
 
   methods: {
-    getIcon(index) {
-      index--;
-      return this.weather[index].icon;
-    },
-
     getMonthNaming(index) {
       return monthNamings[index];
     },
@@ -108,7 +103,7 @@ export default {
     },
 
     getDate(day) {
-      day = day + new Date().getDate() - 1;
+      day = day + new Date().getDate();
       if (day <= this.daysInMonth) {
         return day + " " + this.getMonthNaming(new Date().getMonth());
       }
