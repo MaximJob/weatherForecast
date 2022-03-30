@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "WeatherForecastLoading",
+  name: "WeatherForecastLoading"
 };
 </script>
 
@@ -24,7 +24,7 @@ export default {
     width: 50px;
     min-height: 50px;
     height: 50px;
-    border: 5px solid #333333;
+    border: 3px solid #333333;
     border-radius: 50%;
     position: relative;
     animation: circle 1s linear infinite;

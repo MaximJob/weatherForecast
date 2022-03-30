@@ -55,7 +55,6 @@ import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
-
 const monthNamings = [
   "Янв",
   "Фев",
@@ -70,7 +69,6 @@ const monthNamings = [
   "Ноя",
   "Дек"
 ];
-
 
 export default {
   name: "WeatherForecast",
