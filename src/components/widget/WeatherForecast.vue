@@ -192,6 +192,7 @@ export default {
           })
           .catch(() => {
             this.cityExistError = true;
+            this.cityName = "";
             this.loading = false;
           });
       }
@@ -281,7 +282,6 @@ export default {
   vertical-align: baseline;
   scroll-behavior: smooth;
   user-select: none;
-  overflow: hidden;
 
   ::selection {
     background-color: rgba(51, 51, 51, 0.2);

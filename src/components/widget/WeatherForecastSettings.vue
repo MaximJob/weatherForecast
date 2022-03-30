@@ -4,6 +4,14 @@
       <img alt="Настройки" class="settings__close__img" src="@/assets/img/close.svg">
     </button>
     <h5 class="settings__developer">Разработал Максим Алейников</h5>
+    <div class="settings__social">
+      <a href="https://vk.com/yokuu" target="_blank">
+        <img alt="Вконтакте" src="@/assets/img/vk.svg">
+      </a>
+      <a href="https://t.me/yungyoku" target="_blank">
+        <img alt="Телеграм" src="@/assets/img/telegram.svg">
+      </a>
+    </div>
   </div>
 </template>
 
@@ -23,16 +31,23 @@ export default {
 <style lang="scss" scoped>
 .settings {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  border-radius: 25px;
   background-color: #ffffff;
   z-index: 5;
   padding: 20px;
+
+  @supports (backdrop-filter: blur(20px)) {
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+  }
 
   .settings__close {
     position: absolute;
@@ -50,6 +65,26 @@ export default {
     .settings__close__img {
       width: 32px;
       height: 32px;
+    }
+  }
+
+  .settings__developer {
+    margin: 10px 0;
+  }
+
+  .settings__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      cursor: pointer;
+
+      img {
+        width: 32px;
+        height: 32px;
+        margin: 0 5px;
+      }
     }
   }
 }
