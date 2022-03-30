@@ -1,6 +1,7 @@
 <template>
   <div class="day">
     <div class="temperatureWrap">
+      <h3 class="cityName">{{ cityName }}</h3>
       <img :src="weather.icon" alt="Погода" class="icon" />
       <h2 class="temperature">{{ weather.temperature }}</h2>
       <h5 class="feelsLike">{{ weather.feelsLike }}</h5>
@@ -18,6 +19,10 @@ export default {
   name: "WeatherForecastToday",
 
   props: {
+    cityName: {
+      type: String,
+      required: true
+    },
     weather: {
       type: Object,
       required: true
@@ -36,8 +41,9 @@ export default {
 
   .temperatureWrap {
     display: grid;
-    grid-template: auto / 1fr 1fr;
+    grid-template: repeat(3, auto) / 1fr 1fr;
     grid-template-areas:
+      "cityName cityName"
       "icon up"
       "icon down";
     align-items: center;
@@ -45,10 +51,18 @@ export default {
 
     @media (max-width: 240px) {
       display: grid;
-      grid-template: auto / 50px 1fr;
+      grid-template: repeat(3, auto) / 50px 1fr;
       grid-template-areas:
+      "cityName cityName"
       "icon up"
       "icon down";
+    }
+
+    .cityName {
+      grid-area: cityName;
+      font-size: 26px;
+      font-weight: 700;
+      overflow-wrap: break-word;
     }
 
     .icon {

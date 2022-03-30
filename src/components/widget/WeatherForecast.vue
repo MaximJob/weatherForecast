@@ -24,6 +24,7 @@
 
       <weather-forecast-today
         v-if="!cityExistError"
+        :city-name="cityName"
         :weather="current"
         class="today"
       />
@@ -71,6 +72,7 @@ export default {
       loading: true,
       current: {},
       week: [],
+      cityName: "",
       cityExistError: false,
       geoAccessError: false,
       geoExistError: false,
@@ -111,14 +113,30 @@ export default {
       }
     },
 
+    loadCityName(lat, lon) {
+      if (lat && lon) {
+        this.$http
+          .get(
+            `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}`
+          )
+          .then((response) => {
+            this.cityName = response.data[0].local_names.ru;
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      }
+    },
+
     loadByCoords() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            this.loadWeatherForecast(
-              position.coords.latitude,
-              position.coords.longitude
-            );
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            this.loadCityName(lat, lon);
+            this.loadWeatherForecast(lat, lon);
           },
           () => {
             this.cityExistError = true;
@@ -144,6 +162,7 @@ export default {
               response.data[0].lat,
               response.data[0].lon
             );
+            this.cityName = city;
           })
           .catch(() => {
             this.cityExistError = true;
