@@ -2,9 +2,9 @@
   <div class="week">
     <div class="days">
       <div v-for="(day, i) in weather" :key="i" class="daysItem">
-        {{ getWeekDayNaming(i + 1) }}
+        {{ day.weekDayNaming }}
         <br />
-        {{ getDate(i) }}
+        {{ day.date }}
         <img :src="day.icon" alt="Иконка погоды" />
       </div>
     </div>
@@ -41,22 +41,6 @@
 <script>
 import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
 
-const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
-const monthNamings = [
-  "Янв",
-  "Фев",
-  "Мар",
-  "Апр",
-  "Мая",
-  "Июн",
-  "Июл",
-  "Авг",
-  "Сен",
-  "Окт",
-  "Ноя",
-  "Дек"
-];
-
 export default {
   name: "WeatherForecastWeek",
 
@@ -74,28 +58,6 @@ export default {
       const hot = "#fbbf00";
       const cold = "#0058fb";
       return this.weather.averageTemperature > 0 ? hot : cold;
-    }
-  },
-
-  methods: {
-    getMonthNaming(index) {
-      return monthNamings[index];
-    },
-
-    getWeekDayNaming(day) {
-      if (day === 1) {
-        return "Сегодня";
-      }
-      const index = (day + new Date().getDay() - 2) % dayNamings.length;
-      return dayNamings[index];
-    },
-
-    getDate(day) {
-      day = day + new Date().getDate();
-      if (day <= this.weather.daysInMonth) {
-        return day + " " + this.getMonthNaming(new Date().getMonth());
-      }
-      return day % this.weather.daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
     }
   }
 };

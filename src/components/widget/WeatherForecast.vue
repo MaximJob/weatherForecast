@@ -52,6 +52,7 @@ import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.v
 import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
 import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
+import { dayNamings, monthNamings } from "./api";
 
 export default {
   name: "WeatherForecast",
@@ -73,7 +74,8 @@ export default {
       cityExistError: false,
       geoAccessError: false,
       geoExistError: false,
-      searchesAmount: 0
+      searchesAmount: 0,
+      daysInMonth: 0
     };
   },
 
@@ -90,6 +92,25 @@ export default {
   },
 
   methods: {
+    loadWeatherForecast(lat, lon) {
+      if (lat && lon) {
+        this.$http
+          .get(
+            `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=ru`
+          )
+          .then((response) => {
+            this.searchesAmount++;
+            this.setCurrentWeather(response.data.current);
+            this.setDailyWeather(response.data.daily);
+            this.cityExistError = false;
+            this.loading = false;
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      }
+    },
+
     loadByCoords() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -131,6 +152,26 @@ export default {
       }
     },
 
+    getMonthNaming(index) {
+      return monthNamings[index];
+    },
+
+    getWeekDayNaming(day) {
+      if (day === 1) {
+        return "Сегодня";
+      }
+      const index = (day + new Date().getDay() - 2) % dayNamings.length;
+      return dayNamings[index];
+    },
+
+    getDate(day) {
+      day = day + new Date().getDate();
+      if (day <= this.daysInMonth) {
+        return day + " " + this.getMonthNaming(new Date().getMonth());
+      }
+      return day % this.daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
+    },
+
     setCurrentWeather(current) {
       let description = current.weather[0].description;
 
@@ -145,10 +186,16 @@ export default {
     },
 
     setDailyWeather(daily) {
-      daily = daily.map(day => {
+      const thisMonth = new Date(2022, new Date().getMonth(), 1);
+      const nextMonth = new Date(2022, new Date().getMonth() + 1, 1);
+      this.daysInMonth = Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
+
+      daily = daily.map((day, index) => {
         return {
           max: Math.round(day.temp.max),
           min: Math.round(day.temp.min),
+          weekDayNaming: this.getWeekDayNaming(index + 1),
+          date: this.getDate(index),
           icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
         };
       });
@@ -157,32 +204,7 @@ export default {
       daily.forEach(t => temperature = temperature + t.min + t.max);
       daily.averageTemperature = temperature;
 
-      let daysInMonth = 0;
-      const thisMonth = new Date(2022, new Date().getMonth(), 1);
-      const nextMonth = new Date(2022, new Date().getMonth() + 1, 1);
-      daysInMonth = Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
-      daily.daysInMonth = daysInMonth;
-
       this.week = daily;
-    },
-
-    loadWeatherForecast(lat, lon) {
-      if (lat && lon) {
-        this.$http
-          .get(
-            `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=ru`
-          )
-          .then((response) => {
-            this.searchesAmount++;
-            this.setCurrentWeather(response.data.current);
-            this.setDailyWeather(response.data.daily);
-            this.cityExistError = false;
-            this.loading = false;
-          })
-          .catch((e) => {
-            console.error(e);
-          });
-      }
     }
   }
 };
