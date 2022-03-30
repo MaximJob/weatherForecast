@@ -22,8 +22,8 @@
         :saved-text="savedText"
       />
 
-      <button class="settings_open" @click="openSettings">
-        <img alt="Настройки" src="@/assets/img/settings.svg">
+      <button class="settings__open" @click="openSettings">
+        <img alt="Настройки" class="settings__open__img" src="@/assets/img/settings.svg">
       </button>
 
       <weather-forecast-settings v-if="settingsShowing" :close-settings="closeSettings" />
@@ -324,7 +324,7 @@ export default {
       }
     }
 
-    .settings_open {
+    .settings__open {
       position: absolute;
       left: 20px;
       top: 20px;
@@ -338,7 +338,7 @@ export default {
       -webkit-appearance: button;
     }
 
-    .settings_open img {
+    .settings__open__img {
       width: 32px;
       height: 32px;
     }

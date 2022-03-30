@@ -71,7 +71,13 @@ export default {
 
       const mobileDevice = window.innerWidth < 768;
       const form = className === "inputCity" || className === "search";
-      const settingsMenu = this.showing && className === "context" || className === "context__button";
+      const loading = className === "loading" || className === "circle";
+      const settingsMenu =
+        className === "settings_open"
+        || className === "settings__open__img"
+        || className === "settings__close"
+        || className === "settings__close__img";
+      const contextMenu = this.showing && className === "context" || className === "context__button";
       const chart = e.target.className.baseVal === "apexcharts-svg" || e.target.parentNode.className === "chart";
       const weatherForecastElement =
         !!className
@@ -79,16 +85,15 @@ export default {
         && !!(document.querySelector(".weatherForecast")
             .querySelector("." + className)
           || className === "weatherForecast");
-
+      
       if (!weatherForecastElement && !chart) {
         return true;
-      } else if (mobileDevice || !weatherForecastElement || settingsMenu) {
+      } else if (mobileDevice || !weatherForecastElement || contextMenu || loading) {
         return false;
-      } else if (form || chart) {
+      } else if (form || chart || settingsMenu) {
         this.showing = false;
         return false;
       }
-
       this.x = e.layerX - 5;
       this.y = e.y - 35;
       this.showing = true;

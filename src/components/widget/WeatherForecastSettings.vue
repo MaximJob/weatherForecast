@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
-    <button @click="closeSettings">
-      <img alt="Настройки" src="@/assets/img/close.svg">
+    <button class="settings__close" @click="closeSettings">
+      <img alt="Настройки" class="settings__close__img" src="@/assets/img/close.svg">
     </button>
     <h5>Разработал Максим Алейников</h5>
   </div>
@@ -34,7 +34,7 @@ export default {
   z-index: 5;
   padding: 20px;
 
-  button {
+  .settings__close {
     position: absolute;
     left: 20px;
     top: 20px;
@@ -46,11 +46,11 @@ export default {
     user-select: none;
     cursor: pointer;
     -webkit-appearance: button;
-  }
 
-  button img {
-    width: 32px;
-    height: 32px;
+    .settings__close__img {
+      width: 32px;
+      height: 32px;
+    }
   }
 }
 </style>
