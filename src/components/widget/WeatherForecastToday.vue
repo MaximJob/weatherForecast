@@ -33,12 +33,6 @@ export default {
 
 <style lang="scss" scoped>
 .day {
-  padding: 20px 0 0 0;
-
-  @media (max-width: 1000px) {
-    padding: 0;
-  }
-
   .temperatureWrap {
     display: grid;
     grid-template: repeat(3, auto) / 1fr 1fr;

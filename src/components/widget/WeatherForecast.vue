@@ -53,7 +53,24 @@ import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.v
 import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm.vue";
 import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
-import { dayNamings, monthNamings } from "./api";
+
+const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+
+const monthNamings = [
+  "Янв",
+  "Фев",
+  "Мар",
+  "Апр",
+  "Мая",
+  "Июн",
+  "Июл",
+  "Авг",
+  "Сен",
+  "Окт",
+  "Ноя",
+  "Дек"
+];
+
 
 export default {
   name: "WeatherForecast",
@@ -116,9 +133,7 @@ export default {
     loadCityName(lat, lon) {
       if (lat && lon) {
         this.$http
-          .get(
-            `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}`
-          )
+          .get(`geo/1.0/reverse?lat=${lat}&lon=${lon}`)
           .then((response) => {
             this.cityName = response.data[0].local_names.ru;
           })
@@ -153,7 +168,8 @@ export default {
     },
 
     loadByCityName(city) {
-      if (city) {
+      const alreadyLoadedCity = city.toLowerCase() === this.cityName.toLowerCase();
+      if (city && !alreadyLoadedCity) {
         this.loading = true;
         this.$http
           .get(`geo/1.0/direct?q=${city}`)
