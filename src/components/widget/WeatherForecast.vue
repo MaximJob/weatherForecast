@@ -131,6 +131,23 @@ export default {
       }
     },
 
+    setCurrentWeather(current) {
+      let description = current.weather[0].description;
+
+      this.current.icon = `https://openweathermap.org/img/wn/${current.weather[0].icon}.png`;
+      this.current.temperature = `${Math.round(current.temp)}°С`;
+      this.current.feelsLike = `ощущается как ${Math.round(current.feels_like)}°С`;
+      this.current.description = description[0].toUpperCase() + description.slice(1);
+      this.current.conditions = `
+        Ветер: ${Math.round(current.wind_speed)} м/с,
+        Давление: ${Math.round(current.pressure)} мм рт. ст
+      `;
+    },
+
+    setDailyWeather(daily) {
+      this.week = daily;
+    },
+
     loadWeatherForecast(lat, lon) {
       if (lat && lon) {
         this.$http
@@ -139,8 +156,8 @@ export default {
           )
           .then((response) => {
             this.searchesAmount++;
-            this.current = response.data.current;
-            this.week = response.data.daily;
+            this.setCurrentWeather(response.data.current);
+            this.setDailyWeather(response.data.daily);
             this.cityExistError = false;
             this.loading = false;
           })

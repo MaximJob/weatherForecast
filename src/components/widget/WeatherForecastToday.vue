@@ -1,14 +1,14 @@
 <template>
   <div class="day">
     <div class="temperatureWrap">
-      <img :src="icon" alt="Погода" class="icon" />
-      <h2 class="temperature">{{ temperature }}</h2>
-      <h5 class="feelsLike">{{ feelsLike }}</h5>
+      <img :src="weather.icon" alt="Погода" class="icon" />
+      <h2 class="temperature">{{ weather.temperature }}</h2>
+      <h5 class="feelsLike">{{ weather.feelsLike }}</h5>
     </div>
 
     <div class="conditionsWrap">
-      <h4 class="description">{{ description }}</h4>
-      <h5 class="conditions">{{ conditions }}</h5>
+      <h4 class="description">{{ weather.description }}</h4>
+      <h5 class="conditions">{{ weather.conditions }}</h5>
     </div>
   </div>
 </template>
@@ -21,35 +21,6 @@ export default {
     weather: {
       type: Object,
       required: true
-    }
-  },
-
-  computed: {
-    icon() {
-      const icon = this.weather.weather[0].icon;
-      return `https://openweathermap.org/img/wn/${icon}.png`;
-    },
-
-    temperature() {
-      const temperature = Math.round(this.weather.temp);
-      return `${temperature}°С`;
-    },
-
-    feelsLike() {
-      const feelsLike = Math.round(this.weather.feels_like);
-      return `ощущается как ${feelsLike}°С`;
-    },
-
-    description() {
-      let description = this.weather.weather[0].description;
-      return description[0].toUpperCase() + description.slice(1);
-    },
-
-    conditions() {
-      return `
-        Ветер: ${Math.round(this.weather.wind_speed)} м/с,
-        Давление: ${Math.round(this.weather.pressure)} мм рт. ст
-      `;
     }
   }
 };
