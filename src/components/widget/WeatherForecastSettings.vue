@@ -81,13 +81,18 @@ export default {
     justify-content: center;
 
     .settings__social__link {
+      width: 32px;
+      height: 32px;
+      margin: 0 5px;
+      display: block;
       cursor: pointer;
+      background-color: transparent;
+      text-decoration: none;
 
       .settings__social__link__img {
         display: block;
         width: 32px;
         height: 32px;
-        margin: 0 5px;
         pointer-events: none;
         user-select: none;
       }

@@ -14,7 +14,7 @@
 
       <button class="search" type="submit">
         Поиск
-        <img alt="" src="@/assets/img/search.svg">
+        <img alt="Поиск" class="search__img" src="@/assets/img/search.svg">
       </button>
     </form>
   </div>
@@ -164,7 +164,7 @@ form {
       transition: all 0.1s;
     }
 
-    img {
+    .search__img {
       display: block;
       margin-left: 5px;
       width: 16px;
