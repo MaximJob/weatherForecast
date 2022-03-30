@@ -99,7 +99,7 @@ export default {
   computed: {
     savedText() {
       let text = "";
-      text += "Текущая температура равна " + Math.round(this.current.temp) + "°С";
+      text += "Текущая температура равна " + this.current.temperature;
       return text;
     }
   },
