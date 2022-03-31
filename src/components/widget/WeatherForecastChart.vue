@@ -24,7 +24,11 @@ export default {
       type: Array,
       required: true
     },
-    temperatureColor: {
+    temperatureColorDay: {
+      type: String,
+      required: true
+    },
+    temperatureColorNight: {
       type: String,
       required: true
     }
@@ -56,7 +60,7 @@ export default {
           enabled: false
         },
 
-        colors: [this.temperatureColor],
+        colors: [this.temperatureColorDay, this.temperatureColorNight],
 
         dataLabels: {
           enabled: false

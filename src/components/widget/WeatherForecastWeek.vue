@@ -21,7 +21,8 @@
       </div>
 
       <weather-forecast-chart
-        :temperature-color="temperatureColor"
+        :temperature-color-day="temperatureColorDay"
+        :temperature-color-night="temperatureColorNight"
         :temps="weather"
       />
 
@@ -41,6 +42,12 @@
 <script>
 import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
 
+const hotter = "#DC143C";
+const hot = "#FF7F50";
+const normal = "#f4df5b";
+const cold = "#ADD8E6";
+const colder = "#4682B4";
+
 export default {
   name: "WeatherForecastWeek",
 
@@ -54,10 +61,28 @@ export default {
   },
 
   computed: {
-    temperatureColor() {
-      const hot = "#fb8e00";
-      const cold = "#00cdfb";
-      return this.weather.averageTemperature > 0 ? hot : cold;
+    temperatureColorDay() {
+      return this.getTempColor(this.weather.averageTemperatureDay);
+    },
+
+    temperatureColorNight() {
+      return this.getTempColor(this.weather.averageTemperatureNight);
+    }
+  },
+
+  methods: {
+    getTempColor(temp) {
+      if (temp > 30) {
+        return hotter;
+      } else if (temp > 20) {
+        return hot;
+      } else if (temp > 10) {
+        return normal;
+      } else if (temp < -20) {
+        return colder;
+      } else if (temp < 10) {
+        return cold;
+      }
     }
   }
 };
@@ -101,6 +126,10 @@ export default {
 
     @media (max-width: 768px) {
       padding: 50px 0;
+    }
+
+    @media (max-width: 600px) {
+      padding: 30px 0 40px 0;
     }
 
     .graphMax,
