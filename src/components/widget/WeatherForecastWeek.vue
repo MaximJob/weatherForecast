@@ -1,7 +1,7 @@
 <template>
   <div class="week">
     <div class="days">
-      <div v-for="(day, i) in weather" :key="i" class="daysItem">
+      <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
         {{ day.weekDayNaming }}
         <br />
         {{ day.date }}
@@ -12,7 +12,7 @@
     <div class="graph">
       <div class="graphMax">
         <div
-          v-for="(temp, i) in weather"
+          v-for="(temp, i) in weather.week"
           :key="temp.max + '' + i"
           class="graphMax__item"
         >
@@ -23,12 +23,12 @@
       <weather-forecast-chart
         :temperature-color-day="temperatureColorDay"
         :temperature-color-night="temperatureColorNight"
-        :temps="weather"
+        :temps="weather.week"
       />
 
       <div class="graphMin">
         <div
-          v-for="(temp, i) in weather"
+          v-for="(temp, i) in weather.week"
           :key="temp.min + '' + i"
           class="graphMin__item"
         >
@@ -55,7 +55,7 @@ export default {
 
   props: {
     weather: {
-      type: Array,
+      type: Object,
       required: true
     }
   },

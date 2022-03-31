@@ -37,7 +37,7 @@
 
       <weather-forecast-week
         v-if="!cityExistError"
-        :weather="week"
+        :weather="daily"
         class="week"
       />
 
@@ -101,7 +101,11 @@ export default {
         description: "",
         conditions: ""
       },
-      week: [],
+      daily: {
+        week: [],
+        averageTemperatureDay: 0,
+        averageTemperatureNight: 0
+      },
       cityName: "",
       cityExistError: false,
       geoAccessError: false,
@@ -241,7 +245,7 @@ export default {
       let averageTempDay = 0;
       let averageTempNight = 0;
 
-      this.week.forEach(t => {
+      this.daily.week.forEach(t => {
         // console.log(t);
         // console.log("max", t.max);
         // console.log("min", t.min);
@@ -249,8 +253,8 @@ export default {
         averageTempNight += t.min;
       });
 
-      this.week.averageTemperatureDay = averageTempDay / days;
-      this.week.averageTemperatureNight = averageTempNight / days;
+      this.daily.averageTemperatureDay = averageTempDay / days;
+      this.daily.averageTemperatureNight = averageTempNight / days;
     },
 
     setDailyWeather(daily) {
@@ -266,7 +270,7 @@ export default {
       });
       console.log(daily);
 
-      this.week = daily;
+      this.daily.week = daily;
       this.setAverageTemperature();
     },
 
