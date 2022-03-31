@@ -107,9 +107,16 @@ export default {
       geoAccessError: false,
       geoExistError: false,
       settingsShowing: false,
-      searchesAmount: 0,
-      daysInMonth: 0
+      searchesAmount: 0
     };
+  },
+
+  computed: {
+    daysInMonth() {
+      const thisMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+      const nextMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
+      return Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
+    }
   },
 
   created() {
@@ -209,16 +216,15 @@ export default {
       return dayNamings[index];
     },
 
-    getDate(day) {
+    getDate(day, daysInMonth) {
       day = day + new Date().getDate();
-      if (day <= this.daysInMonth) {
+      if (day <= daysInMonth) {
         return day + " " + this.getMonthNaming(new Date().getMonth());
       }
-      return day % this.daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
+      return day % daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
     },
 
     setCurrentWeather(current) {
-      this.current = {};
       let description = current.weather[0].description;
       this.current.icon = `https://openweathermap.org/img/wn/${current.weather[0].icon}.png`;
       this.current.temperature = `${Math.round(current.temp)}°С`;
@@ -230,37 +236,38 @@ export default {
       `;
     },
 
-    setDailyWeather(_daily) {
-      this.week = [];
-      const thisMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
-      const nextMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
-      this.daysInMonth = Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
-
-      const daily = [];
-      _daily.map((day, index) => {
-        daily.push({
-          max: Math.round(day.temp.max),
-          min: Math.round(day.temp.min),
-          weekDayNaming: this.getWeekDayNaming(index + 1),
-          date: this.getDate(index),
-          icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
-        });
-      });
-
+    setAverageTemperature() {
       const days = 8;
       let averageTempDay = 0;
       let averageTempNight = 0;
-      daily.forEach(t => {
-        console.log(t);
-        console.log("max", t.max);
-        console.log("min", t.min);
+
+      this.week.forEach(t => {
+        // console.log(t);
+        // console.log("max", t.max);
+        // console.log("min", t.min);
         averageTempDay += t.max;
         averageTempNight += t.min;
       });
-      daily.averageTemperatureDay = averageTempDay / days;
-      daily.averageTemperatureNight = averageTempNight / days;
+
+      this.week.averageTemperatureDay = averageTempDay / days;
+      this.week.averageTemperatureNight = averageTempNight / days;
+    },
+
+    setDailyWeather(daily) {
+      console.log(daily);
+      daily = daily.map((day, index) => {
+        return {
+          max: Math.round(day.temp.max),
+          min: Math.round(day.temp.min),
+          weekDayNaming: this.getWeekDayNaming(index + 1),
+          date: this.getDate(index, this.daysInMonth),
+          icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
+        };
+      });
+      console.log(daily);
 
       this.week = daily;
+      this.setAverageTemperature();
     },
 
     openSettings() {
