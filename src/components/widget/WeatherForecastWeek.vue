@@ -56,7 +56,8 @@ export default {
   props: {
     weather: {
       type: Object,
-      required: true
+      required: true,
+      default: {}
     }
   },
 

@@ -9,19 +9,23 @@ export default {
   props: {
     geoExistError: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
     },
     geoAccessError: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
     },
     cityExistError: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
     },
     searchesAmount: {
       type: Number,
-      required: true
+      required: true,
+      default: 0
     }
   },
 

@@ -21,11 +21,13 @@ export default {
   props: {
     cityName: {
       type: String,
-      required: true
+      required: true,
+      default: "Название города"
     },
     weather: {
       type: Object,
-      required: true
+      required: true,
+      default: {}
     }
   }
 };

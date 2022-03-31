@@ -22,7 +22,9 @@ export default {
   props: {
     copyWeatherForecast: {
       type: Function,
-      required: true
+      required: true,
+      default: () => {
+      }
     }
   },
 

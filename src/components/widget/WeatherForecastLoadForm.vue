@@ -27,19 +27,24 @@ export default {
   props: {
     loadByCityName: {
       type: Function,
-      required: true
+      required: true,
+      default: () => {
+      }
     },
     geoAccessError: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
     },
     cityExistError: {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
     },
     searchesAmount: {
       type: Number,
-      required: true
+      required: true,
+      default: 0
     }
   },
 

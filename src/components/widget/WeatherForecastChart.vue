@@ -22,15 +22,18 @@ export default {
   props: {
     temps: {
       type: Array,
-      required: true
+      required: true,
+      default: []
     },
     temperatureColorDay: {
       type: String,
-      required: true
+      required: true,
+      default: "#000000"
     },
     temperatureColorNight: {
       type: String,
-      required: true
+      required: true,
+      default: "#000000"
     }
   },
 
@@ -175,7 +178,7 @@ export default {
         if (minOfTheMaxTemp > el.max) {
           minOfTheMaxTemp = el.max;
         }
-        
+
         if (maxOfTheMinTemp < el.min) {
           maxOfTheMinTemp = el.min;
         }

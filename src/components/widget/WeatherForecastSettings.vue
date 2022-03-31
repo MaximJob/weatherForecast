@@ -31,7 +31,9 @@ export default {
   props: {
     closeSettings: {
       type: Function,
-      required: true
+      required: true,
+      default: () => {
+      }
     }
   },
 
