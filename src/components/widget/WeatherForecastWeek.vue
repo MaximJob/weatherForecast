@@ -12,11 +12,11 @@
     <div class="graph">
       <div class="graphMax">
         <div
-          v-for="(temp, i) in weather.week"
-          :key="temp.max + '' + i"
+          v-for="(day, i) in weather.week"
+          :key="day.max + '' + i"
           class="graphMax__item"
         >
-          {{ temp.max }}°
+          {{ day.max }}°
         </div>
       </div>
 
@@ -28,11 +28,11 @@
 
       <div class="graphMin">
         <div
-          v-for="(temp, i) in weather.week"
-          :key="temp.min + '' + i"
+          v-for="(day, i) in weather.week"
+          :key="day.min + '' + i"
           class="graphMin__item"
         >
-          {{ temp.min }}°
+          {{ day.min }}°
         </div>
       </div>
     </div>

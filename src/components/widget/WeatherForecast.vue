@@ -246,9 +246,6 @@ export default {
       let averageTempNight = 0;
 
       this.daily.week.forEach(t => {
-        // console.log(t);
-        // console.log("max", t.max);
-        // console.log("min", t.min);
         averageTempDay += t.max;
         averageTempNight += t.min;
       });
@@ -257,20 +254,18 @@ export default {
       this.daily.averageTemperatureNight = averageTempNight / days;
     },
 
-    setDailyWeather(daily) {
-      console.log(daily);
-      daily = daily.map((day, index) => {
-        return {
-          max: Math.round(day.temp.max),
-          min: Math.round(day.temp.min),
-          weekDayNaming: this.getWeekDayNaming(index + 1),
-          date: this.getDate(index, this.daysInMonth),
-          icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
-        };
-      });
-      console.log(daily);
+    getFormattedDay(day, index) {
+      return {
+        max: Math.round(day.temp.max),
+        min: Math.round(day.temp.min),
+        weekDayNaming: this.getWeekDayNaming(index + 1),
+        date: this.getDate(index, this.daysInMonth),
+        icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
+      };
+    },
 
-      this.daily.week = daily;
+    setDailyWeather(daily) {
+      this.daily.week = daily.map((day, index) => this.getFormattedDay(day, index));
       this.setAverageTemperature();
     },
 
