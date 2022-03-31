@@ -76,11 +76,11 @@ export default {
         return hotter;
       } else if (temp > 20) {
         return hot;
-      } else if (temp > 10) {
+      } else if (temp > 0) {
         return normal;
       } else if (temp < -20) {
         return colder;
-      } else if (temp < 10) {
+      } else if (temp < 0) {
         return cold;
       }
     }

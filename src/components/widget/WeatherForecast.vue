@@ -255,6 +255,7 @@ export default {
     },
 
     getFormattedDay(day, index) {
+      console.log(day.temp);
       return {
         max: Math.round(day.temp.max),
         min: Math.round(day.temp.min),
@@ -265,7 +266,10 @@ export default {
     },
 
     setDailyWeather(daily) {
-      this.daily.week = daily.map((day, index) => this.getFormattedDay(day, index));
+      this.daily = {
+        ...this.daily,
+        week: daily.map(this.getFormattedDay)
+      };
       this.setAverageTemperature();
     },
 
