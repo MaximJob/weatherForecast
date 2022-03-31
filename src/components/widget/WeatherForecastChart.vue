@@ -190,8 +190,7 @@ export default {
         maxOfTheMinTemp = 0;
       }
 
-      let index = 0;
-      this.temps.forEach(el => {
+      this.temps.forEach((el, index) => {
         _series[0].data.push({
           x: index,
           y: el.max + minOfTheMaxTemp
@@ -201,8 +200,6 @@ export default {
           x: index,
           y: el.min - maxOfTheMinTemp
         });
-
-        index++;
       });
 
       return _series;
