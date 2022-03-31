@@ -171,7 +171,7 @@ export default {
       let minOfTheMaxTemp = 200;
       let maxOfTheMinTemp = -200;
 
-      this.$props.temps.forEach((el) => {
+      this.temps.forEach(el => {
         if (minOfTheMaxTemp > el.max) {
           minOfTheMaxTemp = el.max;
         }
@@ -191,15 +191,15 @@ export default {
       }
 
       let index = 0;
-      this.$props.temps.forEach((el) => {
+      this.temps.forEach(el => {
         _series[0].data.push({
           x: index,
-          y: (el.max += minOfTheMaxTemp)
+          y: el.max + minOfTheMaxTemp
         });
 
         _series[1].data.push({
           x: index,
-          y: (el.min -= maxOfTheMinTemp)
+          y: el.min - maxOfTheMinTemp
         });
 
         index++;

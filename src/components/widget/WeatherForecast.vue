@@ -213,10 +213,10 @@ export default {
     },
 
     getWeekDayNaming(day) {
-      if (day === 1) {
+      if (day === 0) {
         return "Сегодня";
       }
-      const index = (day + new Date().getDay() - 2) % dayNamings.length;
+      const index = (day + new Date().getDay() - 1) % dayNamings.length;
       return dayNamings[index];
     },
 
@@ -255,21 +255,17 @@ export default {
     },
 
     getFormattedDay(day, index) {
-      console.log(day.temp);
       return {
         max: Math.round(day.temp.max),
         min: Math.round(day.temp.min),
-        weekDayNaming: this.getWeekDayNaming(index + 1),
+        weekDayNaming: this.getWeekDayNaming(index),
         date: this.getDate(index, this.daysInMonth),
         icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
       };
     },
 
     setDailyWeather(daily) {
-      this.daily = {
-        ...this.daily,
-        week: daily.map(this.getFormattedDay)
-      };
+      this.daily.week = daily.map(this.getFormattedDay);
       this.setAverageTemperature();
     },
 
