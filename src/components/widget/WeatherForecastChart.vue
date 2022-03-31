@@ -157,7 +157,7 @@ export default {
 
   computed: {
     series() {
-      const _series = [
+      const chart = [
         {
           name: "",
           data: []
@@ -175,6 +175,7 @@ export default {
         if (minOfTheMaxTemp > el.max) {
           minOfTheMaxTemp = el.max;
         }
+        
         if (maxOfTheMinTemp < el.min) {
           maxOfTheMinTemp = el.min;
         }
@@ -191,18 +192,18 @@ export default {
       }
 
       this.temps.forEach((el, index) => {
-        _series[0].data.push({
+        chart[0].data.push({
           x: index,
           y: el.max + minOfTheMaxTemp
         });
 
-        _series[1].data.push({
+        chart[1].data.push({
           x: index,
           y: el.min - maxOfTheMinTemp
         });
       });
 
-      return _series;
+      return chart;
     }
   }
 };
