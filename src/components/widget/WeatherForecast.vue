@@ -280,6 +280,7 @@ export default {
     copyWeatherForecast() {
       let text = "";
       text += "Текущая температура равна " + this.current.temperature;
+      // Вывод остальной информации
       return text;
     }
   }

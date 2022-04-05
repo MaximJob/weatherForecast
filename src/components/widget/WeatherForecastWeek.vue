@@ -3,34 +3,34 @@
     <div class="days">
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
         {{ day.weekDayNaming }}
-        <br />
+        <br/>
         {{ day.date }}
-        <img :src="day.icon" alt="Иконка погоды" />
+        <img :src="day.icon" alt="Иконка погоды"/>
       </div>
     </div>
 
     <div class="graph">
       <div class="graphMax">
         <div
-          v-for="(day, i) in weather.week"
-          :key="day.max + '' + i"
-          class="graphMax__item"
+            v-for="(day, i) in weather.week"
+            :key="day.max + '' + i"
+            class="graphMax__item"
         >
           {{ day.max }}°
         </div>
       </div>
 
       <weather-forecast-chart
-        :temperature-color-day="temperatureColorDay"
-        :temperature-color-night="temperatureColorNight"
-        :temps="weather.week"
+          :temperature-color-day="temperatureColorDay"
+          :temperature-color-night="temperatureColorNight"
+          :temps="weather.week"
       />
 
       <div class="graphMin">
         <div
-          v-for="(day, i) in weather.week"
-          :key="day.min + '' + i"
-          class="graphMin__item"
+            v-for="(day, i) in weather.week"
+            :key="day.min + '' + i"
+            class="graphMin__item"
         >
           {{ day.min }}°
         </div>
@@ -51,13 +51,74 @@ const colder = "#4682B4";
 export default {
   name: "WeatherForecastWeek",
 
-  components: { WeatherForecastChart },
+  components: {WeatherForecastChart},
 
   props: {
     weather: {
       type: Object,
       required: true,
-      default: {}
+      default: {
+        week: [
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          },
+          {
+            date: "",
+            icon: "",
+            max: 0,
+            min: 0,
+            weekDayNaming: ""
+          }
+        ],
+        averageTemperatureDay: 0,
+        averageTemperatureNight: 0
+      }
     }
   },
 

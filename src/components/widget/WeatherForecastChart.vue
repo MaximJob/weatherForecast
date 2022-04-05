@@ -1,10 +1,10 @@
 <template>
   <div class="chart">
     <vue-apex-charts
-      :options="chartOptions"
-      :series="series"
-      height="80"
-      type="area"
+        :options="chartOptions"
+        :series="series"
+        height="80"
+        type="area"
     ></vue-apex-charts>
   </div>
 </template>
@@ -23,7 +23,64 @@ export default {
     temps: {
       type: Array,
       required: true,
-      default: []
+      default: [
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+        {
+          date: "",
+          icon: "",
+          max: 0,
+          min: 0,
+          weekDayNaming: ""
+        },
+      ]
     },
     temperatureColorDay: {
       type: String,
@@ -160,53 +217,53 @@ export default {
 
   computed: {
     series() {
-      const chart = [
-        {
-          name: "",
-          data: []
-        },
-        {
-          name: "",
-          data: []
+      const temps = this.temps
+
+      const top = {
+        name: "",
+        data: [],
+        min: 200,
+      }
+
+      const bottom = {
+        name: "",
+        data: [],
+        max: -200,
+      }
+
+      temps.forEach(el => {
+        if (top.min > el.max) {
+          top.min = el.max;
         }
-      ];
 
-      let minOfTheMaxTemp = 200;
-      let maxOfTheMinTemp = -200;
-
-      this.temps.forEach(el => {
-        if (minOfTheMaxTemp > el.max) {
-          minOfTheMaxTemp = el.max;
-        }
-
-        if (maxOfTheMinTemp < el.min) {
-          maxOfTheMinTemp = el.min;
+        if (bottom.max < el.min) {
+          bottom.max = el.min;
         }
       });
 
-      if (minOfTheMaxTemp < 0) {
-        minOfTheMaxTemp = Math.abs(minOfTheMaxTemp);
+      if (top.min < 0) {
+        top.min = Math.abs(top.min);
       } else {
-        minOfTheMaxTemp = 0;
+        top.min = 0;
       }
 
-      if (maxOfTheMinTemp < 0) {
-        maxOfTheMinTemp = 0;
+      if (bottom.max < 0) {
+        bottom.max = 0;
       }
 
-      this.temps.forEach((el, index) => {
-        chart[0].data.push({
+      temps.forEach((el, index) => {
+        top.data.push({
           x: index,
-          y: el.max + minOfTheMaxTemp
+          y: el.max + top.min
         });
 
-        chart[1].data.push({
+        bottom.data.push({
           x: index,
-          y: el.min - maxOfTheMinTemp
+          y: el.min - bottom.max
         });
       });
 
-      return chart;
+      return [top, bottom];
     }
   }
 };
