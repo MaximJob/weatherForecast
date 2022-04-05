@@ -121,9 +121,12 @@ export default {
 
   computed: {
     daysInMonth() {
+      const secondsInDay = 86400;
+
       const thisMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
       const nextMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
-      return Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
+
+      return Math.round((nextMonth - thisMonth) / 1000 / secondsInDay);
     },
 
     anyGeoError() {
@@ -202,6 +205,7 @@ export default {
       const alreadyLoadedCity = city.toLowerCase() === this.cityName.toLowerCase();
       if (alreadyLoadedCity) {
         document.activeElement.blur();
+        this.cityExistError = false;
       }
       if (city && !alreadyLoadedCity) {
         this.loading = true;
