@@ -70,11 +70,8 @@ export default {
     .icon {
       grid-area: icon;
       display: block;
-      min-width: 50px;
-      min-height: 50px;
-      max-width: 50px;
-      max-height: 50px;
-      width: 100%;
+      width: 100px;
+      height: 100px;
       pointer-events: none;
       user-select: none;
     }

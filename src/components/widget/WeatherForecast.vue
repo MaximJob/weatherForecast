@@ -245,7 +245,7 @@ export default {
 
     setCurrentWeather(current) {
       let description = current.weather[0].description;
-      this.current.icon = `https://openweathermap.org/img/wn/${current.weather[0].icon}.png`;
+      this.current.icon = `https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`;
       this.current.temperature = `${Math.round(current.temp)}°С`;
       this.current.feelsLike = `ощущается как ${Math.round(current.feels_like)}°С`;
       this.current.description = description[0].toUpperCase() + description.slice(1);
