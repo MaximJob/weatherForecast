@@ -101,6 +101,7 @@ export default {
 
   .settings__developer {
     margin: 10px 0 0 0;
+    text-align: center;
   }
 
   .settings__social {
