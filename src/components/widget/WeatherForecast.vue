@@ -5,12 +5,12 @@
     <div
       v-if="!loading"
       :class="{
-        'cityError': cityExistError,
+        'cityError': errorShowing,
       }"
       class="info"
     >
       <weather-forecast-error
-        v-if="cityExistError"
+        v-if="errorShowing"
         :city-exist-error="cityExistError"
         :geo-access-error="geoAccessError"
         :geo-exist-error="geoExistError"
@@ -23,20 +23,24 @@
       />
 
       <button class="settings__open" @click="openSettings">
-        <img alt="Настройки" class="settings__open__img" src="@/assets/img/settings.svg">
+        <img
+          alt="Настройки"
+          class="settings__open__img"
+          src="@/assets/img/settings.svg"
+        >
       </button>
 
       <weather-forecast-settings v-if="settingsShowing" :close-settings="closeSettings" />
 
       <weather-forecast-today
-        v-if="!cityExistError"
+        v-if="!errorShowing"
         :city-name="cityName"
         :weather="current"
         class="today"
       />
 
       <weather-forecast-week
-        v-if="!cityExistError"
+        v-if="!errorShowing"
         :weather="daily"
         class="week"
       />
@@ -107,9 +111,9 @@ export default {
         averageTemperatureNight: 0
       },
       cityName: "",
-      cityExistError: false,
-      geoAccessError: false,
       geoExistError: false,
+      geoAccessError: false,
+      cityExistError: false,
       settingsShowing: false,
       searchesAmount: 0
     };
@@ -120,6 +124,18 @@ export default {
       const thisMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
       const nextMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1);
       return Math.round((nextMonth - thisMonth) / 1000 / 3600 / 24);
+    },
+
+    anyGeoError() {
+      return this.geoExistError || this.geoAccessError;
+    },
+
+    errorShowing() {
+      if (!this.searchesAmount) {
+        return this.anyGeoError;
+      } else if (this.searchesAmount > 0) {
+        return this.anyGeoError && this.cityExistError;
+      }
     }
   },
 
@@ -171,7 +187,6 @@ export default {
             this.loadWeatherForecast(lat, lon);
           },
           () => {
-            this.cityExistError = true;
             this.geoAccessError = true;
             this.loading = false;
           },
