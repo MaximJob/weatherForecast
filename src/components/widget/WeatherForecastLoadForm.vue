@@ -69,14 +69,11 @@ export default {
 
   watch: {
     city() {
-      this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
-      if (this.city.length) {
-        if (this.city.length === 1) {
-          this.city = this.city.toUpperCase();
-        } else {
-          this.city = this.city.toLowerCase();
-          this.city = this.city[0].toUpperCase() + this.city.slice(1);
-        }
+      this.city = this.city.replace(/[^a-zа-яё\s-]/gi, ""); // Оставляет буквы и тире
+      
+      if (this.city.length > 0) {
+        this.city = this.city.toLowerCase();
+        this.city = this.city.replace(/(^|\s)\S/g, l => l.toUpperCase()); // Слова с заглавной буквы
       }
     }
   },
