@@ -124,7 +124,7 @@ export default {
 
   data() {
     return {
-      isWindowSmall: window.innerWidth < 600
+      isWindowSmall: false
     };
   },
 
@@ -139,6 +139,7 @@ export default {
   },
 
   mounted() {
+    this.updateIsItSmall();
     window.addEventListener("resize", this.updateIsItSmall);
   },
 
@@ -163,6 +164,9 @@ export default {
 
     updateIsItSmall() {
       this.isWindowSmall = window.innerWidth < 600;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.isWindowSmall = true;
+      }
     }
   }
 };

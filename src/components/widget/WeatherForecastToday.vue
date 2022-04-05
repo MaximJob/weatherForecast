@@ -1,15 +1,15 @@
 <template>
   <div class="day">
     <div class="temperatureWrap">
-      <h3 class="cityName">{{ cityName }}</h3>
+      <h1 class="cityName">{{ cityName }}</h1>
       <img :src="weather.icon" alt="Погода" class="icon" />
       <h2 class="temperature">{{ weather.temperature }}</h2>
-      <h5 class="feelsLike">{{ weather.feelsLike }}</h5>
+      <h3 class="feelsLike">{{ weather.feelsLike }}</h3>
     </div>
 
     <div class="conditionsWrap">
-      <h4 class="description">{{ weather.description }}</h4>
-      <h5 class="conditions">{{ weather.conditions }}</h5>
+      <h3 class="description">{{ weather.description }}</h3>
+      <h4 class="conditions">{{ weather.conditions }}</h4>
     </div>
   </div>
 </template>
