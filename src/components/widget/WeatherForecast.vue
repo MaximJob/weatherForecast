@@ -132,10 +132,7 @@ export default {
     },
 
     errorShowing() {
-      if (!this.searchesAmount) {
-        return this.anyGeoError;
-      }
-      return false;
+      return !this.searchesAmount ? this.anyGeoError : false;
     }
   },
 

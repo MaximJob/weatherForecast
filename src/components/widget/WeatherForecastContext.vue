@@ -64,9 +64,7 @@ export default {
   },
 
   beforeCreate() {
-    document.onclick = () => {
-      this.showing = false;
-    };
+    document.onclick = () => this.showing = false;
 
     document.oncontextmenu = (e) => {
       const className = e.target.classList[0];

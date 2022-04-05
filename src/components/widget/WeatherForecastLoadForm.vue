@@ -4,7 +4,7 @@
       <input
         v-model.trim="city"
         :class="{
-          'error': isErrorClass
+          'error': inputError
         }"
         :placeholder="placeholder"
         class="inputCity"
@@ -28,7 +28,7 @@ export default {
     loadByCityName: {
       type: Function,
       required: true,
-      default: () => {
+      default: (city) => {
       }
     },
     cityExistError: {
@@ -51,26 +51,19 @@ export default {
   },
 
   computed: {
-    placeholder() {
-      if (
-        (this.cityExistError || this.emptyNameError)
-        && this.searchesAmount > 0
-      ) {
-        return "Введите существующий город";
-      }
-      return "Введите город";
+    inputError() {
+      return (this.cityExistError || this.emptyNameError) && this.searchesAmount > 0;
     },
 
-    isErrorClass() {
-      return (this.cityExistError || this.emptyNameError)
-        && this.searchesAmount > 0;
+    placeholder() {
+      return this.inputError ? "Введите существующий город" : "Введите город";
     }
   },
 
   watch: {
     city() {
       this.city = this.city.replace(/[^a-zа-яё\s-]/gi, ""); // Оставляет буквы и тире
-      
+
       if (this.city.length > 0) {
         this.city = this.city.toLowerCase();
         this.city = this.city.replace(/(^|\s)\S/g, l => l.toUpperCase()); // Слова с заглавной буквы
@@ -80,7 +73,7 @@ export default {
 
   methods: {
     load() {
-      if (this.city !== "") {
+      if (this.city) {
         this.emptyNameError = false;
         this.loadByCityName(this.city);
         this.city = "";

@@ -1,10 +1,10 @@
 <template>
   <div class="chart">
     <vue-apex-charts
-        :options="chartOptions"
-        :series="series"
-        height="80"
-        type="area"
+      :options="chartOptions"
+      :series="series"
+      height="80"
+      type="area"
     ></vue-apex-charts>
   </div>
 </template>
@@ -79,7 +79,7 @@ export default {
           max: 0,
           min: 0,
           weekDayNaming: ""
-        },
+        }
       ]
     },
     temperatureColorDay: {
@@ -217,39 +217,27 @@ export default {
 
   computed: {
     series() {
-      const temps = this.temps
+      const temps = this.temps;
 
       const top = {
         name: "",
         data: [],
-        min: 200,
-      }
+        min: 200
+      };
 
       const bottom = {
         name: "",
         data: [],
-        max: -200,
-      }
+        max: -200
+      };
 
       temps.forEach(el => {
-        if (top.min > el.max) {
-          top.min = el.max;
-        }
-
-        if (bottom.max < el.min) {
-          bottom.max = el.min;
-        }
+        top.min = top.min > el.max ? el.max : top.min;
+        bottom.max = bottom.max < el.min ? el.min : bottom.max;
       });
 
-      if (top.min < 0) {
-        top.min = Math.abs(top.min);
-      } else {
-        top.min = 0;
-      }
-
-      if (bottom.max < 0) {
-        bottom.max = 0;
-      }
+      top.min = top.min < 0 ? Math.abs(top.min) : 0;
+      bottom.max = bottom.max < 0 ? 0 : bottom.max;
 
       temps.forEach((el, index) => {
         top.data.push({
