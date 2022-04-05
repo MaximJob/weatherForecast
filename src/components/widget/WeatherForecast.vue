@@ -11,7 +11,6 @@
     >
       <weather-forecast-error
         v-if="errorShowing"
-        :city-exist-error="cityExistError"
         :geo-access-error="geoAccessError"
         :geo-exist-error="geoExistError"
         :searches-amount="searchesAmount"
@@ -47,7 +46,6 @@
 
       <weather-forecast-load-form
         :city-exist-error="cityExistError"
-        :geo-access-error="geoAccessError"
         :load-by-city-name="loadByCityName"
         :searches-amount="searchesAmount"
         class="form"

@@ -31,11 +31,6 @@ export default {
       default: () => {
       }
     },
-    geoAccessError: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
     cityExistError: {
       type: Boolean,
       required: true,
@@ -82,12 +77,6 @@ export default {
           this.city = this.city.toLowerCase();
           this.city = this.city[0].toUpperCase() + this.city.slice(1);
         }
-      }
-    },
-
-    geoAccessError() {
-      if (this.geoAccessError) {
-
       }
     }
   },

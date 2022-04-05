@@ -17,11 +17,6 @@ export default {
       required: true,
       default: false
     },
-    cityExistError: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
     searchesAmount: {
       type: Number,
       required: true,
@@ -31,9 +26,7 @@ export default {
 
   computed: {
     errorText() {
-      if (this.cityExistError && this.searchesAmount > 0) {
-        return "Такой город не существует";
-      } else if (this.geoExistError) {
+      if (this.geoExistError) {
         return "Устройство не поддерживает геолокацию";
       } else if (this.geoAccessError) {
         return "Доступ к геолокации запрещен";
