@@ -2,7 +2,7 @@
   <div class="week">
     <div class="days">
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
-        {{ day.weekDayNaming }}
+        {{ isWindowSmall ? day.weekDayNaming.slice(0, 3) : day.weekDayNaming }}
         <br />
         {{ day.date }}
         <img :src="day.icon" alt="Иконка погоды" />
@@ -122,6 +122,12 @@ export default {
     }
   },
 
+  data() {
+    return {
+      isWindowSmall: window.innerWidth < 600
+    }
+  },
+
   computed: {
     temperatureColorDay() {
       return this.getTempColor(this.weather.averageTemperatureDay);
@@ -129,7 +135,15 @@ export default {
 
     temperatureColorNight() {
       return this.getTempColor(this.weather.averageTemperatureNight);
-    }
+    },
+  },
+
+  mounted() {
+    window.addEventListener('resize', this.updateIsItSmall)
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', this.updateIsItSmall)
   },
 
   methods: {
@@ -145,6 +159,10 @@ export default {
       } else if (temp < 0) {
         return cold;
       }
+    },
+
+    updateIsItSmall() {
+      this.isWindowSmall = window.innerWidth < 600
     }
   }
 };
