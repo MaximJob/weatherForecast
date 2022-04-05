@@ -3,34 +3,34 @@
     <div class="days">
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
         {{ day.weekDayNaming }}
-        <br/>
+        <br />
         {{ day.date }}
-        <img :src="day.icon" alt="Иконка погоды"/>
+        <img :src="day.icon" alt="Иконка погоды" />
       </div>
     </div>
 
     <div class="graph">
       <div class="graphMax">
         <div
-            v-for="(day, i) in weather.week"
-            :key="day.max + '' + i"
-            class="graphMax__item"
+          v-for="(day, i) in weather.week"
+          :key="day.max + '' + i"
+          class="graphMax__item"
         >
           {{ day.max }}°
         </div>
       </div>
 
       <weather-forecast-chart
-          :temperature-color-day="temperatureColorDay"
-          :temperature-color-night="temperatureColorNight"
-          :temps="weather.week"
+        :temperature-color-day="temperatureColorDay"
+        :temperature-color-night="temperatureColorNight"
+        :temps="weather.week"
       />
 
       <div class="graphMin">
         <div
-            v-for="(day, i) in weather.week"
-            :key="day.min + '' + i"
-            class="graphMin__item"
+          v-for="(day, i) in weather.week"
+          :key="day.min + '' + i"
+          class="graphMin__item"
         >
           {{ day.min }}°
         </div>
@@ -51,7 +51,7 @@ const colder = "#4682B4";
 export default {
   name: "WeatherForecastWeek",
 
-  components: {WeatherForecastChart},
+  components: { WeatherForecastChart },
 
   props: {
     weather: {
@@ -161,7 +161,7 @@ export default {
     display: grid;
     grid-template: auto / repeat(8, 1fr);
     align-items: center;
-    justify-items: center;
+    justify-content: space-between;
     font-weight: 700;
     text-align: center;
 

@@ -76,8 +76,8 @@ export default {
     city() {
       this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
       if (this.city.length) {
-        if (this.city.length < 1) {
-          this.city = this.city[0].toUpperCase();
+        if (this.city.length === 1) {
+          this.city = this.city.toUpperCase();
         } else {
           this.city = this.city.toLowerCase();
           this.city = this.city[0].toUpperCase() + this.city.slice(1);
