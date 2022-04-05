@@ -133,9 +133,8 @@ export default {
     errorShowing() {
       if (!this.searchesAmount) {
         return this.anyGeoError;
-      } else if (this.searchesAmount > 0) {
-        return this.anyGeoError && this.cityExistError;
       }
+      return false;
     }
   },
 
@@ -217,7 +216,6 @@ export default {
           })
           .catch(() => {
             this.cityExistError = true;
-            this.cityName = "";
             this.loading = false;
           });
       }
