@@ -2,7 +2,7 @@
   <div class="day">
     <div class="temperatureWrap">
       <h3 class="cityName">{{ cityName }}</h3>
-      <img :src="weather.icon" alt="Погода" class="icon"/>
+      <img :src="weather.icon" alt="Погода" class="icon" />
       <h2 class="temperature">{{ weather.temperature }}</h2>
       <h5 class="feelsLike">{{ weather.feelsLike }}</h5>
     </div>
@@ -35,7 +35,7 @@ export default {
         temperature: ""
       }
     }
-  },
+  }
 };
 </script>
 
@@ -72,7 +72,9 @@ export default {
       display: block;
       min-width: 50px;
       min-height: 50px;
-      max-width: 100%;
+      max-width: 50px;
+      max-height: 50px;
+      width: 100%;
       pointer-events: none;
       user-select: none;
     }

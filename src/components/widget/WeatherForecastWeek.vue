@@ -125,7 +125,7 @@ export default {
   data() {
     return {
       isWindowSmall: window.innerWidth < 600
-    }
+    };
   },
 
   computed: {
@@ -135,15 +135,15 @@ export default {
 
     temperatureColorNight() {
       return this.getTempColor(this.weather.averageTemperatureNight);
-    },
+    }
   },
 
   mounted() {
-    window.addEventListener('resize', this.updateIsItSmall)
+    window.addEventListener("resize", this.updateIsItSmall);
   },
 
   destroyed() {
-    window.removeEventListener('resize', this.updateIsItSmall)
+    window.removeEventListener("resize", this.updateIsItSmall);
   },
 
   methods: {
@@ -162,7 +162,7 @@ export default {
     },
 
     updateIsItSmall() {
-      this.isWindowSmall = window.innerWidth < 600
+      this.isWindowSmall = window.innerWidth < 600;
     }
   }
 };
@@ -191,7 +191,9 @@ export default {
 
       img {
         display: block;
-        max-width: 100%;
+        max-width: 50px;
+        max-height: 50px;
+        width: 100%;
         pointer-events: none;
         user-select: none;
       }
