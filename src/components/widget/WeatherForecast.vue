@@ -145,35 +145,31 @@ export default {
 
   methods: {
     loadWeatherForecast(lat, lon) {
-      if (lat && lon) {
-        this.$http
-          .get(
-            `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=${this.lang}`
-          )
-          .then((response) => {
-            this.searchesAmount++;
-            this.setCurrentWeather(response.data.current);
-            this.setDailyWeather(response.data.daily);
-            this.cityExistError = false;
-            this.loading = false;
-          })
-          .catch((e) => {
-            console.error(e);
-          });
-      }
+      this.$http
+        .get(
+          `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=${this.lang}`
+        )
+        .then((response) => {
+          this.searchesAmount++;
+          this.setCurrentWeather(response.data.current);
+          this.setDailyWeather(response.data.daily);
+          this.cityExistError = false;
+          this.loading = false;
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     },
 
     loadCityName(lat, lon) {
-      if (lat && lon) {
-        this.$http
-          .get(`geo/1.0/reverse?lat=${lat}&lon=${lon}`)
-          .then((response) => {
-            this.cityName = response.data[0].local_names[this.lang];
-          })
-          .catch((e) => {
-            console.error(e);
-          });
-      }
+      this.$http
+        .get(`geo/1.0/reverse?lat=${lat}&lon=${lon}`)
+        .then((response) => {
+          this.cityName = response.data[0].local_names[this.lang];
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     },
 
     loadByCoords() {
@@ -294,7 +290,7 @@ export default {
 
     copyWeatherForecast() {
       let text = "";
-      text += "Текущая температура равна " + this.current.temperature;
+      text += `Текущая температура равна ${this.current.temperature}`;
       // Вывод остальной информации
       return text;
     }
