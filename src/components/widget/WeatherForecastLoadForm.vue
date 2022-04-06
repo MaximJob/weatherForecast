@@ -64,11 +64,14 @@ export default {
 
   watch: {
     city() {
-      this.city = this.city.replace(/[^a-zа-яё\s-]/gi, ""); // Оставляет буквы и тире
+      // Оставляет буквы и тире
+      this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
 
       if (this.city.length) {
         this.city = this.city.toLowerCase();
-        this.city = this.city.replace(/(^|\s)\S/g, l => l.toUpperCase()); // Слова с заглавной буквы
+
+        // Слова с заглавной буквы
+        this.city = this.city.replace(/(^|\s)\S/g, l => l.toUpperCase());
       }
     }
   },
