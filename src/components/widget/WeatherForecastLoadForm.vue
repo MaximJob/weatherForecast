@@ -1,6 +1,13 @@
 <template>
   <div>
-    <form autocomplete="off" class="loadForm" @submit.prevent="load">
+    <form
+      :class="{
+        'searchable': city.length
+      }"
+      autocomplete="off"
+      class="loadForm"
+      @submit.prevent="load"
+    >
       <input
         v-model.trim="city"
         :class="{
@@ -89,15 +96,26 @@ export default {
 .loadForm {
   width: 100%;
   height: 100%;
-  display: grid;
-  grid-template: auto / 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  &.searchable {
+    .inputCity,
+    .search {
+      width: 50%;
+      transition: all 0.3s;
+    }
+  }
 
   @media (max-width: 1000px) {
+    flex-direction: column;
     grid-template: auto auto / 1fr;
   }
 
   .inputCity {
+    width: calc(100% - 100px);
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -128,6 +146,7 @@ export default {
   }
 
   .search {
+    width: 100px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
