@@ -4,7 +4,7 @@
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
         {{ isWindowSmall ? day.weekDayNaming.slice(0, 3) : day.weekDayNaming }}
         <br />
-        {{ day.date }}
+        <span>{{ day.date }}</span>
         <img :src="day.icon" alt="Иконка погоды" />
       </div>
     </div>
@@ -200,6 +200,12 @@ export default {
         width: 100%;
         pointer-events: none;
         user-select: none;
+      }
+
+      span {
+        @media (max-width: 420px) {
+          width: 27px;
+        }
       }
     }
   }
