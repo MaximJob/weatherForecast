@@ -108,18 +108,75 @@ export default {
       loading: false,
       lang: window.navigator.language.slice(0, 2),
       current: {
-        icon: "",
-        temperature: "",
-        feelsLike: "",
-        description: "",
-        conditions: ""
+        icon: "https://openweathermap.org/img/wn/02d@2x.png",
+        temperature: "0°С",
+        feelsLike: "ощущается как 0°С",
+        description: "Погодные условия",
+        conditions: "Ветер: 0 м/c, Давление: 0 мм рт. ст"
       },
       daily: {
-        week: [],
+        week: [
+          {
+            date: "1 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Сегодня"
+          },
+          {
+            date: "2 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Пн"
+          },
+          {
+            date: "3 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Вт"
+          },
+          {
+            date: "4 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Ср"
+          },
+          {
+            date: "5 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Чт"
+          },
+          {
+            date: "6 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Пт"
+          },
+          {
+            date: "7 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Сб"
+          },
+          {
+            date: "8 января",
+            icon: "https://openweathermap.org/img/wn/02d.png",
+            max: 0,
+            min: 0,
+            weekDayNaming: "Вс"
+          }
+        ],
         averageTemperatureDay: 0,
         averageTemperatureNight: 0
       },
-      cityName: "",
+      cityName: "Город",
       geoExistError: false,
       geoAccessError: false,
       cityExistError: false,
@@ -159,8 +216,8 @@ export default {
       this.geoAccessError = true;
     },
 
-    loadWeatherForecast(lat, lon) {
-      this.$http
+    async loadWeatherForecast(lat, lon) {
+      await this.$http
         .get(
           `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=${this.lang}`
         )
@@ -170,15 +227,14 @@ export default {
           this.setCurrentWeather(response.data.current);
           this.setDailyWeather(response.data.daily);
           this.cityExistError = false;
-          this.loading = false;
         })
         .catch((e) => {
           console.error(e);
         });
     },
 
-    loadCityName(lat, lon) {
-      this.$http
+    async loadCityName(lat, lon) {
+      await this.$http
         .get(`geo/1.0/reverse?lat=${lat}&lon=${lon}`)
         .then((response) => {
           this.cityName = response.data[0].local_names[this.lang];
@@ -195,12 +251,17 @@ export default {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
-            this.loadCityName(lat, lon);
-            this.loadWeatherForecast(lat, lon);
+            this.loading = true;
+
+            Promise.all([
+              this.loadCityName(lat, lon),
+              this.loadWeatherForecast(lat, lon)
+            ]).then(() => {
+              this.loading = false;
+            });
           },
           () => {
             this.geoAccessError = true;
-            this.loading = false;
           },
           {
             enableHighAccuracy: true
@@ -211,21 +272,27 @@ export default {
       }
     },
 
-    loadByCityName(city) {
+    async loadByCityName(city) {
       const alreadyLoadedCity = city.toLowerCase() === this.cityName.toLowerCase();
       if (alreadyLoadedCity) {
         document.activeElement.blur();
         this.cityExistError = false;
       }
+
       if (city && !alreadyLoadedCity) {
         this.loading = true;
-        this.$http
+
+        await this.$http
           .get(`geo/1.0/direct?q=${city}`)
           .then((response) => {
             this.loadWeatherForecast(
               response.data[0].lat,
               response.data[0].lon
-            );
+            )
+              .then(() => {
+                this.loading = false;
+              });
+
             this.cityName = city;
           })
           .catch(() => {
