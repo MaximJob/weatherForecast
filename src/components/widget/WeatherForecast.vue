@@ -242,7 +242,7 @@ export default {
     async loadByCoords() {
       if (navigator.geolocation) {
         await navigator.geolocation.getCurrentPosition(
-          (position) => {
+          position => {
             this.geoAccessShowing = false;
 
             const lat = position.coords.latitude;
