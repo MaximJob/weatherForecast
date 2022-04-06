@@ -205,6 +205,20 @@ export default {
     }
   },
 
+  mounted() {
+    if (navigator.permissions) {
+      navigator.permissions.query({
+        name: "geolocation"
+      })
+        .then(permission => {
+            if (permission.state === "granted") {
+              this.loadByCoords();
+            }
+          }
+        );
+    }
+  },
+
   methods: {
     blockGeoAccess() {
       this.geoAccessShowing = false;
