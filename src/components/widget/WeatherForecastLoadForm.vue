@@ -64,7 +64,7 @@ export default {
     city() {
       this.city = this.city.replace(/[^a-zа-яё\s-]/gi, ""); // Оставляет буквы и тире
 
-      if (this.city.length > 0) {
+      if (this.city.length) {
         this.city = this.city.toLowerCase();
         this.city = this.city.replace(/(^|\s)\S/g, l => l.toUpperCase()); // Слова с заглавной буквы
       }
