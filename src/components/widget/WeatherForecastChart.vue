@@ -25,62 +25,62 @@ export default {
       required: true,
       default: [
         {
-          date: "",
-          icon: "",
+          date: "1 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Сегодня"
         },
         {
-          date: "",
-          icon: "",
+          date: "2 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Пн"
         },
         {
-          date: "",
-          icon: "",
+          date: "3 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Вт"
         },
         {
-          date: "",
-          icon: "",
+          date: "4 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Ср"
         },
         {
-          date: "",
-          icon: "",
+          date: "5 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Чт"
         },
         {
-          date: "",
-          icon: "",
+          date: "6 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Пт"
         },
         {
-          date: "",
-          icon: "",
+          date: "7 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Сб"
         },
         {
-          date: "",
-          icon: "",
+          date: "8 января",
+          icon: "https://openweathermap.org/img/wn/02d.png",
           max: 0,
           min: 0,
-          weekDayNaming: ""
+          weekDayNaming: "Вс"
         }
-      ]
+      ],
     },
 
     temperatureColorDay: {
@@ -88,7 +88,7 @@ export default {
       required: true,
       default: "#000000"
     },
-    
+
     temperatureColorNight: {
       type: String,
       required: true,

@@ -24,16 +24,16 @@ export default {
       required: true,
       default: "Название города"
     },
-    
+
     weather: {
       type: Object,
       required: true,
       default: {
-        conditions: "",
-        description: "",
-        feelsLike: "",
-        icon: "",
-        temperature: ""
+        icon: "https://openweathermap.org/img/wn/02d@2x.png",
+        temperature: "0°С",
+        feelsLike: "ощущается как 0°С",
+        description: "Погодные условия",
+        conditions: "Ветер: 0 м/c, Давление: 0 мм рт. ст"
       }
     }
   }
