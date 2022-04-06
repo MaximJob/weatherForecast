@@ -93,13 +93,12 @@ export default {
     },
 
     handleContext(e) {
-      let approveContext = false;
-
-      let isItMobileDevice = false;
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        isItMobileDevice = true;
+        return false
       }
 
+      let approveContext = false;
+      
       let domEl = e.target;
       while (domEl) {
         if (
@@ -120,7 +119,7 @@ export default {
         }
       }
 
-      if (approveContext && !isItMobileDevice) {
+      if (approveContext) {
         this.setMenuCoords(e);
         this.showing = true;
       }
