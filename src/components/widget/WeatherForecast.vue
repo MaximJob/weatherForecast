@@ -213,6 +213,9 @@ export default {
         .then(permission => {
             if (permission.state === "granted") {
               this.loadByCoords();
+            } else if (permission.state === "denied") {
+              this.geoAccessShowing = false;
+              this.geoAccessError = true;
             }
           }
         );
