@@ -105,7 +105,7 @@ export default {
 
   data() {
     return {
-      loading: false,
+      loading: true,
       lang: window.navigator.language.slice(0, 2),
       current: {
         icon: "https://openweathermap.org/img/wn/02d@2x.png",
@@ -216,9 +216,14 @@ export default {
             } else if (permission.state === "denied") {
               this.geoAccessShowing = false;
               this.geoAccessError = true;
+              this.loading = false;
+            } else if (permission.state === "prompt") {
+              this.loading = false;
             }
           }
         );
+    } else {
+      this.loading = false;
     }
   },
 
