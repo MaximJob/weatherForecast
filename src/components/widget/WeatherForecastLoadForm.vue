@@ -28,7 +28,7 @@ export default {
     loadByCityName: {
       type: Function,
       required: true,
-      default: (city) => {
+      default: () => {
       }
     },
 
