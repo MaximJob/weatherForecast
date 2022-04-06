@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form autocomplete="off" @submit.prevent="load">
+    <form autocomplete="off" class="loadForm" @submit.prevent="load">
       <input
         v-model.trim="city"
         :class="{
@@ -73,6 +73,7 @@ export default {
 
   methods: {
     load() {
+      console.log("submitted");
       if (this.city) {
         this.emptyNameError = false;
         this.loadByCityName(this.city);
@@ -86,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-form {
+.loadForm {
   width: 100%;
   height: 100%;
   display: grid;

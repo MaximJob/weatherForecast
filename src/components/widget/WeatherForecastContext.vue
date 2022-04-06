@@ -70,10 +70,17 @@ export default {
 
   beforeCreate() {
     document.onclick = () => this.showing = false;
-
     document.oncontextmenu = () => true;
+    document.querySelector(".weatherForecast").oncontextmenu = e => this.handleContext(e);
+  },
 
-    document.querySelector(".weatherForecast").oncontextmenu = e => {
+  methods: {
+    setMenuCoords(e) {
+      this.x = e.layerX - 5;
+      this.y = e.y - 35;
+    },
+
+    handleContext(e) {
       let approveContext = false;
 
       let isItMobileDevice = false;
@@ -106,13 +113,6 @@ export default {
         this.showing = true;
       }
       return false;
-    };
-  },
-
-  methods: {
-    setMenuCoords(e) {
-      this.x = e.layerX - 5;
-      this.y = e.y - 35;
     }
   }
 };
