@@ -25,13 +25,6 @@ export default {
   name: "WeatherForecastLoadForm",
 
   props: {
-    loadByCityName: {
-      type: Function,
-      required: true,
-      default: () => {
-      }
-    },
-
     cityExistError: {
       type: Boolean,
       required: true,
@@ -81,7 +74,7 @@ export default {
       console.log("submitted");
       if (this.city) {
         this.emptyNameError = false;
-        this.loadByCityName(this.city);
+        this.$emit("formSubmit", this.city);
         this.city = "";
       } else {
         this.emptyNameError = true;

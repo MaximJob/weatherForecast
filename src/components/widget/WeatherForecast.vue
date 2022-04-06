@@ -46,9 +46,9 @@
 
       <weather-forecast-load-form
         :city-exist-error="cityExistError"
-        :load-by-city-name="loadByCityName"
         :searches-amount="searchesAmount"
         class="form"
+        @form-submit="loadByCityName"
       />
     </div>
   </div>
