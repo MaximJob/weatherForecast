@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form autocomplete="off" class="loadForm" @submit.prevent="load">
+    <form autocomplete="off" class="loadForm">
       <input
         v-model.trim="city"
         :class="{
@@ -12,7 +12,7 @@
         type="text"
       />
 
-      <button class="search" type="submit">
+      <button class="search" type="submit" @click="load">
         Поиск
         <img alt="Поиск" class="searchImg" src="@/assets/img/search.svg">
       </button>
@@ -71,8 +71,8 @@ export default {
 
   methods: {
     load() {
-      console.log("submitted");
       if (this.city) {
+        console.log("submitted");
         this.emptyNameError = false;
         this.$emit("formSubmit", this.city);
         this.city = "";

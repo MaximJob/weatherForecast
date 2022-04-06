@@ -48,7 +48,7 @@
         :city-exist-error="cityExistError"
         :searches-amount="searchesAmount"
         class="form"
-        @form-submit="loadByCityName"
+        @formSubmit="loadByCityName"
       />
     </div>
   </div>
