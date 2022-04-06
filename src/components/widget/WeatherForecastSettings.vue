@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <button class="settingsClose" @click="closeSettings">
+    <button class="settingsClose" @click="close">
       <img alt="Настройки" class="settingsCloseImg" src="@/assets/img/close.svg">
     </button>
     <div class="settingsSocial">
@@ -28,15 +28,6 @@ import telegram from "@/assets/img/telegram.svg";
 export default {
   name: "WeatherForecastSettings",
 
-  props: {
-    closeSettings: {
-      type: Function,
-      required: true,
-      default: () => {
-      }
-    }
-  },
-
   data() {
     return {
       links: [
@@ -52,6 +43,12 @@ export default {
         }
       ]
     };
+  },
+
+  methods: {
+    close() {
+      this.$emit("close");
+    }
   }
 };
 </script>

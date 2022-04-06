@@ -5,12 +5,12 @@
     <div
       v-else
       :class="{
-        'cityError': errorShowing,
+        'cityError': errorShowing || geoAccessShowing,
       }"
       class="info"
     >
       <weather-forecast-error
-        v-if="errorShowing"
+        v-if="errorShowing && !geoAccessShowing"
         :geo-access-error="geoAccessError"
         :geo-exist-error="geoExistError"
         :searches-amount="searchesAmount"
@@ -29,17 +29,26 @@
         >
       </button>
 
-      <weather-forecast-settings v-if="settingsShowing" :close-settings="closeSettings" />
+      <weather-forecast-geo-access
+        v-if="geoAccessShowing"
+        @allow="setGeoAccess"
+        @forbid="blockGeoAccess"
+      />
+
+      <weather-forecast-settings
+        v-if="settingsShowing"
+        @close="closeSettings"
+      />
 
       <weather-forecast-today
-        v-if="!errorShowing"
+        v-if="!errorShowing && !geoAccessShowing"
         :city-name="cityName"
         :weather="current"
         class="today"
       />
 
       <weather-forecast-week
-        v-if="!errorShowing"
+        v-if="!errorShowing && !geoAccessShowing"
         :weather="daily"
         class="week"
       />
@@ -62,6 +71,7 @@ import WeatherForecastLoadForm from "@/components/widget/WeatherForecastLoadForm
 import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 import WeatherForecastContext from "@/components/widget/WeatherForecastContext.vue";
 import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
+import WeatherForecastGeoAccess from "@/components/widget/WeatherForecastGeoAccess.vue";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 const monthNamings = [
@@ -83,6 +93,7 @@ export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastGeoAccess,
     WeatherForecastSettings,
     WeatherForecastContext,
     WeatherForecastError,
@@ -94,7 +105,7 @@ export default {
 
   data() {
     return {
-      loading: true,
+      loading: false,
       lang: window.navigator.language.slice(0, 2),
       current: {
         icon: "",
@@ -113,6 +124,7 @@ export default {
       geoAccessError: false,
       cityExistError: false,
       settingsShowing: false,
+      geoAccessShowing: true,
       searchesAmount: 0
     };
   },
@@ -136,17 +148,24 @@ export default {
     }
   },
 
-  created() {
-    this.loadByCoords();
-  },
-
   methods: {
+    setGeoAccess() {
+      this.geoAccessShowing = false;
+      this.loadByCoords();
+    },
+
+    blockGeoAccess() {
+      this.geoAccessShowing = false;
+      this.geoAccessError = true;
+    },
+
     loadWeatherForecast(lat, lon) {
       this.$http
         .get(
           `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=${this.lang}`
         )
         .then((response) => {
+          this.geoAccessShowing = false;
           this.searchesAmount++;
           this.setCurrentWeather(response.data.current);
           this.setDailyWeather(response.data.daily);

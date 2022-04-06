@@ -1,5 +1,7 @@
 <template>
-  <div>{{ errorText }}</div>
+  <div>
+    <h2>{{ errorText }}</h2>
+  </div>
 </template>
 
 <script>
@@ -12,7 +14,7 @@ export default {
       required: true,
       default: false
     },
-    
+
     geoAccessError: {
       type: Boolean,
       required: true,
@@ -42,8 +44,13 @@ export default {
 <style lang="scss" scoped>
 div {
   width: 100%;
-  font-size: 24px;
-  text-align: center;
   margin-bottom: 20px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 400;
+    word-wrap: break-word;
+    text-align: center;
+  }
 }
 </style>

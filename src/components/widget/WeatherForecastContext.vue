@@ -68,7 +68,7 @@ export default {
     };
   },
 
-  beforeCreate() {
+  mounted() {
     document.addEventListener("click", () => this.showing = false);
     document.oncontextmenu = () => true;
     document.querySelector(".weatherForecast").oncontextmenu = e => this.handleContext(e);
