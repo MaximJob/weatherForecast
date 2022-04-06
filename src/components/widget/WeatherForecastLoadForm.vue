@@ -99,7 +99,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+
 
   &.searchable {
     .inputCity,
@@ -129,6 +129,7 @@ export default {
     font-size: 14px;
     font-weight: 400;
     background: transparent;
+    margin-right: 10px;
 
     &::placeholder {
       color: unset;
@@ -204,6 +205,14 @@ export default {
           filter: invert(100%);
         }
       }
+    }
+  }
+
+  @supports (gap: 10px) {
+    gap: 10px;
+
+    .inputCity {
+      margin-right: 0;
     }
   }
 }
