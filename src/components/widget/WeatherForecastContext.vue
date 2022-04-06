@@ -70,14 +70,25 @@ export default {
 
   mounted() {
     document.addEventListener("click", () => this.showing = false);
-    document.oncontextmenu = () => true;
-    document.querySelector(".weatherForecast").oncontextmenu = e => this.handleContext(e);
+    document.querySelector(".weatherForecast").oncontextmenu = this.handleContext;
   },
 
   methods: {
     setMenuCoords(e) {
-      this.x = e.layerX - 5;
-      this.y = e.y - 35;
+      const weatherForecastWidth = document.querySelector(".weatherForecast").clientWidth;
+      const weatherForecastHeight = document.querySelector(".weatherForecast").clientHeight;
+
+      if (e.layerX + 150 > weatherForecastWidth) {
+        this.x = e.layerX - 150;
+      } else {
+        this.x = e.layerX - 5;
+      }
+      
+      if (e.y + 80 > weatherForecastHeight) {
+        this.y = e.y - 100;
+      } else {
+        this.y = e.y - 35;
+      }
     },
 
     handleContext(e) {
