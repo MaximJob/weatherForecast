@@ -24,10 +24,10 @@ export default {
     width: 50px;
     min-height: 50px;
     height: 50px;
-    border: 2px solid #333333;
+    border: 1px solid #333333;
     border-radius: 50%;
     position: relative;
-    animation: circle 1s linear infinite;
+    animation: circle 0.8s linear infinite;
   }
 
   .circle::before {
@@ -38,6 +38,7 @@ export default {
     left: -20px;
     top: -20px;
     background-color: #ffffff;
+    animation: circleBg 0.8s linear infinite alternate;
   }
 
   @keyframes circle {
@@ -47,6 +48,20 @@ export default {
 
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @keyframes circleBg {
+    from {
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+    }
+
+    to {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
     }
   }
 }
