@@ -75,15 +75,16 @@ export default {
 
   methods: {
     setMenuCoords(e) {
-      const weatherForecastWidth = document.querySelector(".weatherForecast").clientWidth;
-      const weatherForecastHeight = document.querySelector(".weatherForecast").clientHeight;
+      const weatherForecast = document.querySelector(".weatherForecast")
+      const weatherForecastWidth = weatherForecast.clientWidth;
+      const weatherForecastHeight = weatherForecast.clientHeight;
 
       if (e.layerX + 150 > weatherForecastWidth) {
         this.x = e.layerX - 150;
       } else {
         this.x = e.layerX - 5;
       }
-      
+
       if (e.y + 80 > weatherForecastHeight) {
         this.y = e.y - 100;
       } else {
