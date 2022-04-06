@@ -8,7 +8,12 @@
     }"
       class="context"
     >
-      <button v-for="setting in settings" class="context__button" @click="setting.action">
+      <button
+        v-for="setting in settings"
+        :key="setting.text"
+        class="context__button"
+        @click="setting.action"
+      >
         {{ setting.text }}
       </button>
     </div>
