@@ -75,11 +75,11 @@ export default {
 
   methods: {
     setMenuCoords(e) {
-      const weatherForecast = document.querySelector(".weatherForecast")
+      const weatherForecast = document.querySelector(".weatherForecast");
       const weatherForecastWidth = weatherForecast.clientWidth;
       const weatherForecastHeight = weatherForecast.clientHeight;
 
-      if (e.layerX + 150 > weatherForecastWidth) {
+      if (e.layerX + 170 > weatherForecastWidth) {
         this.x = e.layerX - 150;
       } else {
         this.x = e.layerX - 5;
@@ -94,11 +94,9 @@ export default {
 
     handleContext(e) {
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        return false
+        return false;
       }
 
-      let approveContext = false;
-      
       let domEl = e.target;
       while (domEl) {
         if (
@@ -110,7 +108,8 @@ export default {
         }
 
         if (domEl.classList.contains("withContext")) {
-          approveContext = true;
+          this.setMenuCoords(e);
+          this.showing = true;
           break;
         }
 
@@ -119,10 +118,6 @@ export default {
         }
       }
 
-      if (approveContext) {
-        this.setMenuCoords(e);
-        this.showing = true;
-      }
       return false;
     }
   }
