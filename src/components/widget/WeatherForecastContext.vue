@@ -92,7 +92,7 @@ export default {
       while (domEl) {
         if (
           domEl.nodeName.toLowerCase() === "body"
-          || domEl.classList.contains("apexcharts-canvas")
+          || domEl.classList.contains("chart")
         ) {
           this.showing = false;
           break;
