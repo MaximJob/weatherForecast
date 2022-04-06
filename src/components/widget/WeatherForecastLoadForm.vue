@@ -12,7 +12,13 @@
         type="text"
       />
 
-      <button class="search" type="submit">
+      <button
+        :class="{
+          'clickable': city.length
+        }"
+        class="search"
+        type="submit"
+      >
         Поиск
         <img alt="Поиск" class="searchImg" src="@/assets/img/search.svg">
       </button>
@@ -40,14 +46,13 @@ export default {
 
   data() {
     return {
-      city: "",
-      emptyNameError: false
+      city: ""
     };
   },
 
   computed: {
     inputError() {
-      return (this.cityExistError || this.emptyNameError) && this.searchesAmount > 0;
+      return this.cityExistError && this.searchesAmount > 0;
     },
 
     placeholder() {
@@ -72,11 +77,8 @@ export default {
   methods: {
     load() {
       if (this.city) {
-        this.emptyNameError = false;
         this.$emit("formSubmit", this.city);
         this.city = "";
-      } else {
-        this.emptyNameError = true;
       }
     }
   }
@@ -132,16 +134,17 @@ export default {
     justify-content: center;
     height: 38px;
     padding: 10px;
+    color: #999999;
     border-radius: 10px;
-    border: 1px solid #333333;
+    border: 1px solid #999999;
     transition: all 0.3s;
     font: inherit;
     font-size: 14px;
     font-weight: 400;
     background: transparent;
     user-select: none;
-    cursor: pointer;
     -webkit-appearance: button;
+    cursor: not-allowed;
 
     .searchImg {
       display: block;
@@ -151,21 +154,36 @@ export default {
       pointer-events: none;
       user-select: none;
       transition: all 0.3s;
+      filter: invert(50%);
     }
 
     &:focus {
-      border: 1px solid #fb8e00;
+      border: 1px solid #ff0000;
     }
 
-    &:hover {
-      background-color: #333333;
+    &.clickable {
+      cursor: pointer;
+      color: #333333;
       border: 1px solid #333333;
-      color: #ffffff;
-      transition: all 0.1s;
 
       .searchImg {
+        filter: invert(0);
+      }
+
+      &:focus {
+        border: 1px solid #fb8e00;
+      }
+
+      &:hover {
+        background-color: #333333;
+        border: 1px solid #333333;
+        color: #ffffff;
         transition: all 0.1s;
-        filter: invert(100%);
+
+        .searchImg {
+          transition: all 0.1s;
+          filter: invert(100%);
+        }
       }
     }
   }
