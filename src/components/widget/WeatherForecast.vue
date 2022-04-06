@@ -21,10 +21,10 @@
         :copy-weather-forecast="copyWeatherForecast"
       />
 
-      <button class="settings__open" @click="openSettings">
+      <button class="settingsOpen" @click="openSettings">
         <img
           alt="Настройки"
-          class="settings__open__img"
+          class="settingsOpenImg"
           src="@/assets/img/settings.svg"
         >
       </button>
@@ -358,7 +358,7 @@ export default {
       }
     }
 
-    .settings__open {
+    .settingsOpen {
       position: absolute;
       left: 20px;
       top: 20px;
@@ -371,7 +371,7 @@ export default {
       cursor: pointer;
       -webkit-appearance: button;
 
-      .settings__open__img {
+      .settingsOpenImg {
         display: block;
         width: 32px;
         height: 32px;

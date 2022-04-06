@@ -14,7 +14,7 @@
         <div
           v-for="(day, i) in weather.week"
           :key="day.max + '' + i"
-          class="graphMax__item"
+          class="graphMaxItem"
         >
           {{ day.max }}°
         </div>
@@ -30,7 +30,7 @@
         <div
           v-for="(day, i) in weather.week"
           :key="day.min + '' + i"
-          class="graphMin__item"
+          class="graphMinItem"
         >
           {{ day.min }}°
         </div>
@@ -229,13 +229,12 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
 
-    .graphMin div,
-    .graphMax div {
-      width: 30px;
-      text-align: center;
-      font-size: 16px;
+      div {
+        width: 30px;
+        text-align: center;
+        font-size: 16px;
+      }
     }
   }
 }

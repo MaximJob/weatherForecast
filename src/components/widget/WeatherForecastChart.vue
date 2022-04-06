@@ -82,11 +82,13 @@ export default {
         }
       ]
     },
+
     temperatureColorDay: {
       type: String,
       required: true,
       default: "#000000"
     },
+    
     temperatureColorNight: {
       type: String,
       required: true,

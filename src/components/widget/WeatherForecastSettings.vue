@@ -1,23 +1,23 @@
 <template>
   <div class="settings">
-    <button class="settings__close" @click="closeSettings">
-      <img alt="Настройки" class="settings__close__img" src="@/assets/img/close.svg">
+    <button class="settingsClose" @click="closeSettings">
+      <img alt="Настройки" class="settingsCloseImg" src="@/assets/img/close.svg">
     </button>
-    <div class="settings__social">
+    <div class="settingsSocial">
       <button
         v-for="link in links"
         :key="link.href"
-        class="settings__social__link"
+        class="settingsSocialLink"
         @click="link.action"
       >
         <img
           :alt="link.alt"
           :src="link.image"
-          class="settings__social__link__img"
+          class="settingsSocialLinkImg"
         >
       </button>
     </div>
-    <h5 class="settings__developer">Разработчик: Максим Алейников</h5>
+    <h5 class="settingsDeveloper">Разработчик: Максим Алейников</h5>
   </div>
 </template>
 
@@ -77,7 +77,7 @@ export default {
     backdrop-filter: blur(20px);
   }
 
-  .settings__close {
+  .settingsClose {
     position: absolute;
     left: 20px;
     top: 20px;
@@ -90,7 +90,7 @@ export default {
     cursor: pointer;
     -webkit-appearance: button;
 
-    .settings__close__img {
+    .settingsCloseImg {
       display: block;
       width: 32px;
       height: 32px;
@@ -99,17 +99,17 @@ export default {
     }
   }
 
-  .settings__developer {
+  .settingsDeveloper {
     margin: 10px 0 0 0;
     text-align: center;
   }
 
-  .settings__social {
+  .settingsSocial {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .settings__social__link {
+    .settingsSocialLink {
       width: 32px;
       height: 32px;
       margin: 0 5px;
@@ -119,7 +119,7 @@ export default {
       text-decoration: none;
       user-select: none;
 
-      .settings__social__link__img {
+      .settingsSocialLinkImg {
         display: block;
         width: 32px;
         height: 32px;

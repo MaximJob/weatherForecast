@@ -14,7 +14,7 @@
 
       <button class="search" type="submit">
         Поиск
-        <img alt="Поиск" class="search__img" src="@/assets/img/search.svg">
+        <img alt="Поиск" class="searchImg" src="@/assets/img/search.svg">
       </button>
     </form>
   </div>
@@ -31,11 +31,13 @@ export default {
       default: (city) => {
       }
     },
+
     cityExistError: {
       type: Boolean,
       required: true,
       default: false
     },
+
     searchesAmount: {
       type: Number,
       required: true,
@@ -146,7 +148,7 @@ export default {
     cursor: pointer;
     -webkit-appearance: button;
 
-    .search__img {
+    .searchImg {
       display: block;
       margin-left: 5px;
       width: 16px;
@@ -166,7 +168,7 @@ export default {
       color: #ffffff;
       transition: all 0.1s;
 
-      .search__img {
+      .searchImg {
         transition: all 0.1s;
         filter: invert(100%);
       }

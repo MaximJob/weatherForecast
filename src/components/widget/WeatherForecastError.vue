@@ -12,11 +12,13 @@ export default {
       required: true,
       default: false
     },
+    
     geoAccessError: {
       type: Boolean,
       required: true,
       default: false
     },
+
     searchesAmount: {
       type: Number,
       required: true,

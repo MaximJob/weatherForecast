@@ -24,6 +24,7 @@ export default {
       required: true,
       default: "Название города"
     },
+    
     weather: {
       type: Object,
       required: true,

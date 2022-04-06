@@ -11,7 +11,7 @@
       <button
         v-for="setting in settings"
         :key="setting.text"
-        class="context__button"
+        class="contextButton"
         @click="setting.action"
       >
         {{ setting.text }}
@@ -132,7 +132,7 @@ export default {
   background-color: #ffffff;
   user-select: none;
 
-  .context__button {
+  .contextButton {
     white-space: nowrap;
     text-align: center;
     width: 100%;
