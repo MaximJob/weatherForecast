@@ -31,7 +31,7 @@
 
       <weather-forecast-geo-access
         v-if="geoAccessShowing"
-        @allow="setGeoAccess"
+        @allow="loadByCoords"
         @forbid="blockGeoAccess"
       />
 
@@ -206,11 +206,6 @@ export default {
   },
 
   methods: {
-    setGeoAccess() {
-      this.geoAccessShowing = false;
-      this.loadByCoords();
-    },
-
     blockGeoAccess() {
       this.geoAccessShowing = false;
       this.geoAccessError = true;
@@ -244,10 +239,12 @@ export default {
         });
     },
 
-    loadByCoords() {
+    async loadByCoords() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
+        await navigator.geolocation.getCurrentPosition(
           (position) => {
+            this.geoAccessShowing = false;
+
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
@@ -261,6 +258,7 @@ export default {
             });
           },
           () => {
+            this.geoAccessShowing = false;
             this.geoAccessError = true;
           },
           {
@@ -268,6 +266,7 @@ export default {
           }
         );
       } else {
+        this.geoAccessShowing = false;
         this.geoExistError = true;
       }
     },
