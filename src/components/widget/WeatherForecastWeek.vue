@@ -1,5 +1,5 @@
 <template>
-  <div class="week">
+  <div class="week withContext">
     <div class="days">
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
         {{ isWindowSmall ? day.weekDayNaming.slice(0, 3) : day.weekDayNaming }}

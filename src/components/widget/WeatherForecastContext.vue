@@ -66,37 +66,40 @@ export default {
   beforeCreate() {
     document.onclick = () => this.showing = false;
 
-    document.oncontextmenu = (e) => {
-      const className = e.target.classList[0];
-      const nodeName = e.target.nodeName.toLowerCase();
+    document.oncontextmenu = () => true;
 
-      const mobileDevice = window.innerWidth < 768;
-      const form = nodeName === "input" || nodeName === "button" || nodeName === "img";
-      const loading = className === "loading" || className === "circle";
-      const settingsMenu =
-        className === "settings"
-        || className === "settings__developer"
-        || className === "settings__social";
-      const contextMenu = this.showing && className === "context" || className === "context__button";
-      const chart = e.target.className.baseVal === "apexcharts-svg" || e.target.parentNode.className === "chart";
-      const weatherForecastElement =
-        !!className
-        && typeof className === "string"
-        && !!(document.querySelector(".weatherForecast")
-            .querySelector("." + className)
-          || className === "weatherForecast");
+    document.querySelector(".weatherForecast").oncontextmenu = e => {
+      let approveContext = false;
 
-      if (!weatherForecastElement && !chart) {
-        return true;
-      } else if (mobileDevice || !weatherForecastElement || contextMenu || loading) {
-        return false;
-      } else if (form || chart || settingsMenu) {
-        this.showing = false;
-        return false;
+      let isItMobileDevice = false;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        isItMobileDevice = true;
       }
 
-      this.setMenuCoords(e);
-      this.showing = true;
+      let domEl = e.target;
+      while (domEl) {
+        if (
+          domEl.nodeName.toLowerCase() === "body"
+          || domEl.classList.contains("apexcharts-canvas")
+        ) {
+          this.showing = false;
+          break;
+        }
+
+        if (domEl.classList.contains("withContext")) {
+          approveContext = true;
+          break;
+        }
+
+        if (domEl.parentNode) {
+          domEl = domEl.parentNode;
+        }
+      }
+
+      if (approveContext && !isItMobileDevice) {
+        this.setMenuCoords(e);
+        this.showing = true;
+      }
       return false;
     };
   },

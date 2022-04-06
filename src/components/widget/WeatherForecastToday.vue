@@ -1,5 +1,5 @@
 <template>
-  <div class="day">
+  <div class="today withContext">
     <div class="temperatureWrap">
       <h1 class="cityName">{{ cityName }}</h1>
       <img :src="weather.icon" alt="Погода" class="icon" />
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.day {
+.today {
   .temperatureWrap {
     display: grid;
     grid-template: repeat(3, auto) / 1fr 1fr;
