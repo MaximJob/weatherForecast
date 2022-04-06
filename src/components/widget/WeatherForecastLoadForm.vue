@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form autocomplete="off" class="loadForm">
+    <form autocomplete="off" class="loadForm" @submit.prevent="load">
       <input
         v-model.trim="city"
         :class="{
@@ -12,7 +12,7 @@
         type="text"
       />
 
-      <button class="search" type="submit" @click="load">
+      <button class="search" type="submit">
         Поиск
         <img alt="Поиск" class="searchImg" src="@/assets/img/search.svg">
       </button>

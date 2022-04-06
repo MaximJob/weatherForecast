@@ -2,8 +2,7 @@
   <div class="week withContext">
     <div class="days">
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
-        {{ isWindowSmall ? day.weekDayNaming.slice(0, 3) : day.weekDayNaming }}
-        <br />
+        <h4>{{ day.weekDayNaming }}</h4>
         <span>{{ day.date }}</span>
         <img :src="day.icon" alt="Иконка погоды" />
       </div>
@@ -122,12 +121,6 @@ export default {
     }
   },
 
-  data() {
-    return {
-      isWindowSmall: false
-    };
-  },
-
   computed: {
     temperatureColorDay() {
       return this.getTempColor(this.weather.averageTemperatureDay);
@@ -136,15 +129,6 @@ export default {
     temperatureColorNight() {
       return this.getTempColor(this.weather.averageTemperatureNight);
     }
-  },
-
-  mounted() {
-    this.updateIsItSmall();
-    window.addEventListener("resize", this.updateIsItSmall);
-  },
-
-  destroyed() {
-    window.removeEventListener("resize", this.updateIsItSmall);
   },
 
   methods: {
@@ -159,13 +143,6 @@ export default {
         return colder;
       } else if (temp < 0) {
         return cold;
-      }
-    },
-
-    updateIsItSmall() {
-      this.isWindowSmall = window.innerWidth < 600;
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        this.isWindowSmall = true;
       }
     }
   }
@@ -192,6 +169,18 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      h4 {
+        font-size: 16px;
+        font-weight: 700;
+        overflow-wrap: break-word;
+
+        @media (max-width: 768px) {
+          max-width: 3ch;
+          max-height: 3ch;
+          overflow: hidden;
+        }
+      }
 
       img {
         display: block;
