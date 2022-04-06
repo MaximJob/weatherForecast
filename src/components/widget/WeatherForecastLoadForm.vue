@@ -72,7 +72,6 @@ export default {
   methods: {
     load() {
       if (this.city) {
-        console.log("submitted");
         this.emptyNameError = false;
         this.$emit("formSubmit", this.city);
         this.city = "";
