@@ -30,6 +30,12 @@ export default {
       required: true,
       default: () => {
       }
+    },
+
+    cityName: {
+      type: String,
+      required: true,
+      default: "Город"
     }
   },
 
@@ -48,19 +54,20 @@ export default {
         {
           text: "Сохранить",
           action: () => {
-            const newInfo = "Saved!";
             const saved = JSON.parse(localStorage.getItem("saved"));
 
             if (saved) {
               if (typeof saved === "object") {
-                saved.push(newInfo);
-                localStorage.saved = JSON.stringify(saved);
+                if (!saved.includes(this.cityName)) {
+                  saved.push(this.cityName);
+                  localStorage.saved = JSON.stringify(saved);
+                }
               } else {
                 localStorage.removeItem("saved");
-                localStorage.saved = JSON.stringify([newInfo]);
+                localStorage.saved = JSON.stringify([this.cityName]);
               }
             } else {
-              localStorage.saved = JSON.stringify([newInfo]);
+              localStorage.saved = JSON.stringify([this.cityName]);
             }
           }
         }

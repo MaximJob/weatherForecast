@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
     <button class="settingsClose" @click="close">
-      <img alt="Настройки" class="settingsCloseImg" src="@/assets/img/close.svg">
+      <img alt="Назад" class="settingsCloseImg" src="@/assets/img/close.svg">
     </button>
     <div class="settingsSocial">
       <button

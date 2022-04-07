@@ -100,12 +100,13 @@ export default {
   align-items: center;
   justify-content: space-between;
 
-
-  &.searchable {
-    .inputCity,
-    .search {
-      width: 50%;
-      transition: all 0.3s;
+  @media (min-width: 1000px) {
+    &.searchable {
+      .inputCity,
+      .search {
+        width: 50%;
+        transition: all 0.3s;
+      }
     }
   }
 
@@ -130,6 +131,10 @@ export default {
     font-weight: 400;
     background: transparent;
     margin-right: 10px;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
 
     &::placeholder {
       color: unset;
@@ -165,6 +170,10 @@ export default {
     user-select: none;
     -webkit-appearance: button;
     cursor: not-allowed;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+    }
 
     .searchImg {
       display: block;

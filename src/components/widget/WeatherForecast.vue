@@ -18,6 +18,7 @@
       />
 
       <weather-forecast-context
+        :city-name="cityName"
         :copy-weather-forecast="copyWeatherForecast"
       />
 
@@ -26,6 +27,14 @@
           alt="Настройки"
           class="settingsOpenImg"
           src="@/assets/img/settings.svg"
+        >
+      </button>
+
+      <button class="savedOpen" @click="openSaved">
+        <img
+          alt="Сохранённое"
+          class="savedOpenImg"
+          src="@/assets/img/saved.svg"
         >
       </button>
 
@@ -392,6 +401,12 @@ export default {
       this.settingsShowing = false;
     },
 
+    openSaved() {
+    },
+
+    closeSaved() {
+    },
+
     copyWeatherForecast() {
       let text = "";
       text += `Текущая температура равна ${this.current.temperature}`;
@@ -466,9 +481,9 @@ export default {
       }
     }
 
-    .settingsOpen {
+    .settingsOpen,
+    .savedOpen {
       position: absolute;
-      left: 20px;
       top: 20px;
       box-sizing: border-box;
       display: flex;
@@ -478,8 +493,24 @@ export default {
       user-select: none;
       cursor: pointer;
       -webkit-appearance: button;
+    }
+
+    .settingsOpen {
+      left: 20px;
 
       .settingsOpenImg {
+        display: block;
+        width: 32px;
+        height: 32px;
+        pointer-events: none;
+        user-select: none;
+      }
+    }
+
+    .savedOpen {
+      left: 64px;
+
+      .savedOpenImg {
         display: block;
         width: 32px;
         height: 32px;
