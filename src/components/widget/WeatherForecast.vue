@@ -47,6 +47,7 @@
       <weather-forecast-settings
         v-if="settingsShowing"
         @close="closeSettings"
+        @giveGeoAccess="handleGeoAccess"
       />
 
       <weather-forecast-saved
@@ -224,6 +225,19 @@ export default {
   },
 
   mounted() {
+    let settingsGeoAccess = false;
+    if (localStorage.settings) {
+      const settings = JSON.parse(localStorage.settings);
+      settingsGeoAccess = settings.find(settings => settings.title === "Использовать местоположение, если возможно").turnedOn;
+
+      if (!settingsGeoAccess) {
+        this.geoAccessShowing = false;
+        this.geoAccessError = true;
+        this.loading = false;
+        return;
+      }
+    }
+
     if (navigator.permissions) {
       navigator.permissions.query({
         name: "geolocation"
@@ -249,6 +263,20 @@ export default {
     blockGeoAccess() {
       this.geoAccessShowing = false;
       this.geoAccessError = true;
+    },
+
+    handleGeoAccess(flag) {
+      if (!this.searchesAmount) {
+        if (flag) {
+          this.geoAccessError = false;
+          this.geoAccessShowing = true;
+          this.loading = false;
+        } else {
+          this.geoAccessError = true;
+          this.geoAccessShowing = false;
+          this.loading = false;
+        }
+      }
     },
 
     async loadWeatherForecast(lat, lon) {
@@ -280,6 +308,16 @@ export default {
     },
 
     async loadFromSaved(city) {
+      // Оставляет буквы и тире
+      city = city.replace(/[^a-zа-яё\s-]/gi, "");
+
+      if (city.length) {
+        city = city.toLowerCase();
+
+        // Слова с заглавной буквы
+        city = city.replace(/(^|\s)\S/g, l => l.toUpperCase());
+      }
+
       if (city !== this.cityName) {
         await this.loadByCityName(city);
       }

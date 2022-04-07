@@ -60,6 +60,7 @@ export default {
             const storage = JSON.parse(localStorage.settings);
             storage[i].turnedOn = this.settings[i].turnedOn;
             localStorage.settings = JSON.stringify(storage);
+            this.$emit("giveGeoAccess", this.settings[i].turnedOn);
           }
         }
       ],
