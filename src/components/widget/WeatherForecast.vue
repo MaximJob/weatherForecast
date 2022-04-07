@@ -1,5 +1,10 @@
 <template>
-  <div class="weatherForecast">
+  <div
+    :style="{
+      'minHeight': ((settingsShowing || savedShowing) && !loading) ? '300px' : 'auto'
+    }"
+    class="weatherForecast"
+  >
     <weather-forecast-loading v-if="loading" />
 
     <div
