@@ -83,12 +83,23 @@ export default {
     if (localStorage.settings) {
       const storage = JSON.parse(localStorage.settings);
       const length = this.settings.length;
+
+      if (storage.length !== length) {
+        this.saveCommonSettings()
+      }
+
       for (let i = 0; i < length; i++) {
         if (this.settings[i].title === storage[i].title) {
           this.settings[i].turnedOn = storage[i].turnedOn;
         }
       }
     } else {
+      this.saveCommonSettings()
+    }
+  },
+
+  methods: {
+    saveCommonSettings() {
       const settings = this.settings.map(setting => {
         return {
           title: setting.title,
