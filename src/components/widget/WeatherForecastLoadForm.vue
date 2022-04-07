@@ -69,6 +69,9 @@ export default {
 
   watch: {
     city() {
+      // Убирает лишние пробелы
+      this.city = this.city.replace(/  /gi, " ");
+
       // Оставляет буквы и тире
       this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
 
