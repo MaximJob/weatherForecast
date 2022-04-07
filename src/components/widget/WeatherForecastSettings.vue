@@ -85,7 +85,7 @@ export default {
       const length = this.settings.length;
 
       if (storage.length !== length) {
-        this.saveCommonSettings()
+        this.saveCommonSettings();
       }
 
       for (let i = 0; i < length; i++) {
@@ -94,7 +94,7 @@ export default {
         }
       }
     } else {
-      this.saveCommonSettings()
+      this.saveCommonSettings();
     }
   },
 
@@ -151,6 +151,13 @@ export default {
     user-select: none;
     cursor: pointer;
     -webkit-appearance: button;
+    transition: all 0.1s;
+
+    &:hover,
+    &:focus {
+      transition: all 0.1s;
+      transform: scale(1.1);
+    }
 
     .settingsCloseImg {
       display: block;
@@ -194,6 +201,10 @@ export default {
         cursor: pointer;
         margin: 0 5px;
 
+        &:focus {
+          border: 1px solid #fb8e00;
+        }
+
         &::after {
           content: '';
           width: 20px;
@@ -210,13 +221,6 @@ export default {
           &::after {
             background-color: #08ff00;
           }
-        }
-
-        &:focus {
-        }
-
-        &:hover {
-          transition: all 0.1s;
         }
       }
     }
@@ -241,6 +245,13 @@ export default {
       background-color: transparent;
       text-decoration: none;
       user-select: none;
+      transition: all 0.1s;
+
+      &:hover,
+      &:focus {
+        transition: all 0.1s;
+        transform: scale(1.1);
+      }
 
       .settingsSocialLinkImg {
         display: block;

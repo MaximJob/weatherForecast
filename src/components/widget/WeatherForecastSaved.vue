@@ -70,6 +70,13 @@ export default {
     user-select: none;
     cursor: pointer;
     -webkit-appearance: button;
+    transition: all 0.1s;
+
+    &:hover,
+    &:focus {
+      transition: all 0.1s;
+      transform: scale(1.1);
+    }
 
     .savedCloseImg {
       display: block;

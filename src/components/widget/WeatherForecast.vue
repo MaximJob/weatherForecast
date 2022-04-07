@@ -554,23 +554,15 @@ export default {
       user-select: none;
       cursor: pointer;
       -webkit-appearance: button;
-    }
+      transition: all 0.1s;
 
-    .settingsOpen {
-      left: 20px;
-
-      .settingsOpenImg {
-        display: block;
-        width: 32px;
-        height: 32px;
-        pointer-events: none;
-        user-select: none;
+      &:hover,
+      &:focus {
+        transition: all 0.1s;
+        transform: scale(1.1);
       }
-    }
 
-    .savedOpen {
-      left: 64px;
-
+      .settingsOpenImg,
       .savedOpenImg {
         display: block;
         width: 32px;
@@ -578,6 +570,14 @@ export default {
         pointer-events: none;
         user-select: none;
       }
+    }
+
+    .settingsOpen {
+      left: 20px;
+    }
+
+    .savedOpen {
+      left: 64px;
     }
 
     .error {
