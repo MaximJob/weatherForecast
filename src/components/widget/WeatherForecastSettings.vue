@@ -6,6 +6,24 @@
       <img alt="Назад" class="settingsCloseImg" src="@/assets/img/close.svg">
     </button>
 
+    <div class="settingsList">
+      <div
+        v-for="(setting, i) in settings"
+        :key="setting.title"
+        class="settingsListItem"
+      >
+        {{ setting.title }}
+        <button
+          :class="{
+            'turnedOn': setting.turnedOn
+          }"
+          class="settingsListItemButton"
+          @click="setting.action(i)"
+        >
+        </button>
+      </div>
+    </div>
+
     <div class="settingsSocial">
       <button
         v-for="link in links"
@@ -33,6 +51,18 @@ export default {
 
   data() {
     return {
+      settings: [
+        {
+          title: "Использовать местоположение, если возможно",
+          turnedOn: true,
+          action: (i) => {
+            this.settings[i].turnedOn = !this.settings[i].turnedOn;
+            const storage = JSON.parse(localStorage.settings);
+            storage[i].turnedOn = this.settings[i].turnedOn;
+            localStorage.settings = JSON.stringify(storage);
+          }
+        }
+      ],
       links: [
         {
           image: vk,
@@ -46,6 +76,26 @@ export default {
         }
       ]
     };
+  },
+
+  created() {
+    if (localStorage.settings) {
+      const storage = JSON.parse(localStorage.settings);
+      const length = this.settings.length;
+      for (let i = 0; i < length; i++) {
+        if (this.settings[i].title === storage[i].title) {
+          this.settings[i].turnedOn = storage[i].turnedOn;
+        }
+      }
+    } else {
+      const settings = this.settings.map(setting => {
+        return {
+          title: setting.title,
+          turnedOn: setting.turnedOn
+        };
+      });
+      localStorage.settings = JSON.stringify(settings);
+    }
   }
 };
 </script>
@@ -54,7 +104,7 @@ export default {
 .settings {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-direction: column;
   position: absolute;
   left: 0;
@@ -74,7 +124,7 @@ export default {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;
-    margin-bottom: auto;
+    margin-bottom: 20px;
   }
 
   .settingsClose {
@@ -96,6 +146,67 @@ export default {
       height: 32px;
       pointer-events: none;
       user-select: none;
+    }
+  }
+
+  .settingsList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: auto;
+
+    .settingsListItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .settingsListItemButton {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        width: 50px;
+        padding: 5px 25px 5px 5px;
+        color: #333333;
+        border-radius: 20px;
+        border: 1px solid #333333;
+        transition: all 0.3s;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        background: transparent;
+        user-select: none;
+        -webkit-appearance: button;
+        cursor: pointer;
+        margin: 0 5px;
+
+        &::after {
+          content: '';
+          width: 20px;
+          min-width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: #ff0000;
+        }
+
+        &.turnedOn {
+          padding: 5px 5px 5px 25px;
+          transition: all 0.3s;
+
+          &::after {
+            background-color: #08ff00;
+          }
+        }
+
+        &:focus {
+        }
+
+        &:hover {
+          transition: all 0.1s;
+        }
+      }
     }
   }
 
