@@ -1,8 +1,11 @@
 <template>
   <div class="settings">
-    <button class="settingsClose" @click="close">
+    <h2>Настройки</h2>
+
+    <button class="settingsClose" @click="$emit('close')">
       <img alt="Назад" class="settingsCloseImg" src="@/assets/img/close.svg">
     </button>
+
     <div class="settingsSocial">
       <button
         v-for="link in links"
@@ -43,12 +46,6 @@ export default {
         }
       ]
     };
-  },
-
-  methods: {
-    close() {
-      this.$emit("close");
-    }
   }
 };
 </script>
@@ -66,11 +63,18 @@ export default {
   height: 100%;
   background-color: #ffffff;
   z-index: 5;
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
 
   @supports (backdrop-filter: blur(20px)) {
     background-color: transparent;
     backdrop-filter: blur(20px);
+  }
+
+  h2 {
+    font-size: 26px;
+    font-weight: 700;
+    overflow-wrap: break-word;
+    margin-bottom: auto;
   }
 
   .settingsClose {

@@ -49,6 +49,12 @@
         @close="closeSettings"
       />
 
+      <weather-forecast-saved
+        v-if="savedShowing"
+        @close="closeSaved"
+        @loadFromSaved="loadFromSaved"
+      />
+
       <weather-forecast-today
         v-if="!errorShowing && !geoAccessShowing"
         :city-name="cityName"
@@ -81,6 +87,7 @@ import WeatherForecastError from "@/components/widget/WeatherForecastError.vue";
 import WeatherForecastContext from "@/components/widget/WeatherForecastContext.vue";
 import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
 import WeatherForecastGeoAccess from "@/components/widget/WeatherForecastGeoAccess.vue";
+import WeatherForecastSaved from "@/components/widget/WeatherForecastSaved.vue";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 const monthNamings = [
@@ -102,6 +109,7 @@ export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastSaved,
     WeatherForecastGeoAccess,
     WeatherForecastSettings,
     WeatherForecastContext,
@@ -190,6 +198,7 @@ export default {
       geoAccessError: false,
       cityExistError: false,
       settingsShowing: false,
+      savedShowing: false,
       geoAccessShowing: true,
       searchesAmount: 0
     };
@@ -268,6 +277,13 @@ export default {
         .catch((e) => {
           console.error(e);
         });
+    },
+
+    async loadFromSaved(city) {
+      if (city !== this.cityName) {
+        await this.loadByCityName(city);
+      }
+      this.closeSaved();
     },
 
     async loadByCoords() {
@@ -402,9 +418,11 @@ export default {
     },
 
     openSaved() {
+      this.savedShowing = true;
     },
 
     closeSaved() {
+      this.savedShowing = false;
     },
 
     copyWeatherForecast() {
