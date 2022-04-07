@@ -15,6 +15,7 @@
       >
         {{ city }}
       </button>
+      <h3 v-if="!saved.length" class="savedListEmpty">Пусто</h3>
     </div>
   </div>
 </template>
@@ -123,6 +124,13 @@ export default {
         border: 1px solid #333333;
         color: #ffffff;
         transition: all 0.1s;
+      }
+
+      .savedListEmpty {
+        font-size: 26px;
+        font-weight: 700;
+        overflow-wrap: break-word;
+        margin-bottom: 20px;
       }
     }
 
