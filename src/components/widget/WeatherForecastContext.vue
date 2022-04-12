@@ -86,16 +86,19 @@ export default {
       const weatherForecastWidth = weatherForecast.clientWidth;
       const weatherForecastHeight = weatherForecast.clientHeight;
 
-      if (e.layerX + 170 > weatherForecastWidth) {
-        this.x = e.layerX - 150;
+      const x = e.layerX;
+      const y = e.y;
+
+      if (x + 170 > weatherForecastWidth) {
+        this.x = x - 150;
       } else {
-        this.x = e.layerX - 5;
+        this.x = x - 5;
       }
 
-      if (e.y + 80 > weatherForecastHeight) {
-        this.y = e.y - 100;
+      if (y + 80 > weatherForecastHeight) {
+        this.y = y - 100;
       } else {
-        this.y = e.y - 35;
+        this.y = y - 35;
       }
     },
 
