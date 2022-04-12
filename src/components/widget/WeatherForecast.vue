@@ -287,7 +287,16 @@ export default {
     async loadWeatherForecast(lat, lon) {
       await this.$http
         .get(
-          `data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=metric&lang=${this.lang}`
+          "data/2.5/onecall?",
+          {
+            params: {
+              lat,
+              lon,
+              exclude: "hourly,minutely,alerts",
+              units: "metric",
+              lang: this.lang
+            }
+          }
         )
         .then((response) => {
           this.geoAccessShowing = false;
@@ -303,7 +312,12 @@ export default {
 
     async loadCityName(lat, lon) {
       await this.$http
-        .get(`geo/1.0/reverse?lat=${lat}&lon=${lon}`)
+        .get("geo/1.0/reverse?", {
+          params: {
+            lat,
+            lon
+          }
+        })
         .then((response) => {
           this.cityName = response.data[0].local_names[this.lang];
         })
@@ -372,7 +386,11 @@ export default {
         this.loading = true;
 
         await this.$http
-          .get(`geo/1.0/direct?q=${city}`)
+          .get("geo/1.0/direct?", {
+            params: {
+              q: city
+            }
+          })
           .then((response) => {
             this.loadWeatherForecast(
               response.data[0].lat,
