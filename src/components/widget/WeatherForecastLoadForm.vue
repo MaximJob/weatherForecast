@@ -186,7 +186,7 @@ export default {
       pointer-events: none;
       user-select: none;
       transition: all 0.3s;
-      filter: invert(50%);
+      filter: invert(60%);
     }
 
     &:focus {
