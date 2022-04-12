@@ -1,10 +1,10 @@
 <template>
   <div class="geoAccess">
-    <h2>Разрешить доступ к геолокации?</h2>
-    <div>
-      <button @click="allow">Разрешить</button>
-      <button @click="forbid">Запретить</button>
-    </div>
+    <h2 class="geoAccessText">Разрешить доступ к геолокации?</h2>
+    <form class="geoAccessButtons">
+      <button class="geoAccessFormButton" @click="allow">Разрешить</button>
+      <button class="geoAccessFormButton" @click="forbid">Запретить</button>
+    </form>
   </div>
 </template>
 
@@ -31,20 +31,20 @@ export default {
   justify-content: center;
   flex-direction: column;
 
-  h2 {
+  .geoAccessText {
     font-size: 24px;
     font-weight: 400;
     word-wrap: break-word;
     text-align: center;
   }
 
-  div {
+  .geoAccessButtons {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
 
-    button {
+    .geoAccessFormButton {
       margin: 0 5px;
       box-sizing: border-box;
       display: flex;

@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <h2>Настройки</h2>
+    <h2 class="settingsTitle">Настройки</h2>
 
     <button class="settingsClose" @click="$emit('close')">
       <img alt="Назад" class="settingsCloseImg" src="@/assets/img/close.svg">
@@ -132,7 +132,7 @@ export default {
     backdrop-filter: blur(20px);
   }
 
-  h2 {
+  .settingsTitle {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;

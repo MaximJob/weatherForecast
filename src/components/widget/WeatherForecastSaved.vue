@@ -1,6 +1,6 @@
 <template>
   <div class="saved">
-    <h2>Сохранённое</h2>
+    <h2 class="savedTitle">Сохранённое</h2>
 
     <button class="savedClose" @click="$emit('close')">
       <img alt="Назад" class="savedCloseImg" src="@/assets/img/close.svg">
@@ -52,7 +52,7 @@ export default {
     backdrop-filter: blur(20px);
   }
 
-  h2 {
+  .savedTitle {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;

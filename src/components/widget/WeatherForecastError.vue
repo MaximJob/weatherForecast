@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>{{ errorText }}</h2>
+  <div class="error">
+    <h2 class="errorText">{{ errorText }}</h2>
   </div>
 </template>
 
@@ -42,11 +42,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
+.error {
   width: 100%;
   margin-bottom: 20px;
 
-  h2 {
+  .errorText {
     font-size: 24px;
     font-weight: 400;
     word-wrap: break-word;

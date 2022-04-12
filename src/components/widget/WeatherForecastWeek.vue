@@ -2,9 +2,9 @@
   <div class="week withContext">
     <div class="days">
       <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
-        <h4>{{ day.weekDayNaming }}</h4>
-        <span>{{ day.date }}</span>
-        <img :src="day.icon" alt="Иконка погоды" />
+        <h4 class="daysItemName">{{ day.weekDayNaming }}</h4>
+        <span class="daysItemDate">{{ day.date }}</span>
+        <img :src="day.icon" alt="Иконка погоды" class="daysItemImg" />
       </div>
     </div>
 
@@ -170,7 +170,7 @@ export default {
       align-items: center;
       justify-content: center;
 
-      h4 {
+      .daysItemName {
         font-size: 16px;
         font-weight: 700;
         overflow-wrap: break-word;
@@ -182,19 +182,19 @@ export default {
         }
       }
 
-      img {
+      .daysItemDate {
+        @media (max-width: 420px) {
+          width: 27px;
+        }
+      }
+
+      .daysItemImg {
         display: block;
         max-width: 50px;
         max-height: 50px;
         width: 100%;
         pointer-events: none;
         user-select: none;
-      }
-
-      span {
-        @media (max-width: 420px) {
-          width: 27px;
-        }
       }
     }
   }
@@ -219,7 +219,8 @@ export default {
       align-items: center;
       justify-content: space-between;
 
-      div {
+      .graphMaxItem,
+      .graphMinItem {
         width: 30px;
         text-align: center;
         font-size: 16px;

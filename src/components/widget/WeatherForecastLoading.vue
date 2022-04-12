@@ -28,40 +28,40 @@ export default {
     border-radius: 50%;
     position: relative;
     animation: circle 0.8s linear infinite;
-  }
 
-  .circle::before {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    left: -20px;
-    top: -20px;
-    background-color: #ffffff;
-    animation: circleBg 0.8s linear infinite alternate;
-  }
-
-  @keyframes circle {
-    from {
-      transform: rotate(0);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  @keyframes circleBg {
-    from {
+    &::before {
+      content: "";
+      position: absolute;
       width: 40px;
       height: 40px;
-      border-radius: 0;
+      left: -20px;
+      top: -20px;
+      background-color: #ffffff;
+      animation: circleBg 0.8s linear infinite alternate;
     }
 
-    to {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+    @keyframes circle {
+      from {
+        transform: rotate(0);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes circleBg {
+      from {
+        width: 40px;
+        height: 40px;
+        border-radius: 0;
+      }
+
+      to {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
     }
   }
 }
