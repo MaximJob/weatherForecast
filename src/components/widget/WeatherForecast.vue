@@ -27,21 +27,41 @@
         :copy-weather-forecast="copyWeatherForecast"
       />
 
-      <button class="settingsOpen" @click="openSettings">
-        <img
-          alt="Настройки"
-          class="settingsOpenImg"
-          src="@/assets/img/settings.svg"
+      <div class="navigation">
+        <button
+          class="navigationButton"
+          @click="openSettings"
         >
-      </button>
+          <img
+            alt="Настройки"
+            class="navigationButtonImg"
+            src="@/assets/img/settings.svg"
+          >
+        </button>
 
-      <button class="savedOpen" @click="openSaved">
-        <img
-          alt="Сохранённое"
-          class="savedOpenImg"
-          src="@/assets/img/saved.svg"
-        />
-      </button>
+        <button
+          class="navigationButton"
+          @click="openSaved"
+        >
+          <img
+            alt="Сохранённое"
+            class="navigationButtonImg"
+            src="@/assets/img/saved.svg"
+          />
+        </button>
+
+        <button
+          v-if="!errorShowing && !geoAccessShowing"
+          class="navigationButton"
+          @click="openMap"
+        >
+          <img
+            alt="Сохранённое"
+            class="navigationButtonImg"
+            src="@/assets/img/map.svg"
+          />
+        </button>
+      </div>
 
       <weather-forecast-geo-access
         v-if="geoAccessShowing"
@@ -130,6 +150,8 @@ export default {
     return {
       loading: true,
       lang: window.navigator.language.slice(0, 2),
+      lat: 0,
+      lon: 0,
       current: {
         icon: "https://openweathermap.org/img/wn/02d@2x.png",
         temperature: "0°С",
@@ -342,6 +364,9 @@ export default {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
+            this.lat = lat;
+            this.lon = lon;
+
             this.loading = true;
 
             Promise.all([
@@ -383,6 +408,9 @@ export default {
             }
           })
           .then((response) => {
+            this.lat = response.data[0].lat;
+            this.lon = response.data[0].lon;
+
             this.loadWeatherForecast(
               response.data[0].lat,
               response.data[0].lon
@@ -478,6 +506,10 @@ export default {
       text += `Текущая температура равна ${this.current.temperature}`;
       text += `, ${this.current.feelsLike}`;
       return text;
+    },
+
+    openMap() {
+      window.open(`https://www.google.com/maps/@${this.lat},${this.lon},13z`);
     }
   }
 };
@@ -502,6 +534,10 @@ export default {
   scroll-behavior: smooth;
   user-select: none;
   overflow: hidden;
+  
+  @media (max-width: 600px) {
+    padding: 60px 20px 20px 20px;
+  }
 
   ::selection {
     background-color: rgba(51, 51, 51, 0.2);
@@ -547,42 +583,47 @@ export default {
       }
     }
 
-    .settingsOpen,
-    .savedOpen {
-      position: absolute;
-      top: 20px;
-      box-sizing: border-box;
+    .navigation {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: transparent;
-      user-select: none;
-      cursor: pointer;
-      -webkit-appearance: button;
-      transition: all 0.1s;
-
-      &:hover,
-      &:focus {
-        transition: all 0.1s;
-        transform: scale(1.1);
-      }
-
-      .settingsOpenImg,
-      .savedOpenImg {
-        display: block;
-        width: 32px;
-        height: 32px;
-        pointer-events: none;
-        user-select: none;
-      }
-    }
-
-    .settingsOpen {
+      position: absolute;
+      top: 20px;
       left: 20px;
-    }
 
-    .savedOpen {
-      left: 64px;
+      .navigationButton {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        user-select: none;
+        cursor: pointer;
+        -webkit-appearance: button;
+        transition: all 0.1s;
+        margin: 0 10px 0 0;
+
+        &:hover,
+        &:focus {
+          transition: all 0.1s;
+          transform: scale(1.1);
+        }
+
+        .navigationButtonImg {
+          display: block;
+          width: 32px;
+          height: 32px;
+          pointer-events: none;
+          user-select: none;
+        }
+      }
+
+      @supports (gap: 10px) {
+        gap: 10px;
+        .navigationButton {
+          margin: 0;
+        }
+      }
     }
 
     .error {
