@@ -99,6 +99,7 @@ export default {
 
   @supports (gap: 10px) {
     gap: 10px;
+    
     .navigationButton {
       margin: 0;
     }

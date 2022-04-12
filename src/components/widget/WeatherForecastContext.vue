@@ -146,7 +146,6 @@ export default {
   border-radius: 10px;
   border: 1px solid #333333;
   background-color: #ffffff;
-  user-select: none;
 
   .contextButton {
     white-space: nowrap;

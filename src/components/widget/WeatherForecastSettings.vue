@@ -148,7 +148,6 @@ export default {
     align-items: center;
     justify-content: center;
     background: transparent;
-    user-select: none;
     cursor: pointer;
     -webkit-appearance: button;
     transition: all 0.1s;

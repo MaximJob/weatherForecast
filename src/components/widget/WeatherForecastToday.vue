@@ -74,7 +74,6 @@ export default {
       width: 100px;
       height: 100px;
       pointer-events: none;
-      user-select: none;
     }
 
     .temperature {

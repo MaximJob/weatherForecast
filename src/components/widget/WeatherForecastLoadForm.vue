@@ -170,7 +170,6 @@ export default {
     font-size: 14px;
     font-weight: 400;
     background: transparent;
-    user-select: none;
     -webkit-appearance: button;
     cursor: not-allowed;
 
@@ -184,7 +183,6 @@ export default {
       width: 16px;
       height: 16px;
       pointer-events: none;
-      user-select: none;
       transition: all 0.3s;
       filter: invert(60%);
     }

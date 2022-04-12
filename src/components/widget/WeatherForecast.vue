@@ -505,15 +505,21 @@ export default {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: transparent;
   font-size: 100%;
   vertical-align: baseline;
-  scroll-behavior: smooth;
   user-select: none;
   overflow: hidden;
 
   @media (max-width: 600px) {
     padding: 60px 20px 20px 20px;
+  }
+
+  @supports (-webkit-tap-highlight-color: transparent) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @supports (scroll-behavior: smooth) {
+    scroll-behavior: smooth;
   }
 
   ::selection {
