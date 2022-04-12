@@ -11,7 +11,7 @@
         v-for="city in saved"
         :key="city"
         class="savedListCity"
-        @click="$emit('loadFromSaved', city)"
+        @click="$emit('loadFromSaved', getFormattedCityName(city))"
       >
         {{ city }}
       </button>
@@ -28,6 +28,22 @@ export default {
     return {
       saved: localStorage.saved ? JSON.parse(localStorage.saved) : []
     };
+  },
+
+  methods: {
+    getFormattedCityName(city) {
+      // Оставляет буквы и тире
+      city = city.replace(/[^a-zа-яё\s-]/gi, "");
+
+      if (city.length) {
+        city = city.toLowerCase();
+
+        // Слова с заглавной буквы
+        city = city.replace(/(^|\s)\S/g, l => l.toUpperCase());
+      }
+
+      return city;
+    }
   }
 };
 </script>

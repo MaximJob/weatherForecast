@@ -327,16 +327,6 @@ export default {
     },
 
     async loadFromSaved(city) {
-      // Оставляет буквы и тире
-      city = city.replace(/[^a-zа-яё\s-]/gi, "");
-
-      if (city.length) {
-        city = city.toLowerCase();
-
-        // Слова с заглавной буквы
-        city = city.replace(/(^|\s)\S/g, l => l.toUpperCase());
-      }
-
       if (city !== this.cityName) {
         await this.loadByCityName(city);
       }
