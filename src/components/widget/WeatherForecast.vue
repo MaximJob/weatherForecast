@@ -40,7 +40,7 @@
           alt="Сохранённое"
           class="savedOpenImg"
           src="@/assets/img/saved.svg"
-        >
+        />
       </button>
 
       <weather-forecast-geo-access
@@ -404,7 +404,6 @@ export default {
     },
 
     getDate(day, daysInMonth) {
-      day = day + new Date().getDate();
       if (day <= daysInMonth) {
         return day + " " + this.getMonthNaming(new Date().getMonth());
       }
@@ -442,7 +441,7 @@ export default {
         max: Math.round(day.temp.max),
         min: Math.round(day.temp.min),
         weekDayNaming: this.getWeekDayNaming(index),
-        date: this.getDate(index, this.daysInMonth),
+        date: this.getDate(index + new Date().getDate(), this.daysInMonth),
         icon: `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`
       };
     },
