@@ -380,9 +380,10 @@ export default {
       if (alreadyLoadedCity) {
         document.activeElement.blur();
         this.cityExistError = false;
+        return;
       }
 
-      if (city && !alreadyLoadedCity) {
+      if (city) {
         this.loading = true;
 
         await this.$http
@@ -409,10 +410,6 @@ export default {
       }
     },
 
-    getMonthNaming(index) {
-      return monthNamings[index];
-    },
-
     getWeekDayNaming(day) {
       if (day === 0) {
         return "Сегодня";
@@ -422,10 +419,11 @@ export default {
     },
 
     getDate(day, daysInMonth) {
+      const month = new Date().getMonth();
       if (day <= daysInMonth) {
-        return day + " " + this.getMonthNaming(new Date().getMonth());
+        return day + " " + monthNamings[month];
       }
-      return day % daysInMonth + " " + this.getMonthNaming(new Date().getMonth() + 1);
+      return day % daysInMonth + " " + monthNamings[month + 1];
     },
 
     setCurrentWeather(current) {
