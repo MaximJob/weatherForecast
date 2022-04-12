@@ -27,41 +27,12 @@
         :copy-weather-forecast="copyWeatherForecast"
       />
 
-      <div class="navigation">
-        <button
-          class="navigationButton"
-          @click="openSettings"
-        >
-          <img
-            alt="Настройки"
-            class="navigationButtonImg"
-            src="@/assets/img/settings.svg"
-          >
-        </button>
-
-        <button
-          class="navigationButton"
-          @click="openSaved"
-        >
-          <img
-            alt="Сохранённое"
-            class="navigationButtonImg"
-            src="@/assets/img/saved.svg"
-          />
-        </button>
-
-        <button
-          v-if="!errorShowing && !geoAccessShowing"
-          class="navigationButton"
-          @click="openMap"
-        >
-          <img
-            alt="Сохранённое"
-            class="navigationButtonImg"
-            src="@/assets/img/map.svg"
-          />
-        </button>
-      </div>
+      <weather-forecast-navigation
+        :weather-showing="weatherShowing"
+        @openMap="openMap"
+        @openSaved="openSaved"
+        @openSettings="openSettings"
+      />
 
       <weather-forecast-geo-access
         v-if="geoAccessShowing"
@@ -82,14 +53,14 @@
       />
 
       <weather-forecast-today
-        v-if="!errorShowing && !geoAccessShowing"
+        v-if="weatherShowing"
         :city-name="cityName"
         :weather="current"
         class="today"
       />
 
       <weather-forecast-week
-        v-if="!errorShowing && !geoAccessShowing"
+        v-if="weatherShowing"
         :weather="daily"
         class="week"
       />
@@ -114,6 +85,7 @@ import WeatherForecastContext from "@/components/widget/WeatherForecastContext.v
 import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings.vue";
 import WeatherForecastGeoAccess from "@/components/widget/WeatherForecastGeoAccess.vue";
 import WeatherForecastSaved from "@/components/widget/WeatherForecastSaved.vue";
+import WeatherForecastNavigation from "@/components/widget/WeatherForecastNavigation.vue";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 const monthNamings = [
@@ -135,6 +107,7 @@ export default {
   name: "WeatherForecast",
 
   components: {
+    WeatherForecastNavigation,
     WeatherForecastSaved,
     WeatherForecastGeoAccess,
     WeatherForecastSettings,
@@ -248,6 +221,10 @@ export default {
 
     errorShowing() {
       return !this.searchesAmount ? this.anyGeoError : false;
+    },
+
+    weatherShowing() {
+      return !this.errorShowing && !this.geoAccessShowing;
     }
   },
 
@@ -534,7 +511,7 @@ export default {
   scroll-behavior: smooth;
   user-select: none;
   overflow: hidden;
-  
+
   @media (max-width: 600px) {
     padding: 60px 20px 20px 20px;
   }
