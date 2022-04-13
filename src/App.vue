@@ -19,13 +19,13 @@ export default {
   width: 100%;
   min-height: 100vh;
   height: 100%;
-  background-color: #f3f3f3;
   padding: 30px;
   isolation: isolate;
   position: relative;
   box-sizing: border-box;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: #333333;
 
   @media (max-width: 768px), (max-height: 800px) {
     padding: 10px;
