@@ -232,11 +232,6 @@ export default {
     }
   }
 
-  .settingsDeveloper {
-    margin: 10px 0 0 0;
-    text-align: center;
-  }
-
   .settingsSocial {
     display: flex;
     align-items: center;
@@ -267,6 +262,14 @@ export default {
         pointer-events: none;
       }
     }
+  }
+
+  .settingsDeveloper {
+    margin: 10px 0 0 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    overflow-wrap: break-word;
   }
 }
 </style>
