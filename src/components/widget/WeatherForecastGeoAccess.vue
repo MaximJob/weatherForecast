@@ -59,7 +59,6 @@ export default {
       font-size: 14px;
       font-weight: 400;
       background: transparent;
-      user-select: none;
       cursor: pointer;
       -webkit-appearance: button;
 

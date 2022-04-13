@@ -508,9 +508,12 @@ export default {
   font-size: 100%;
   font-family: 'Roboto Condensed', sans-serif;
   vertical-align: baseline;
-  user-select: none;
   overflow: hidden;
-  
+
+  @supports (user-select: none) {
+    user-select: none
+  }
+
   @supports (-webkit-tap-highlight-color: transparent) {
     -webkit-tap-highlight-color: transparent;
   }

@@ -4,6 +4,7 @@
       v-for="button in navigation"
       :key="button.img"
       class="navigationButton"
+      type="button"
       @click="button.action"
     >
       <img
@@ -92,7 +93,6 @@ export default {
       width: 32px;
       height: 32px;
       pointer-events: none;
-      user-select: none;
     }
   }
 

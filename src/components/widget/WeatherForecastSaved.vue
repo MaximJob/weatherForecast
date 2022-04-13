@@ -84,7 +84,6 @@ export default {
     align-items: center;
     justify-content: center;
     background: transparent;
-    user-select: none;
     cursor: pointer;
     -webkit-appearance: button;
     transition: all 0.1s;
@@ -100,7 +99,6 @@ export default {
       width: 32px;
       height: 32px;
       pointer-events: none;
-      user-select: none;
     }
   }
 
@@ -126,7 +124,6 @@ export default {
       font-size: 14px;
       font-weight: 400;
       background: transparent;
-      user-select: none;
       -webkit-appearance: button;
       cursor: pointer;
       margin: 0 5px;
