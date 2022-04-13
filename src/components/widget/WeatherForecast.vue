@@ -510,7 +510,7 @@ export default {
   vertical-align: baseline;
   user-select: none;
   overflow: hidden;
-
+  
   @supports (-webkit-tap-highlight-color: transparent) {
     -webkit-tap-highlight-color: transparent;
   }
