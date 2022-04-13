@@ -230,8 +230,9 @@ export default {
 
   mounted() {
     let settingsGeoAccess = false;
-    if (localStorage.settings) {
-      const settings = JSON.parse(localStorage.settings);
+    let settings = localStorage.settings;
+    if (settings) {
+      settings = JSON.parse(settings);
       settingsGeoAccess = settings.find(settings => settings.title === "Использовать местоположение, если возможно").turnedOn;
 
       if (!settingsGeoAccess) {
@@ -304,7 +305,7 @@ export default {
           this.setDailyWeather(response.data.daily);
           this.cityExistError = false;
         })
-        .catch((e) => {
+        .catch(e => {
           console.error(e);
         });
     },
@@ -320,7 +321,7 @@ export default {
         .then((response) => {
           this.cityName = response.data[0].local_names[this.lang];
         })
-        .catch((e) => {
+        .catch(e => {
           console.error(e);
         });
     },

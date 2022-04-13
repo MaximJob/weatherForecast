@@ -76,11 +76,19 @@ export default {
   },
 
   mounted() {
-    document.addEventListener("click", () => this.showing = false);
+    document.addEventListener("click", this.handleClick);
     document.querySelector(".weatherForecast").oncontextmenu = this.handleContext;
   },
 
+  destroyed() {
+    document.removeEventListener("click", this.handleClick);
+  },
+
   methods: {
+    handleClick() {
+      this.showing = false;
+    },
+
     setMenuCoords(e) {
       const weatherForecast = document.querySelector(".weatherForecast");
       const weatherForecastWidth = weatherForecast.clientWidth;
