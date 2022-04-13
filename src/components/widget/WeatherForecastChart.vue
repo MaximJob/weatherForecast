@@ -80,19 +80,16 @@ export default {
           min: 0,
           weekDayNaming: "Вс"
         }
-      ],
+      ]
     },
 
-    temperatureColorDay: {
-      type: String,
+    chartColors: {
+      type: Object,
       required: true,
-      default: "#000000"
-    },
-
-    temperatureColorNight: {
-      type: String,
-      required: true,
-      default: "#000000"
+      default: {
+        day: "#000000",
+        night: "#000000"
+      }
     }
   },
 
@@ -122,7 +119,7 @@ export default {
           enabled: false
         },
 
-        colors: [this.temperatureColorDay, this.temperatureColorNight],
+        colors: [this.chartColors.day, this.chartColors.night],
 
         dataLabels: {
           enabled: false

@@ -20,8 +20,7 @@
       </div>
 
       <weather-forecast-chart
-        :temperature-color-day="temperatureColorDay"
-        :temperature-color-night="temperatureColorNight"
+        :chart-colors="chartColors"
         :temps="weather.week"
       />
 
@@ -122,6 +121,13 @@ export default {
   },
 
   computed: {
+    chartColors() {
+      return {
+        day: this.getTempColor(this.weather.averageTemperatureDay),
+        night: this.getTempColor(this.weather.averageTemperatureNight)
+      };
+    },
+
     temperatureColorDay() {
       return this.getTempColor(this.weather.averageTemperatureDay);
     },
