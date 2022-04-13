@@ -182,6 +182,7 @@ export default {
       margin-left: 5px;
       width: 16px;
       height: 16px;
+      aspect-ratio: 1 / 1;
       pointer-events: none;
       transition: all 0.3s;
       filter: invert(60%);

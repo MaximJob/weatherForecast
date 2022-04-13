@@ -77,6 +77,7 @@ export default {
       width: 100px;
       height: 100px;
       pointer-events: none;
+      aspect-ratio: 1 / 1;
     }
 
     .temperature {
