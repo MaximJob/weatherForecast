@@ -511,10 +511,6 @@ export default {
   user-select: none;
   overflow: hidden;
 
-  @media (max-width: 600px) {
-    padding: 60px 20px 20px 20px;
-  }
-
   @supports (-webkit-tap-highlight-color: transparent) {
     -webkit-tap-highlight-color: transparent;
   }

@@ -42,6 +42,8 @@ export default {
 
 <style lang="scss" scoped>
 .today {
+  padding: 30px 0 0 0;
+
   .temperatureWrap {
     display: grid;
     grid-template: repeat(3, auto) / 1fr 1fr;
