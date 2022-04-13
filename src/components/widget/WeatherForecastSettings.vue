@@ -55,12 +55,18 @@ export default {
         {
           title: "Использовать местоположение, если возможно",
           turnedOn: true,
-          action: (i) => {
-            this.settings[i].turnedOn = !this.settings[i].turnedOn;
+          action: i => {
+            const turnedOn = !this.settings[i].turnedOn;
+
+            this.settings[i].turnedOn = turnedOn;
+
             const storage = JSON.parse(localStorage.settings);
-            storage[i].turnedOn = this.settings[i].turnedOn;
-            localStorage.settings = JSON.stringify(storage);
-            this.$emit("giveGeoAccess", this.settings[i].turnedOn);
+            if (storage) {
+              storage[i].turnedOn = turnedOn;
+              localStorage.settings = JSON.stringify(storage);
+            }
+
+            this.$emit("giveGeoAccess", turnedOn);
           }
         }
       ],
