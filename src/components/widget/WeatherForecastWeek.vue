@@ -201,6 +201,7 @@ export default {
         max-height: 50px;
         width: 100%;
         pointer-events: none;
+        aspect-ratio: 1 / 1;
       }
     }
   }
