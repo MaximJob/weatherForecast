@@ -51,6 +51,7 @@ export default {
     font-weight: 400;
     word-wrap: break-word;
     text-align: center;
+    margin: 0;
   }
 }
 </style>

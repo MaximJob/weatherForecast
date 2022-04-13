@@ -180,6 +180,7 @@ export default {
         font-size: 16px;
         font-weight: 700;
         overflow-wrap: break-word;
+        margin: 0;
 
         @media (max-width: 768px) {
           max-width: 3ch;

@@ -72,7 +72,7 @@ export default {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
   }
 
   .savedClose {
@@ -87,6 +87,8 @@ export default {
     cursor: pointer;
     -webkit-appearance: button;
     transition: all 0.1s;
+    border: none;
+    padding: 0;
 
     &:hover,
     &:focus {

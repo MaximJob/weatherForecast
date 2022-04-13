@@ -38,6 +38,7 @@
         >
       </button>
     </div>
+    
     <h5 class="settingsDeveloper">Разработчик: Максим Алейников</h5>
   </div>
 </template>
@@ -142,7 +143,7 @@ export default {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;
-    margin-bottom: 20px;
+    margin: 0 0 20px 0;
   }
 
   .settingsClose {
@@ -157,6 +158,8 @@ export default {
     cursor: pointer;
     -webkit-appearance: button;
     transition: all 0.1s;
+    border: none;
+    padding: 0;
 
     &:hover,
     &:focus {
@@ -248,6 +251,8 @@ export default {
       background-color: transparent;
       text-decoration: none;
       transition: all 0.1s;
+      border: none;
+      padding: 0;
 
       &:hover,
       &:focus {

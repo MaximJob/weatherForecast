@@ -81,6 +81,8 @@ export default {
     -webkit-appearance: button;
     transition: all 0.1s;
     margin: 0 10px 0 0;
+    padding: 0;
+    border: none;
 
     &:hover,
     &:focus {

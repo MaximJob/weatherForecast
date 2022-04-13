@@ -68,6 +68,7 @@ export default {
       font-size: 26px;
       font-weight: 700;
       overflow-wrap: break-word;
+      margin: 0;
     }
 
     .icon {
@@ -80,18 +81,18 @@ export default {
 
     .temperature {
       grid-area: up;
-
       font-size: 66px;
       font-weight: 700;
       overflow-wrap: break-word;
+      margin: 0;
     }
 
     .feelsLike {
       grid-area: down;
-
       font-size: 16px;
       font-weight: 400;
       overflow-wrap: break-word;
+      margin: 0;
     }
   }
 
@@ -103,12 +104,14 @@ export default {
       font-size: 22px;
       font-weight: 700;
       overflow-wrap: break-word;
+      margin: 0;
     }
 
     .conditions {
       font-size: 16px;
       font-weight: 400;
       overflow-wrap: break-word;
+      margin: 0;
     }
   }
 }
