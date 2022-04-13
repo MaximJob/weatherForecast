@@ -1,9 +1,9 @@
 <template>
   <div class="geoAccess">
     <h2 class="geoAccessText">Разрешить доступ к геолокации?</h2>
-    <form class="geoAccessButtons">
-      <button class="geoAccessFormButton" @click="allow">Разрешить</button>
-      <button class="geoAccessFormButton" @click="forbid">Запретить</button>
+    <form class="geoAccessButtons" @submit.prevent>
+      <button class="geoAccessFormButton" type="button" @click="allow">Разрешить</button>
+      <button class="geoAccessFormButton" type="button" @click="forbid">Запретить</button>
     </form>
   </div>
 </template>
