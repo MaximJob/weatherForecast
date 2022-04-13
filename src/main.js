@@ -1,8 +1,15 @@
 import Vue from "vue";
 import App from "./App.vue";
-
+import { registerSW } from "virtual:pwa-register";
 import axios from "axios";
 import "./assets/scss/main.scss";
+
+const updateSW = registerSW({
+  onNeedRefresh() {
+  },
+  onOfflineReady() {
+  }
+});
 
 Vue.config.productionTip = false;
 
