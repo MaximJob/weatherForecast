@@ -479,10 +479,10 @@ export default {
     },
 
     copyWeatherForecast() {
-      let text = "";
-      text += `Текущая температура равна ${this.current.temperature}`;
-      text += `, ${this.current.feelsLike}`;
-      return text;
+      return `
+        Текущая температура равна ${this.current.temperature}
+        , ${this.current.feelsLike}
+      `;
     },
 
     openMap() {
@@ -506,6 +506,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
   vertical-align: baseline;
   user-select: none;
   overflow: hidden;
@@ -563,49 +564,6 @@ export default {
 
       .form {
         display: none;
-      }
-    }
-
-    .navigation {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-
-      .navigationButton {
-        box-sizing: border-box;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        user-select: none;
-        cursor: pointer;
-        -webkit-appearance: button;
-        transition: all 0.1s;
-        margin: 0 10px 0 0;
-
-        &:hover,
-        &:focus {
-          transition: all 0.1s;
-          transform: scale(1.1);
-        }
-
-        .navigationButtonImg {
-          display: block;
-          width: 32px;
-          height: 32px;
-          pointer-events: none;
-          user-select: none;
-        }
-      }
-
-      @supports (gap: 10px) {
-        gap: 10px;
-        .navigationButton {
-          margin: 0;
-        }
       }
     }
 
