@@ -38,7 +38,7 @@
         >
       </button>
     </div>
-    
+
     <h5 class="settingsDeveloper">Разработчик: Максим Алейников</h5>
   </div>
 </template>
