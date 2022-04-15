@@ -33,4 +33,4 @@ axios.interceptors.request.use(
 
 new Vue({
   render: (h) => h(App)
-}).$mount("#app");
+}).$mount("#weather-app");

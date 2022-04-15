@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="weather-app">
     <weather-forecast />
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#app {
+#weather-app {
   width: 100%;
   min-height: 100vh;
   height: 100%;
