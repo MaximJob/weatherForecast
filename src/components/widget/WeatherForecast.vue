@@ -324,7 +324,7 @@ export default {
             lon
           }
         })
-        .then((response) => {
+        .then(response => {
           this.cityName = response.data[0].local_names[this.lang];
         })
         .catch(e => {
@@ -462,7 +462,7 @@ export default {
       this.current.description = description[0].toUpperCase() + description.slice(1);
       this.current.conditions = `
         Ветер: ${Math.round(current.wind_speed)} м/с,
-        Давление: ${Math.round(current.pressure)} мм рт. ст
+        Давление: ${Math.round(current.pressure)} мм рт. ст.
       `;
     },
 
