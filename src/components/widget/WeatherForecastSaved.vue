@@ -61,7 +61,7 @@ export default {
   height: 100%;
   background-color: #ffffff;
   z-index: 5;
-  padding: 40px 20px 20px 20px;
+  padding: 60px 20px 20px 20px;
 
   @supports (backdrop-filter: blur(20px)) {
     background-color: transparent;
