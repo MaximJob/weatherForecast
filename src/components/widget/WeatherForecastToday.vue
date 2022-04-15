@@ -78,6 +78,7 @@ export default {
       height: 100px;
       pointer-events: none;
       aspect-ratio: 1 / 1;
+      border-radius: 5px;
     }
 
     .temperature {

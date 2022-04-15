@@ -202,6 +202,7 @@ export default {
         width: 100%;
         pointer-events: none;
         aspect-ratio: 1 / 1;
+        border-radius: 5px;
       }
     }
   }
