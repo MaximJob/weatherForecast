@@ -74,8 +74,8 @@ export default {
     .icon {
       grid-area: icon;
       display: block;
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       pointer-events: none;
       aspect-ratio: 1 / 1;
       border-radius: 5px;

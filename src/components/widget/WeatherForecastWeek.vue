@@ -197,8 +197,8 @@ export default {
 
       .daysItemImg {
         display: block;
-        max-width: 50px;
-        max-height: 50px;
+        max-width: 40px;
+        max-height: 40px;
         width: 100%;
         pointer-events: none;
         aspect-ratio: 1 / 1;
