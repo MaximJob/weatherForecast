@@ -18,7 +18,8 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 30px;
-
+  border-radius: 25px;
+  
   .circle {
     min-width: 50px;
     width: 50px;

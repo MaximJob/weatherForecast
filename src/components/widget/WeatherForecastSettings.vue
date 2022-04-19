@@ -125,6 +125,7 @@ export default {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  border-radius: 25px;
   position: absolute;
   left: 0;
   top: 0;

@@ -541,7 +541,6 @@ export default {
   font-size: 100%;
   font-family: 'Roboto Condensed', sans-serif;
   vertical-align: baseline;
-  overflow: hidden;
 
   @supports (user-select: none) {
     user-select: none

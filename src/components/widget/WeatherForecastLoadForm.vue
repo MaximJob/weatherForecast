@@ -19,6 +19,21 @@
         type="text"
       />
 
+      <div
+        v-if="selectShowing && city && optionCities.length > 1"
+        ref="citySelect"
+        class="citySelect"
+      >
+        <div
+          v-for="oCity in optionCities"
+          :key="oCity"
+          class="citySelectItem"
+          @click="setCity(oCity)"
+        >
+          {{ oCity }}
+        </div>
+      </div>
+
       <button
         :class="{
           'clickable': city.length
@@ -34,6 +49,8 @@
 </template>
 
 <script>
+import cities from "@/assets/json/cities.json";
+
 export default {
   name: "WeatherForecastLoadForm",
 
@@ -53,8 +70,27 @@ export default {
 
   data() {
     return {
-      city: ""
+      city: "",
+      selectShowing: false
     };
+  },
+
+  mounted() {
+    document.addEventListener("click", e => {
+      const className = e.target.className;
+      if (className) {
+        const isInputClicked = className.includes("inputCity");
+        const isOptionClicked = className.includes("citySelectItem");
+
+        if (isInputClicked) {
+          this.selectShowing = true;
+        } else if (!isOptionClicked) {
+          this.selectShowing = false;
+        }
+      } else {
+        this.selectShowing = false;
+      }
+    });
   },
 
   computed: {
@@ -64,6 +100,12 @@ export default {
 
     placeholder() {
       return this.inputError ? "Введите существующий город" : "Введите город";
+    },
+
+    optionCities() {
+      return cities.map(city => {
+        if (city.includes(this.city)) return city;
+      }).filter(x => x !== undefined).slice(0, 20);
     }
   },
 
@@ -85,6 +127,11 @@ export default {
   },
 
   methods: {
+    setCity(city) {
+      this.selectShowing = false;
+      this.city = city;
+    },
+
     load() {
       if (this.city) {
         this.$emit("formSubmit", this.city);
@@ -102,6 +149,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 
   @media (min-width: 1000px) {
     &.searchable {
@@ -146,6 +194,34 @@ export default {
     &:focus {
       border: 1px solid #fb8e00;
       transition: all 0.1s;
+    }
+  }
+
+  .citySelect {
+    position: absolute;
+    top: 38px;
+    background-color: rgba(255, 255, 255, 0.95);
+    max-height: 200px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0;
+    overflow: auto;
+
+    &Item {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 400;
+      height: 30px;
+      transition: all 0.3s;
+      padding: 5px 10px;
+      border-radius: 5px;
+
+      &:hover {
+        transition: all 0.3s;
+        background-color: rgba(153, 153, 153, 0.95);
+      }
     }
   }
 
