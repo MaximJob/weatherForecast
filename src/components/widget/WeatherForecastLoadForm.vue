@@ -9,6 +9,7 @@
       @submit.prevent="load"
     >
       <input
+        ref="inputCity"
         v-model.trim="city"
         :class="{
           'error': inputError
@@ -111,7 +112,7 @@ export default {
         this.city = this.city.toLowerCase();
 
         // Слова с заглавной буквы
-        this.city = this.city.replace(/(^|\s)\S/g, l => l.toUpperCase());
+        this.city = this.city.replace(/(^|\s|-)\S/g, l => l.toUpperCase());
       }
     }
   },
@@ -120,6 +121,7 @@ export default {
     setCity(city) {
       this.city = city;
       this.selectShowing = false;
+      this.$refs["inputCity"].focus();
     },
 
     load() {
