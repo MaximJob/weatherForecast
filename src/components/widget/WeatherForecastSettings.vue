@@ -224,7 +224,7 @@ export default {
         &.turnedOn {
           padding: 2px 2px 2px 18px;
           transition: all 0.3s;
-          background-color: #08ff00;
+          background-color: #4bff46;
         }
       }
     }

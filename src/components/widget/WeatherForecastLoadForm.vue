@@ -242,8 +242,8 @@ export default {
   }
 
   .error {
-    color: #ff0000;
-    border: 1px solid #ff0000;
+    color: #ff4646;
+    border: 1px solid #ff4646;
   }
 
   .search {
@@ -281,7 +281,7 @@ export default {
     }
 
     &:focus {
-      border: 1px solid #ff0000;
+      border: 1px solid #ff4646;
     }
 
     &.clickable {
