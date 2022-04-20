@@ -208,6 +208,8 @@ export default {
     display: flex;
     flex-direction: column;
     position: absolute;
+    z-index: 2;
+    left: 0;
     top: 38px;
     background-color: rgba(255, 255, 255, 0.95);
     max-height: 200px;
