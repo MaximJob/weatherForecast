@@ -194,9 +194,9 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 26px;
-        width: 46px;
-        padding: 3px 23px 3px 3px;
+        height: 24px;
+        width: 40px;
+        padding: 2px 18px 2px 2px;
         color: #333333;
         border-radius: 20px;
         transition: all 0.3s;
@@ -206,7 +206,7 @@ export default {
         background-color: #d6d6d6;
         -webkit-appearance: button;
         cursor: pointer;
-        margin: 0 5px;
+        margin: 0 10px;
 
         &:focus {
           border: 1px solid #333333;
@@ -222,7 +222,7 @@ export default {
         }
 
         &.turnedOn {
-          padding: 5px 5px 5px 25px;
+          padding: 2px 2px 2px 18px;
           transition: all 0.3s;
           background-color: #08ff00;
         }
