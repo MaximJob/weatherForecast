@@ -207,9 +207,10 @@ export default {
         -webkit-appearance: button;
         cursor: pointer;
         margin: 0 10px;
+        overflow: hidden;
 
         &:focus {
-          border: 1px solid #333333;
+          transform: scale(1.05);
         }
 
         &::after {
@@ -219,6 +220,7 @@ export default {
           height: 20px;
           border-radius: 50%;
           background-color: #ffffff;
+          box-shadow: 0 1px 20px 1px #999999;
         }
 
         &.turnedOn {
