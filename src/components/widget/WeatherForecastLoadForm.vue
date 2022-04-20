@@ -20,18 +20,18 @@
       />
 
       <div
-        v-if="selectShowing && city && optionCities.length > 1"
-        ref="citySelect"
+        v-if="selectShowing && city && optionCities.length >= 1"
         class="citySelect"
       >
-        <div
+        <button
           v-for="oCity in optionCities"
           :key="oCity"
           class="citySelectItem"
+          type="button"
           @click="setCity(oCity)"
         >
           {{ oCity }}
-        </div>
+        </button>
       </div>
 
       <button
@@ -76,21 +76,7 @@ export default {
   },
 
   mounted() {
-    document.addEventListener("click", e => {
-      const className = e.target.className;
-      if (className) {
-        const isInputClicked = className.includes("inputCity");
-        const isOptionClicked = className.includes("citySelectItem");
-
-        if (isInputClicked) {
-          this.selectShowing = true;
-        } else if (!isOptionClicked) {
-          this.selectShowing = false;
-        }
-      } else {
-        this.selectShowing = false;
-      }
-    });
+    document.addEventListener("click", e => this.handleClick(e.target.className));
   },
 
   computed: {
@@ -103,9 +89,11 @@ export default {
     },
 
     optionCities() {
-      return cities.map(city => {
-        if (city.includes(this.city)) return city;
-      }).filter(x => x !== undefined).slice(0, 20);
+      const firstLet = this.city[0].toLowerCase();
+      let _cities = cities[firstLet];
+      _cities = _cities.filter(city => city.startsWith(this.city));
+      _cities = _cities.filter(city => city !== this.city);
+      return _cities.slice(0, 20);
     }
   },
 
@@ -118,6 +106,8 @@ export default {
       this.city = this.city.replace(/[^a-zа-яё\s-]/gi, "");
 
       if (this.city.length) {
+        this.selectShowing = true;
+
         this.city = this.city.toLowerCase();
 
         // Слова с заглавной буквы
@@ -128,14 +118,29 @@ export default {
 
   methods: {
     setCity(city) {
-      this.selectShowing = false;
       this.city = city;
+      this.selectShowing = false;
     },
 
     load() {
       if (this.city) {
         this.$emit("formSubmit", this.city);
         this.city = "";
+      }
+    },
+
+    handleClick(className) {
+      if (className) {
+        const isInputClicked = className.includes("inputCity");
+        const isOptionClicked = className.includes("citySelect") || className.includes("citySelectItem");
+
+        if (isInputClicked) {
+          this.selectShowing = true;
+        } else if (!isOptionClicked) {
+          this.selectShowing = false;
+        }
+      } else {
+        this.selectShowing = false;
       }
     }
   }
@@ -198,6 +203,8 @@ export default {
   }
 
   .citySelect {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 38px;
     background-color: rgba(255, 255, 255, 0.95);
@@ -210,6 +217,8 @@ export default {
     overflow: auto;
 
     &Item {
+      text-align: center;
+      width: 100%;
       cursor: pointer;
       font-size: 14px;
       font-weight: 400;
@@ -219,6 +228,11 @@ export default {
       border-radius: 5px;
 
       &:hover {
+        transition: all 0.3s;
+        background-color: rgba(153, 153, 153, 0.95);
+      }
+
+      &:focus {
         transition: all 0.3s;
         background-color: rgba(153, 153, 153, 0.95);
       }
