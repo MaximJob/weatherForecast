@@ -140,14 +140,14 @@ export default {
     backdrop-filter: blur(20px);
   }
 
-  .settingsTitle {
+  &Title {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;
     margin: 0 0 20px 0;
   }
 
-  .settingsClose {
+  &Close {
     position: absolute;
     left: 20px;
     top: 20px;
@@ -168,7 +168,7 @@ export default {
       transform: scale(1.1);
     }
 
-    .settingsCloseImg {
+    &Img {
       display: block;
       width: 32px;
       height: 32px;
@@ -177,19 +177,19 @@ export default {
     }
   }
 
-  .settingsList {
+  &List {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-bottom: auto;
 
-    .settingsListItem {
+    &Item {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      .settingsListItemButton {
+      &Button {
         box-sizing: border-box;
         display: flex;
         align-items: center;
@@ -234,12 +234,12 @@ export default {
     }
   }
 
-  .settingsSocial {
+  &Social {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .settingsSocialLink {
+    &Link {
       width: 32px;
       height: 32px;
       margin: 0 5px;
@@ -257,7 +257,7 @@ export default {
         transform: scale(1.1);
       }
 
-      .settingsSocialLinkImg {
+      &Img {
         display: block;
         width: 32px;
         height: 32px;
@@ -267,7 +267,7 @@ export default {
     }
   }
 
-  .settingsDeveloper {
+  &Developer {
     margin: 10px 0 0 0;
     text-align: center;
     font-size: 16px;

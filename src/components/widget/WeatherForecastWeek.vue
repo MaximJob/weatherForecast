@@ -170,13 +170,13 @@ export default {
     font-weight: 700;
     text-align: center;
 
-    .daysItem {
+    &Item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
 
-      .daysItemName {
+      &Name {
         font-size: 16px;
         font-weight: 700;
         overflow-wrap: break-word;
@@ -189,13 +189,13 @@ export default {
         }
       }
 
-      .daysItemDate {
+      &Date {
         @media (max-width: 420px) {
           width: 27px;
         }
       }
 
-      .daysItemImg {
+      &Img {
         display: block;
         max-width: 40px;
         max-height: 40px;
@@ -221,14 +221,14 @@ export default {
       padding: 30px 0 40px 0;
     }
 
-    .graphMax,
-    .graphMin {
+    &Max,
+    &Min {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      .graphMaxItem,
-      .graphMinItem {
+      &Item,
+      &Item {
         width: 30px;
         text-align: center;
         font-size: 16px;

@@ -71,7 +71,7 @@ export default {
   top: 20px;
   left: 20px;
 
-  .navigationButton {
+  &Button {
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -90,7 +90,7 @@ export default {
       transform: scale(1.1);
     }
 
-    .navigationButtonImg {
+    &Img {
       display: block;
       width: 32px;
       height: 32px;
@@ -102,7 +102,7 @@ export default {
   @supports (gap: 10px) {
     gap: 10px;
 
-    .navigationButton {
+    &Button {
       margin: 0;
     }
   }

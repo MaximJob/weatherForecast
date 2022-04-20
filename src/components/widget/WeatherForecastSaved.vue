@@ -69,14 +69,14 @@ export default {
     backdrop-filter: blur(20px);
   }
 
-  .savedTitle {
+  &Title {
     font-size: 26px;
     font-weight: 700;
     overflow-wrap: break-word;
     margin: 0 0 20px 0;
   }
 
-  .savedClose {
+  &Close {
     position: absolute;
     left: 20px;
     top: 20px;
@@ -97,7 +97,7 @@ export default {
       transform: scale(1.1);
     }
 
-    .savedCloseImg {
+    &Img {
       display: block;
       width: 32px;
       height: 32px;
@@ -106,14 +106,14 @@ export default {
     }
   }
 
-  .savedList {
+  &List {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
 
-    .savedListCity {
+    &City {
       box-sizing: border-box;
       display: flex;
       align-items: center;
@@ -142,19 +142,19 @@ export default {
         color: #ffffff;
         transition: all 0.1s;
       }
+    }
 
-      .savedListEmpty {
-        font-size: 26px;
-        font-weight: 700;
-        overflow-wrap: break-word;
-        margin-bottom: 20px;
-      }
+    &Empty {
+      font-size: 16px;
+      font-weight: 400;
+      overflow-wrap: break-word;
+      margin-bottom: 20px;
     }
 
     @supports (gap: 10px) {
       gap: 10px;
 
-      .savedListCity {
+      &City {
         margin: 0;
       }
     }

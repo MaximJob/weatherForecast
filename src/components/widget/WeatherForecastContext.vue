@@ -155,7 +155,7 @@ export default {
   border: 1px solid #333333;
   background-color: #ffffff;
 
-  .contextButton {
+  &Button {
     white-space: nowrap;
     text-align: center;
     width: 100%;

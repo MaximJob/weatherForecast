@@ -46,7 +46,7 @@ export default {
   width: 100%;
   margin-bottom: 20px;
 
-  .errorText {
+  &Text {
     font-size: 24px;
     font-weight: 400;
     word-wrap: break-word;
