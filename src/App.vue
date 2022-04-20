@@ -27,12 +27,16 @@ export default {
   overflow-y: auto;
   background-color: #222222;
 
-  @media (max-width: 768px), (max-height: 800px) {
+  @media (max-width: 1000px), (max-height: 900px) {
     padding: 10px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     padding: 5px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0;
   }
 }
 </style>

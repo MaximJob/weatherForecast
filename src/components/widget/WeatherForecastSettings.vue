@@ -198,6 +198,7 @@ export default {
         align-items: center;
         justify-content: center;
         height: 24px;
+        min-width: 40px;
         width: 40px;
         padding: 2px 18px 2px 2px;
         color: #333333;
