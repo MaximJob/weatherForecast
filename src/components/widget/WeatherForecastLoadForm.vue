@@ -132,7 +132,7 @@ export default {
     },
 
     handleClick(className) {
-      if (className) {
+      if (className && typeof className === "string") {
         const isInputClicked = className.includes("inputCity");
         const isOptionClicked = className.includes("citySelect") || className.includes("citySelectItem");
 

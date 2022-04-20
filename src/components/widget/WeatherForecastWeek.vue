@@ -214,7 +214,7 @@ export default {
     display: grid;
     grid-template: repeat(3, auto) / 1fr;
     font-weight: 700;
-    padding: 50px 20px;
+    padding: 60px 20px 50px 20px;
 
     @media (max-width: 768px) {
       padding: 50px 0;
