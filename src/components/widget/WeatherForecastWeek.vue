@@ -201,8 +201,11 @@ export default {
         max-height: 40px;
         width: 100%;
         pointer-events: none;
-        aspect-ratio: 1 / 1;
         border-radius: 5px;
+
+        @supports (aspect-ratio: 1 / 1) {
+          aspect-ratio: 1 / 1;
+        }
       }
     }
   }

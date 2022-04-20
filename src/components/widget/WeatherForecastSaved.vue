@@ -102,7 +102,10 @@ export default {
       width: 32px;
       height: 32px;
       pointer-events: none;
-      aspect-ratio: 1 / 1;
+
+      @supports (aspect-ratio: 1 / 1) {
+        aspect-ratio: 1 / 1;
+      }
     }
   }
 

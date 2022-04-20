@@ -174,7 +174,7 @@ export default {
   }
 
   .inputCity {
-    width: calc(100% - 100px);
+    width: calc(100% - 90px);
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -247,7 +247,7 @@ export default {
   }
 
   .search {
-    width: 100px;
+    width: 90px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -274,10 +274,13 @@ export default {
       margin-left: 5px;
       width: 16px;
       height: 16px;
-      aspect-ratio: 1 / 1;
       pointer-events: none;
       transition: all 0.3s;
       filter: invert(60%);
+
+      @supports (aspect-ratio: 1 / 1) {
+        aspect-ratio: 1 / 1;
+      }
     }
 
     &:focus {
