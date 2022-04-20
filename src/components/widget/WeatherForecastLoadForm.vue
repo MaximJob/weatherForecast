@@ -219,7 +219,7 @@ export default {
     overflow: auto;
 
     &Item {
-      text-align: center;
+      text-align: left;
       width: 100%;
       cursor: pointer;
       font-size: 14px;
