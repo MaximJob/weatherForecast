@@ -194,23 +194,22 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 30px;
-        width: 50px;
-        padding: 5px 25px 5px 5px;
+        height: 26px;
+        width: 46px;
+        padding: 3px 23px 3px 3px;
         color: #333333;
         border-radius: 20px;
-        border: 1px solid #333333;
         transition: all 0.3s;
         font: inherit;
         font-size: 14px;
         font-weight: 400;
-        background: transparent;
+        background-color: #d6d6d6;
         -webkit-appearance: button;
         cursor: pointer;
         margin: 0 5px;
 
         &:focus {
-          border: 1px solid #fb8e00;
+          border: 1px solid #333333;
         }
 
         &::after {
@@ -219,16 +218,13 @@ export default {
           min-width: 20px;
           height: 20px;
           border-radius: 50%;
-          background-color: #ff0000;
+          background-color: #ffffff;
         }
 
         &.turnedOn {
           padding: 5px 5px 5px 25px;
           transition: all 0.3s;
-
-          &::after {
-            background-color: #08ff00;
-          }
+          background-color: #08ff00;
         }
       }
     }
