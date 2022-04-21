@@ -27,9 +27,9 @@ export default {
   name: "WeatherForecastToday",
 
   components: {
-    WeatherForecastIcon,
     WeatherForecastLoading,
-    WeatherForecastChart
+    WeatherForecastChart,
+    WeatherForecastIcon
   },
 
   props: {

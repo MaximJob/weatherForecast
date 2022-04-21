@@ -295,6 +295,16 @@ export default {
       }
     }
 
+    &:hover {
+      background-color: #ff4646;
+      border: 1px solid #ff4646;
+      color: #ffffff;
+
+      .searchImg {
+        filter: invert(1);
+      }
+    }
+
     &:focus {
       border: 1px solid #ff4646;
     }
