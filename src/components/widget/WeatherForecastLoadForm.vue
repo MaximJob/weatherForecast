@@ -86,6 +86,10 @@ export default {
     document.addEventListener("click", e => this.handleClick(e.target.className));
   },
 
+  destroyed() {
+    document.addEventListener("click", e => this.handleClick(e.target.className));
+  },
+
   computed: {
     inputError() {
       return this.cityExistError && this.searchesAmount > 0;
