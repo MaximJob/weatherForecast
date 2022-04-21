@@ -1,40 +1,38 @@
 <template>
   <div class="week withContext">
     <weather-forecast-loading v-if="loading" />
+    <div v-else class="days">
+      <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
+        <h4 class="daysItemName">{{ day.weekDayNaming }}</h4>
+        <span class="daysItemDate">{{ day.date }}</span>
+        <weather-forecast-icon :icon="day.icon" class="daysItemImg" />
+      </div>
+    </div>
 
-    <div v-else>
-      <div class="days">
-        <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
-          <h4 class="daysItemName">{{ day.weekDayNaming }}</h4>
-          <span class="daysItemDate">{{ day.date }}</span>
-          <weather-forecast-icon :icon="day.icon" class="daysItemImg" />
+    <weather-forecast-loading v-if="loading" />
+    <div v-else class="graph">
+      <div class="graphMax">
+        <div
+          v-for="(day, i) in weather.week"
+          :key="day.max + '' + i"
+          class="graphMaxItem"
+        >
+          {{ day.max }}°
         </div>
       </div>
 
-      <div class="graph">
-        <div class="graphMax">
-          <div
-            v-for="(day, i) in weather.week"
-            :key="day.max + '' + i"
-            class="graphMaxItem"
-          >
-            {{ day.max }}°
-          </div>
-        </div>
+      <weather-forecast-chart
+        :chart-colors="chartColors"
+        :temps="weather.week"
+      />
 
-        <weather-forecast-chart
-          :chart-colors="chartColors"
-          :temps="weather.week"
-        />
-
-        <div class="graphMin">
-          <div
-            v-for="(day, i) in weather.week"
-            :key="day.min + '' + i"
-            class="graphMinItem"
-          >
-            {{ day.min }}°
-          </div>
+      <div class="graphMin">
+        <div
+          v-for="(day, i) in weather.week"
+          :key="day.min + '' + i"
+          class="graphMinItem"
+        >
+          {{ day.min }}°
         </div>
       </div>
     </div>
@@ -173,12 +171,19 @@ export default {
 
 <style lang="scss" scoped>
 .week {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 50px;
+
   @media (max-width: 600px) {
     overflow-x: auto;
     overflow-y: hidden;
   }
 
   .days {
+    width: 100%;
     display: grid;
     grid-template: auto / repeat(8, 1fr);
     align-items: center;
@@ -227,6 +232,7 @@ export default {
   }
 
   .graph {
+    width: 100%;
     display: grid;
     grid-template: repeat(3, auto) / 1fr;
     font-weight: 700;
@@ -251,6 +257,26 @@ export default {
         width: 30px;
         text-align: center;
         font-size: 16px;
+      }
+    }
+  }
+
+  @supports (gap: 50px) {
+    gap: 50px;
+
+    @media (max-width: 600px) {
+      gap: 30px;
+    }
+
+    .graph {
+      padding: 0 20px 40px 20px;
+
+      @media (max-width: 768px) {
+        padding: 0 0 40px 0;
+      }
+
+      @media (max-width: 600px) {
+        padding: 0 0 20px 0;
       }
     }
   }
