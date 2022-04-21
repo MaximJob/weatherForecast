@@ -120,6 +120,7 @@ export default {
         if (
           domEl.nodeName.toLowerCase() === "body"
           || domEl.classList.contains("chart")
+          || domEl.classList.contains("loading")
         ) {
           this.showing = false;
           break;
