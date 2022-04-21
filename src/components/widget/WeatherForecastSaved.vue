@@ -10,8 +10,11 @@
       <button
         v-for="city in saved"
         :key="city"
+        :class="{
+          'savedListBlockedCity': getFormattedCityName(city) === currentCity
+        }"
         class="savedListCity"
-        @click="$emit('loadFromSaved', getFormattedCityName(city))"
+        @click="loadFromSaved(city)"
       >
         {{ city }}
       </button>
@@ -30,6 +33,14 @@ export default {
     };
   },
 
+  props: {
+    currentCity: {
+      type: String,
+      required: true,
+      default: ""
+    }
+  },
+
   methods: {
     getFormattedCityName(city) {
       // Оставляет буквы и тире
@@ -43,6 +54,12 @@ export default {
       }
 
       return city;
+    },
+
+    loadFromSaved(city) {
+      if (city !== this.currentCity) {
+        this.$emit("loadFromSaved", this.getFormattedCityName(city));
+      }
     }
   }
 };
@@ -142,6 +159,21 @@ export default {
       &:hover {
         background-color: #333333;
         border: 1px solid #333333;
+        color: #ffffff;
+        transition: all 0.1s;
+      }
+    }
+
+    &BlockedCity {
+      cursor: not-allowed;
+
+      &:focus {
+        border: 1px solid #ff4646;
+      }
+
+      &:hover {
+        background-color: #ff4646;
+        border: 1px solid #ff4646;
         color: #ffffff;
         transition: all 0.1s;
       }

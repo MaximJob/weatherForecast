@@ -45,6 +45,7 @@
 
       <weather-forecast-saved
         v-if="savedShowing"
+        :current-city="cityName"
         @close="closeSaved"
         @loadFromSaved="loadFromSaved"
       />
