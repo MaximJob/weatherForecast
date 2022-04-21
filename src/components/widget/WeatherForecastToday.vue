@@ -59,7 +59,7 @@ export default {
       type: Object,
       required: true,
       default: {
-        icon: "https://openweathermap.org/img/wn/02d@2x.png",
+        icon: "Sun",
         temperature: "0°С",
         feelsLike: "ощущается как 0°С",
         description: "Погодные условия",

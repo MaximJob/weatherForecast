@@ -85,56 +85,56 @@ export default {
         week: [
           {
             date: "1 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Сегодня"
           },
           {
             date: "2 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Пн"
           },
           {
             date: "3 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Вт"
           },
           {
             date: "4 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Ср"
           },
           {
             date: "5 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Чт"
           },
           {
             date: "6 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Пт"
           },
           {
             date: "7 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Сб"
           },
           {
             date: "8 января",
-            icon: "https://openweathermap.org/img/wn/02d.png",
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Вс"

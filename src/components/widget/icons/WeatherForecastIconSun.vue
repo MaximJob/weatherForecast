@@ -114,8 +114,8 @@ export default {
   }
 
   .circle {
-    width: 55%;
-    height: 55%;
+    width: 50%;
+    height: 50%;
     position: absolute;
     background-color: #ffeb3b;
     border-radius: 50%;
