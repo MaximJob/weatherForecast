@@ -1,36 +1,40 @@
 <template>
   <div class="week withContext">
-    <div class="days">
-      <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
-        <h4 class="daysItemName">{{ day.weekDayNaming }}</h4>
-        <span class="daysItemDate">{{ day.date }}</span>
-        <img :src="day.icon" alt="Иконка погоды" class="daysItemImg" />
-      </div>
-    </div>
+    <weather-forecast-loading v-if="loading" />
 
-    <div class="graph">
-      <div class="graphMax">
-        <div
-          v-for="(day, i) in weather.week"
-          :key="day.max + '' + i"
-          class="graphMaxItem"
-        >
-          {{ day.max }}°
+    <div v-else>
+      <div class="days">
+        <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
+          <h4 class="daysItemName">{{ day.weekDayNaming }}</h4>
+          <span class="daysItemDate">{{ day.date }}</span>
+          <img :src="day.icon" alt="Иконка погоды" class="daysItemImg" />
         </div>
       </div>
 
-      <weather-forecast-chart
-        :chart-colors="chartColors"
-        :temps="weather.week"
-      />
+      <div class="graph">
+        <div class="graphMax">
+          <div
+            v-for="(day, i) in weather.week"
+            :key="day.max + '' + i"
+            class="graphMaxItem"
+          >
+            {{ day.max }}°
+          </div>
+        </div>
 
-      <div class="graphMin">
-        <div
-          v-for="(day, i) in weather.week"
-          :key="day.min + '' + i"
-          class="graphMinItem"
-        >
-          {{ day.min }}°
+        <weather-forecast-chart
+          :chart-colors="chartColors"
+          :temps="weather.week"
+        />
+
+        <div class="graphMin">
+          <div
+            v-for="(day, i) in weather.week"
+            :key="day.min + '' + i"
+            class="graphMinItem"
+          >
+            {{ day.min }}°
+          </div>
         </div>
       </div>
     </div>
@@ -39,6 +43,7 @@
 
 <script>
 import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
+import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
 
 const hotter = "#DC143C";
 const hot = "#FF7F50";
@@ -49,9 +54,15 @@ const colder = "#4682B4";
 export default {
   name: "WeatherForecastWeek",
 
-  components: { WeatherForecastChart },
+  components: { WeatherForecastLoading, WeatherForecastChart },
 
   props: {
+    loading: {
+      type: Boolean,
+      required: true,
+      default: true
+    },
+
     weather: {
       type: Object,
       required: true,
@@ -214,14 +225,14 @@ export default {
     display: grid;
     grid-template: repeat(3, auto) / 1fr;
     font-weight: 700;
-    padding: 60px 20px 50px 20px;
+    padding: 50px 20px 40px 20px;
 
     @media (max-width: 768px) {
-      padding: 50px 0;
+      padding: 50px 0 40px 0;
     }
 
     @media (max-width: 600px) {
-      padding: 30px 0 40px 0;
+      padding: 30px 0 20px 0;
     }
 
     &Max,

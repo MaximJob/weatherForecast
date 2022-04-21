@@ -1,24 +1,36 @@
 <template>
   <div class="today withContext">
-    <div class="temperatureWrap">
-      <h1 class="cityName">{{ cityName }}</h1>
-      <img :src="weather.icon" alt="Погода" class="icon" />
-      <h2 class="temperature">{{ weather.temperature }}</h2>
-      <h3 class="feelsLike">{{ weather.feelsLike }}</h3>
-    </div>
+    <weather-forecast-loading v-if="loading" />
 
-    <div class="conditionsWrap">
-      <h3 class="description">{{ weather.description }}</h3>
-      <h4 class="conditions">{{ weather.conditions }}</h4>
+    <div v-else>
+      <div class="temperatureWrap">
+        <h1 class="cityName">{{ cityName }}</h1>
+        <img :src="weather.icon" alt="Погода" class="icon" />
+        <h2 class="temperature">{{ weather.temperature }}</h2>
+        <h3 class="feelsLike">{{ weather.feelsLike }}</h3>
+      </div>
+
+      <div class="conditionsWrap">
+        <h3 class="description">{{ weather.description }}</h3>
+        <h4 class="conditions">{{ weather.conditions }}</h4>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
+
 export default {
   name: "WeatherForecastToday",
-
+  components: { WeatherForecastLoading },
   props: {
+    loading: {
+      type: Boolean,
+      required: true,
+      default: true
+    },
+
     cityName: {
       type: String,
       required: true,
@@ -74,8 +86,8 @@ export default {
     .icon {
       grid-area: icon;
       display: block;
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       pointer-events: none;
       border-radius: 5px;
 

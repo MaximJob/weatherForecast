@@ -56,6 +56,12 @@ export default {
   name: "WeatherForecastLoadForm",
 
   props: {
+    loading: {
+      type: Boolean,
+      required: true,
+      default: true
+    },
+
     cityExistError: {
       type: Boolean,
       required: true,
@@ -125,7 +131,7 @@ export default {
     },
 
     load() {
-      if (this.city) {
+      if (this.city && !this.loading) {
         this.$emit("formSubmit", this.city);
         this.city = "";
       }

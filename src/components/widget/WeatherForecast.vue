@@ -5,10 +5,7 @@
     }"
     class="weatherForecast"
   >
-    <weather-forecast-loading v-if="loading" />
-
     <div
-      v-else
       :class="{
         'cityError': errorShowing || geoAccessShowing,
       }"
@@ -55,18 +52,21 @@
       <weather-forecast-today
         v-if="weatherShowing"
         :city-name="cityName"
+        :loading="loading"
         :weather="current"
         class="today"
       />
 
       <weather-forecast-week
         v-if="weatherShowing"
+        :loading="loading"
         :weather="daily"
         class="week"
       />
 
       <weather-forecast-load-form
         :city-exist-error="cityExistError"
+        :loading="loading"
         :searches-amount="searchesAmount"
         class="form"
         @formSubmit="loadByCityName"
@@ -333,10 +333,10 @@ export default {
     },
 
     async loadFromSaved(city) {
+      this.closeSaved();
       if (city !== this.cityName) {
         await this.loadByCityName(city);
       }
-      this.closeSaved();
     },
 
     async loadByCoords() {
@@ -566,7 +566,7 @@ export default {
     grid-template-areas:
       'today week'
       'form form';
-    grid-gap: 0 10px;
+    grid-gap: 10px;
 
     @media (max-width: 1000px) {
       grid-template: repeat(3, auto) / 1fr;
@@ -574,7 +574,6 @@ export default {
       'today'
       'week'
       'form';
-      grid-gap: 0;
     }
 
     @media (max-width: 300px) {
