@@ -5,7 +5,8 @@
     <div v-else>
       <div class="temperatureWrap">
         <h1 class="cityName">{{ cityName }}</h1>
-        <img :src="weather.icon" alt="Погода" class="icon" />
+        <weather-forecast-icon-sun class="icon" />
+        <!--        <img :src="weather.icon" alt="Погода" class="icon" />-->
         <h2 class="temperature">{{ weather.temperature }}</h2>
         <h3 class="feelsLike">{{ weather.feelsLike }}</h3>
       </div>
@@ -20,10 +21,11 @@
 
 <script>
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
+import WeatherForecastIconSun from "@/components/widget/WeatherForecastIconSun.vue";
 
 export default {
   name: "WeatherForecastToday",
-  components: { WeatherForecastLoading },
+  components: { WeatherForecastIconSun, WeatherForecastLoading },
   props: {
     loading: {
       type: Boolean,
