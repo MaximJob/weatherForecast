@@ -21,12 +21,12 @@
 <script>
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
 import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
-import WeatherForecastIconClouds from "@/components/widget/WeatherForecastIconClouds.vue";
-import WeatherForecastIconLightning from "@/components/widget/WeatherForecastIconLightning.vue";
-import WeatherForecastIconMist from "@/components/widget/WeatherForecastIconMist.vue";
-import WeatherForecastIconRain from "@/components/widget/WeatherForecastIconRain.vue";
-import WeatherForecastIconSun from "@/components/widget/WeatherForecastIconSun.vue";
-import WeatherForecastIconSnow from "@/components/widget/WeatherForecastIconSnow.vue";
+import WeatherForecastIconClouds from "@/components/widget/icons/WeatherForecastIconClouds.vue";
+import WeatherForecastIconLightning from "@/components/widget/icons/WeatherForecastIconLightning.vue";
+import WeatherForecastIconMist from "@/components/widget/icons/WeatherForecastIconMist.vue";
+import WeatherForecastIconRain from "@/components/widget/icons/WeatherForecastIconRain.vue";
+import WeatherForecastIconSun from "@/components/widget/icons/WeatherForecastIconSun.vue";
+import WeatherForecastIconSnow from "@/components/widget/icons/WeatherForecastIconSnow.vue";
 
 export default {
   name: "WeatherForecastToday",
