@@ -24,8 +24,8 @@ import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
 import WeatherForecastIconClouds from "@/components/widget/icons/WeatherForecastIconClouds.vue";
 import WeatherForecastIconLightning from "@/components/widget/icons/WeatherForecastIconLightning.vue";
 import WeatherForecastIconMist from "@/components/widget/icons/WeatherForecastIconMist.vue";
-import WeatherForecastIconRain from "@/components/widget/icons/WeatherForecastIconRain.vue";
 import WeatherForecastIconSun from "@/components/widget/icons/WeatherForecastIconSun.vue";
+import WeatherForecastIconRain from "@/components/widget/icons/WeatherForecastIconRain.vue";
 import WeatherForecastIconSnow from "@/components/widget/icons/WeatherForecastIconSnow.vue";
 
 export default {
