@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="clouds">
-      <weather-forecast-icon-sun class="sun" />
-      <img alt="Облако" class="cloud" src="@/assets/img/cloud.png">
-    </div>
+  <div class="clouds">
+    <weather-forecast-icon-sun class="sun" />
+    <img alt="Облако" class="cloud" src="@/assets/img/cloud.png">
   </div>
 </template>
 

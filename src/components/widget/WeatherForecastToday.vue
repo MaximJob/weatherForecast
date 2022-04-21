@@ -5,7 +5,7 @@
     <div v-else>
       <div class="temperatureWrap">
         <h1 class="cityName">{{ cityName }}</h1>
-        <component :is="'weatherForecastIcon' + weather.icon" class="icon" />
+        <weather-forecast-icon :icon="weather.icon" class="icon" />
         <h2 class="temperature">{{ weather.temperature }}</h2>
         <h3 class="feelsLike">{{ weather.feelsLike }}</h3>
       </div>
@@ -21,25 +21,15 @@
 <script>
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
 import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
-import WeatherForecastIconClouds from "@/components/widget/icons/WeatherForecastIconClouds.vue";
-import WeatherForecastIconLightning from "@/components/widget/icons/WeatherForecastIconLightning.vue";
-import WeatherForecastIconMist from "@/components/widget/icons/WeatherForecastIconMist.vue";
-import WeatherForecastIconSun from "@/components/widget/icons/WeatherForecastIconSun.vue";
-import WeatherForecastIconRain from "@/components/widget/icons/WeatherForecastIconRain.vue";
-import WeatherForecastIconSnow from "@/components/widget/icons/WeatherForecastIconSnow.vue";
+import WeatherForecastIcon from "@/components/widget/icons/WeatherForecastIcon.vue";
 
 export default {
   name: "WeatherForecastToday",
 
   components: {
+    WeatherForecastIcon,
     WeatherForecastLoading,
-    WeatherForecastChart,
-    WeatherForecastIconClouds,
-    WeatherForecastIconLightning,
-    WeatherForecastIconMist,
-    WeatherForecastIconRain,
-    WeatherForecastIconSnow,
-    WeatherForecastIconSun
+    WeatherForecastChart
   },
 
   props: {

@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div class="rain">
-      <img alt="Облако" class="cloud" src="@/assets/img/cloud.png">
-      <img alt="Капля" class="drop drop1" src="@/assets/img/drop.png">
-      <img alt="Капля" class="drop drop2" src="@/assets/img/drop.png">
-      <img alt="Капля" class="drop drop3" src="@/assets/img/drop.png">
-    </div>
+  <div class="rain">
+    <img alt="Облако" class="cloud" src="@/assets/img/cloud.png">
+    <img alt="Капля" class="drop drop1" src="@/assets/img/drop.png">
+    <img alt="Капля" class="drop drop2" src="@/assets/img/drop.png">
+    <img alt="Капля" class="drop drop3" src="@/assets/img/drop.png">
   </div>
 </template>
 

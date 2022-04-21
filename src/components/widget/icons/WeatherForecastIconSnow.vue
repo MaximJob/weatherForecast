@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div class="snow">
-      <img alt="Облако" class="cloud" src="@/assets/img/cloud.png">
-      <img alt="Снег" class="snowflake snowflake1" src="@/assets/img/snowflake.png">
-      <img alt="Снег" class="snowflake snowflake2" src="@/assets/img/snowflake.png">
-      <img alt="Снег" class="snowflake snowflake3" src="@/assets/img/snowflake.png">
-    </div>
+  <div class="snow">
+    <img alt="Облако" class="cloud" src="@/assets/img/cloud.png">
+    <img alt="Снег" class="snowflake snowflake1" src="@/assets/img/snowflake.png">
+    <img alt="Снег" class="snowflake snowflake2" src="@/assets/img/snowflake.png">
+    <img alt="Снег" class="snowflake snowflake3" src="@/assets/img/snowflake.png">
   </div>
 </template>
 

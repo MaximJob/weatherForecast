@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="mist">
-      <weather-forecast-icon-sun class="sun" />
-      <img alt="Туман" class="mistImg" src="@/assets/img/mist.png" />
-    </div>
+  <div class="mist">
+    <weather-forecast-icon-sun class="sun" />
+    <img alt="Туман" class="mistImg" src="@/assets/img/mist.png" />
   </div>
 </template>
 

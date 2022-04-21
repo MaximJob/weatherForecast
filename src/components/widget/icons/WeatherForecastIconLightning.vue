@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <div class="lightning">
-      <img alt="Облако" class="cloud cloud1" src="@/assets/img/cloud.png">
-      <img alt="Облако" class="cloud cloud2" src="@/assets/img/cloud.png">
-      <img alt="Молния" class="lightning lightning1" src="@/assets/img/lightning.png">
-      <img alt="Облако" class="lightning lightning2" src="@/assets/img/lightning.png">
-    </div>
+  <div class="lightning">
+    <img alt="Облако" class="cloud cloud1" src="@/assets/img/cloud.png">
+    <img alt="Облако" class="cloud cloud2" src="@/assets/img/cloud.png">
+    <img alt="Молния" class="lightning lightning1" src="@/assets/img/lightning.png">
+    <img alt="Облако" class="lightning lightning2" src="@/assets/img/lightning.png">
   </div>
 </template>
 
