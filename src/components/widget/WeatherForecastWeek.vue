@@ -7,7 +7,7 @@
         <div v-for="(day, i) in weather.week" :key="i" class="daysItem">
           <h4 class="daysItemName">{{ day.weekDayNaming }}</h4>
           <span class="daysItemDate">{{ day.date }}</span>
-          <img :src="day.icon" alt="Иконка погоды" class="daysItemImg" />
+          <component :is="'weatherForecastIcon' + day.icon" class="daysItemImg" />
         </div>
       </div>
 
@@ -42,8 +42,14 @@
 </template>
 
 <script>
-import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
 import WeatherForecastLoading from "@/components/widget/WeatherForecastLoading.vue";
+import WeatherForecastChart from "@/components/widget/WeatherForecastChart.vue";
+import WeatherForecastIconClouds from "@/components/widget/WeatherForecastIconClouds.vue";
+import WeatherForecastIconLightning from "@/components/widget/WeatherForecastIconLightning.vue";
+import WeatherForecastIconMist from "@/components/widget/WeatherForecastIconMist.vue";
+import WeatherForecastIconRain from "@/components/widget/WeatherForecastIconSun.vue";
+import WeatherForecastIconSun from "@/components/widget/WeatherForecastIconSun.vue";
+import WeatherForecastIconSnow from "@/components/widget/WeatherForecastIconSnow.vue";
 
 const hotter = "#DC143C";
 const hot = "#FF7F50";
@@ -54,7 +60,16 @@ const colder = "#4682B4";
 export default {
   name: "WeatherForecastWeek",
 
-  components: { WeatherForecastLoading, WeatherForecastChart },
+  components: {
+    WeatherForecastLoading,
+    WeatherForecastChart,
+    WeatherForecastIconClouds,
+    WeatherForecastIconLightning,
+    WeatherForecastIconMist,
+    WeatherForecastIconRain,
+    WeatherForecastIconSnow,
+    WeatherForecastIconSun
+  },
 
   props: {
     loading: {

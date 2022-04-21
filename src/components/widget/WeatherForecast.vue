@@ -87,12 +87,6 @@ import WeatherForecastSettings from "@/components/widget/WeatherForecastSettings
 import WeatherForecastGeoAccess from "@/components/widget/WeatherForecastGeoAccess.vue";
 import WeatherForecastSaved from "@/components/widget/WeatherForecastSaved.vue";
 import WeatherForecastNavigation from "@/components/widget/WeatherForecastNavigation.vue";
-import sun from "@/assets/gifs/sun.gif";
-import clouds from "@/assets/gifs/clouds.gif";
-import mist from "@/assets/gifs/mist.gif";
-import lightning from "@/assets/gifs/lightning.gif";
-import rain from "@/assets/gifs/rain.gif";
-import snow from "@/assets/gifs/rain.gif";
 
 const dayNamings = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 const monthNamings = [
@@ -133,7 +127,7 @@ export default {
       lat: 0,
       lon: 0,
       current: {
-        icon: sun,
+        icon: "Sun",
         temperature: "0°С",
         feelsLike: "ощущается как 0°С",
         description: "Погодные условия",
@@ -143,56 +137,56 @@ export default {
         week: [
           {
             date: "1 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Сегодня"
           },
           {
             date: "2 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Пн"
           },
           {
             date: "3 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Вт"
           },
           {
             date: "4 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Ср"
           },
           {
             date: "5 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Чт"
           },
           {
             date: "6 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Пт"
           },
           {
             date: "7 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Сб"
           },
           {
             date: "8 января",
-            icon: sun,
+            icon: "Sun",
             max: 0,
             min: 0,
             weekDayNaming: "Вс"
@@ -433,25 +427,25 @@ export default {
       id = id.slice(0, 2); // Поскольку пока-что иконки одинаковые для дня и ночи, убираем букву в конце id
       switch (id) {
         case "01":
-          return sun;
+          return "Sun";
         case "02":
-          return clouds;
+          return "Clouds";
         case "03":
-          return clouds;
+          return "Clouds";
         case "04":
-          return clouds;
+          return "Clouds";
         case "09":
-          return rain;
+          return "Rain";
         case "10":
-          return rain;
+          return "Rain";
         case "11":
-          return lightning;
+          return "Lightning";
         case "13":
-          return snow;
+          return "Snow";
         case "50":
-          return mist;
+          return "Mist";
         default:
-          return sun;
+          return "Sun";
       }
     },
 
