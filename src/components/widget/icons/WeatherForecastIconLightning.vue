@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img alt="Молния" class="lightning" src="@/assets/gifs/lightning.gif" />
     <div class="lightning">
       <img alt="Облако" class="cloud cloud1" src="@/assets/img/cloud.png">
       <img alt="Облако" class="cloud cloud2" src="@/assets/img/cloud.png">
