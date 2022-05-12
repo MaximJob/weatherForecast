@@ -69,6 +69,28 @@ export default {
 
             this.$emit("giveGeoAccess", turnedOn);
           }
+        },
+
+        {
+          title: "Фиолетовая тема",
+          turnedOn: false,
+          action: i => {
+            const turnedOn = !this.settings[i].turnedOn;
+
+            this.settings[i].turnedOn = turnedOn;
+
+            const storage = JSON.parse(localStorage.settings);
+            if (storage) {
+              storage[i].turnedOn = turnedOn;
+              localStorage.settings = JSON.stringify(storage);
+            }
+
+            if (turnedOn) {
+              this.$emit("switchTheme", "purple");
+            } else {
+              this.$emit("switchTheme", "light");
+            }
+          }
         }
       ],
       links: [
@@ -120,6 +142,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.light {
+  .settings {
+    background-color: #ffffff;
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+}
+
+.purple {
+  .settings {
+    background-color: #adaaff;
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+}
+
 .settings {
   display: flex;
   align-items: center;
@@ -134,11 +178,6 @@ export default {
   background-color: #ffffff;
   z-index: 5;
   padding: 60px 20px 20px 20px;
-
-  @supports (backdrop-filter: blur(20px)) {
-    background-color: transparent;
-    backdrop-filter: blur(20px);
-  }
 
   &Title {
     font-size: 26px;
@@ -186,6 +225,7 @@ export default {
     justify-content: center;
     flex-direction: column;
     margin-bottom: auto;
+    gap: 10px;
 
     &Item {
       display: flex;
@@ -214,7 +254,7 @@ export default {
         overflow: hidden;
 
         &:focus {
-          transform: scale(1.05);
+          background-color: #666666;
         }
 
         &::after {

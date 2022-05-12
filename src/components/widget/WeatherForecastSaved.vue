@@ -66,6 +66,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.light {
+  .saved {
+    background-color: #ffffff;
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+}
+
+.purple {
+  .saved {
+    background-color: #adaaff;
+
+    @supports (backdrop-filter: blur(20px)) {
+      background-color: transparent;
+      backdrop-filter: blur(20px);
+    }
+  }
+}
+
 .saved {
   display: flex;
   align-items: center;
@@ -77,14 +99,8 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
   z-index: 5;
   padding: 60px 20px 20px 20px;
-
-  @supports (backdrop-filter: blur(20px)) {
-    background-color: transparent;
-    backdrop-filter: blur(20px);
-  }
 
   &Title {
     font-size: 26px;

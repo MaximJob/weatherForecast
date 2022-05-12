@@ -1,5 +1,6 @@
 <template>
   <div
+    :class="theme"
     :style="{
       'minHeight': ((settingsShowing || savedShowing) && !loading) ? '300px' : 'auto'
     }"
@@ -41,6 +42,7 @@
         v-if="settingsShowing"
         @close="closeSettings"
         @giveGeoAccess="handleGeoAccess"
+        @switchTheme="switchTheme"
       />
 
       <weather-forecast-saved
@@ -202,7 +204,8 @@ export default {
       settingsShowing: false,
       savedShowing: false,
       geoAccessShowing: true,
-      searchesAmount: 0
+      searchesAmount: 0,
+      theme: "light"
     };
   },
 
@@ -234,8 +237,13 @@ export default {
     let settings = localStorage.settings;
     if (settings) {
       settings = JSON.parse(settings);
-      settingsGeoAccess = settings.find(settings => settings.title === "Использовать местоположение, если возможно").turnedOn;
 
+      const theme = settings.find(settings => settings.title === "Фиолетовая тема");
+      if (theme) {
+        this.theme = theme.turnedOn ? "purple" : "light";
+      }
+
+      settingsGeoAccess = settings.find(settings => settings.title === "Использовать местоположение, если возможно").turnedOn;
       if (!settingsGeoAccess) {
         this.geoAccessShowing = false;
         this.geoAccessError = true;
@@ -266,6 +274,10 @@ export default {
   },
 
   methods: {
+    switchTheme(theme) {
+      this.theme = theme;
+    },
+
     blockGeoAccess() {
       this.geoAccessShowing = false;
       this.geoAccessError = true;
@@ -521,12 +533,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.weatherForecast.light {
+  background-color: #ffffff;
+}
+
+.weatherForecast.purple {
+  background-color: #adaaff;
+}
+
 .weatherForecast {
   box-sizing: border-box;
   max-width: 1150px;
   margin: 0 auto;
   padding: 30px 20px 20px 20px;
-  background-color: #ffffff;
   color: #333;
   border-radius: 25px;
   position: relative;
